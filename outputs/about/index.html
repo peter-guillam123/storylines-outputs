@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Storylines outputs</title>
-<meta name="description" content="What the Storylines outputs project is, how the outputs are made and a diary of what has been built.">
+<meta name="description" content="What the Storylines outputs project is, how the explainers and videos are made, and a diary of what has been built.">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 :root{
@@ -35,6 +35,14 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
 .outputs li{background:var(--card);border-radius:12px;padding:.9rem 1rem;margin:.6rem 0}
 .outputs a{font:700 1.02rem/1.35 var(--sans)}
 .outputs span{display:block;font-size:.95rem;color:var(--muted);margin-top:.2rem}
+.og{font:800 .8rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 .2rem}
+.og-sub{font-size:1rem;margin:0 0 .4rem}
+.videos{list-style:none;padding:0;margin:.6rem 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(12rem,1fr));gap:1rem}
+.videos a{display:block;text-decoration:none}
+.videos img{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:10px;background:#111}
+.videos .vt{display:block;font:700 1rem/1.3 var(--sans);margin-top:.5rem}
+.videos a:hover .vt,.videos a:focus-visible .vt{text-decoration:underline;text-decoration-color:var(--accent)}
+.videos .vd{display:block;font-size:.9rem;color:var(--muted);margin-top:.2rem;line-height:1.4}
 </style>
 </head>
 <body>
@@ -50,17 +58,34 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
   <h2>How the outputs are made</h2>
   <p>Claude, an AI model, fetches the full text of each article in a Storyline through the Guardian’s Content API. It then writes the output using those articles and nothing else: no web searches, and none of its own knowledge.</p>
   <p>Every sentence is tied to the passage in the article that supports it. A build script checks each quote and figure against the article text, and refuses to build the page if one doesn’t match. Each output comes with a provenance manifest, listing every piece of text, its source and the supporting passage, followed by a note of anything uncertain or left out.</p>
+  <p>The videos work the same way. Each is written as a web page in which every frame is a function of time, reads its words only from the checked list, and is rendered frame by frame to a 1080p MP4. Their pages carry a transcript of everything on screen, each line linked to its article.</p>
   <p>None of the outputs has yet been checked by a Guardian editor.</p>
 
   <h2>Outputs so far</h2>
+  <h3 class="og">Explainers</h3>
+  <p class="og-sub">A five-minute read for someone new to the story, with an interactive diagram.</p>
   <ul class="outputs">
     <li><a href="../explainer-press-ban/index.html">White House bans CNN, MS Now and Politico</a><span>Explainer, with a day-by-day grid of the nine days from the ban to Air Force One</span></li>
     <li><a href="../explainer-iran-hormuz/index.html">US-Iran war and Hormuz negotiations</a><span>Explainer, with Iran’s seven-day timetable as a step-through diagram</span></li>
     <li><a href="../explainer-ice-crackdown/index.html">ICE immigration enforcement crackdown</a><span>Explainer, with the immigration system drawn stage by stage</span></li>
   </ul>
+  <h3 class="og">Videos</h3>
+  <p class="og-sub">Fifteen seconds of motion graphics, from the first development to the latest, without sound.</p>
+  <ul class="videos">
+    <li><a href="../motion-press-ban/index.html"><img src="../motion-press-ban/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">White House bans CNN, MS Now and Politico</span></a><span class="vd">Press passes switched off and on, and the TV pool going dark</span></li>
+    <li><a href="../motion-iran-hormuz/index.html"><img src="../motion-iran-hormuz/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">US-Iran war and Hormuz negotiations</span></a><span class="vd">Shipping through the strait thins out, and Iran’s offer is built day by day</span></li>
+    <li><a href="../motion-ice-crackdown/index.html"><img src="../motion-ice-crackdown/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">ICE immigration enforcement crackdown</span></a><span class="vd">The Guardian’s reporting in date order, stage by stage</span></li>
+  </ul>
 
   <h2>Diary</h2>
   <ol class="diary">
+    <li>
+      <time datetime="2026-09-26">26 September 2026</time>
+      <h3>Fifteen-second videos <span class="milestone">Milestone</span></h3>
+      <p>The same three Storylines as motion graphics: 15 seconds each, 1080p, silent, in each explainer’s colours so the two sets belong together. The brief was to make a showreel piece that still tells someone new to the story what happened, in what order, and why it matters.</p>
+      <p>Fifteen seconds forces choices. Each video keeps a date rail along the bottom so the order is never in doubt, lets a drawn object carry each story (press passes switched off and on; shipping in the strait thinning to a trickle; a strip of the four stages of the immigration system), and ends on a card crediting every article. Everything the explainers could hedge in a clause had to fit in a few words here, so each line went through the same source checks and a separate fact-check.</p>
+      <p>The animations are written as web pages and rendered frame by frame, so they can be re-rendered or changed without starting again. Each video’s page has a transcript of what is on screen, linked to the journalism, for anyone who can’t or would rather not watch.</p>
+    </li>
     <li>
       <time datetime="2026-09-26">26 September 2026</time>
       <h3>Live on the web <span class="milestone">Milestone</span></h3>
