@@ -13,6 +13,9 @@ SLUG = "iran-hormuz"
 PAGE_TITLE = "US-Iran war and Hormuz negotiations: a Storylines video"
 KICKER = "Trump administration"
 DURATION = 15
+SOUND = ("A low drone with a sea-like wash. The February strikes are marked by muted low pulses, not explosions. "
+         "A slowing count runs under the cost figure, a soft chime marks each stage of Iran’s offer, and the "
+         "video ends on an unresolved chord and a slow clock for the wait for Trump’s answer. No speech.")
 
 SRC = {
     "house": "world/2026/sep/15/iran-war-cost-cbo-report",
@@ -135,7 +138,7 @@ CHECKS = [
     "**\"Iran grips the strait\".** Paraphrases the UN speech article's \"stranglehold over energy shipping\".",
     "**Left out.** The Minab school strike (conflicting figures between two articles), the talks in New York, and "
     "reactions from other countries. The opinion piece (Arwa Mahdawi) is credited on the end card but not quoted.",
-    "**Images.** None. Type, colour and drawn shapes only. No sound.",
+    "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.",
 ]
 
 ANIM_CSS = """
@@ -308,3 +311,49 @@ function frame(t) {
   endCard(t, 13.4);
 }
 """
+
+MIX = {"music_gain": 0.6, "fx_gain": 1.0, "rt": 2.4}
+
+
+def score(A):
+    """A low drone with a sea-like wash, in A minor. Strikes are muted pulses, not explosions."""
+    import numpy as np
+    m, N = A.mix, A.note
+    m.add(np.vstack([A.sea(15), A.sea(15)]), 0.0, "music", gain=0.45)
+    m.add(A.pad([N("A1"), N("E2")], 15, cutoff=320, a=1.2, r=1.0), 0.0, "music", gain=0.7, verb=0.2)
+    cues = []
+    m.add(A.thud(62, 30, 1.6, 3, 0.2), 0.18, gain=0.8, verb=0.4)
+    m.add(A.pad([N("A2"), N("E3"), N("C4")], 1.6, cutoff=900, a=0.05, r=1.0), 0.18, "music", gain=0.5, verb=0.4); cues.append(0.18)
+    # February: muted pulses as the rings spread
+    for i, t0 in enumerate([1.7, 1.95, 2.2]):
+        m.add(A.filt(A.thud(55, 30, 1.2, 4, 0.05), "lowpass", 220), t0, gain=0.65, pan=0.3 + i * 0.15, verb=0.4); cues.append(t0)
+    # the grip: a slow low pulse and a darker cluster
+    m.add(A.pad([N("A1"), N("Bb1")], 1.9, cutoff=260, a=0.6, r=0.8), 3.1, "music", gain=0.35)
+    for t0 in np.arange(3.2, 4.8, 0.7):
+        m.add(A.thud(70, 40, 0.35, 10, 0.0), t0, gain=0.4); cues.append(float(t0))
+    # the cost: a tick each time the counter passes a billion
+    # a slowing count, like a mechanical counter settling (not one tick per billion: the counter races at first)
+    for i in range(18):
+        m.add(A.tick(4200, 0.01, 0.28 - i * 0.008), 4.9 + 0.9 * (i / 17) ** 1.8, pan=-0.4)
+    m.add(A.blip(N("A3"), 0.6, 1.0), 5.8, gain=0.3, verb=0.4); cues += [4.9, 5.8]
+    # the vote
+    m.add(A.piano(N("E3"), 1.5), 6.5, "music", gain=0.9, verb=0.4)
+    m.add(A.piano(N("D3"), 1.5), 6.6, "music", gain=0.8, verb=0.4); cues += [6.5, 6.6]
+    # Trump at the UN
+    m.add(A.pad([N("A2"), N("C3"), N("E3")], 1.4, cutoff=700, a=0.04, r=0.9), 7.85, "music", gain=0.6, verb=0.4)
+    m.add(A.thud(80, 42, 0.9, 5, 0.1), 7.85, gain=0.5); cues.append(7.85)
+    # Iran's offer: a chime for each stage, and the route drawn in
+    m.add(A.pad([N("F2"), N("C3"), N("A3")], 3.0, cutoff=1000, a=0.4, r=1.0), 9.2, "music", gain=0.45, verb=0.4)
+    for t0, n in [(9.5, "E5"), (10.05, "G5"), (10.6, "A5")]:
+        m.add(A.chime(N(n)), t0, gain=0.5, pan=-0.3, verb=0.5); cues.append(t0)
+    m.add(A.sweep_noise(0.8, 1200, 7000), 10.1, gain=0.14, pan=0.5, verb=0.3)
+    # waiting: an unresolved chord and a slow clock
+    m.add(A.pad([N("D3"), N("E3"), N("A3")], 3.2, cutoff=900, a=0.5, r=1.2), 12.0, "music", gain=0.5, verb=0.4)
+    for t0 in [12.0, 12.6, 13.2]:
+        m.add(A.tick(2600, 0.03, 0.28), t0, pan=0.2, verb=0.2); cues.append(t0)
+    m.add(A.piano(N("A4"), 2.4, 0.6), 12.0, "music", gain=0.8, verb=0.5)
+    # end card
+    m.add(A.sweep_noise(0.5, 6000, 800), 13.35, gain=0.12, verb=0.3)
+    m.add(A.piano(N("A2"), 2.0, 0.8), 13.45, "music", gain=0.9, verb=0.5)
+    m.add(A.piano(N("E3"), 2.0, 0.6), 13.47, "music", gain=0.7, verb=0.5); cues.append(13.4)
+    return cues

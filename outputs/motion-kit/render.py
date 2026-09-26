@@ -1,4 +1,4 @@
-"""Render a motion folder's animation.html to video.mp4 (1920x1080, H.264) and poster.jpg.
+"""Render a motion folder's animation.html to video_silent.mp4 (1920x1080, H.264) and poster.jpg.
 
 Usage: python3 outputs/motion-kit/render.py outputs/<motion-folder> [--fps 60] [--stills 1.0,4.2,...]
 
@@ -50,7 +50,7 @@ with sync_playwright() as p:
         ff = subprocess.Popen(
             ["ffmpeg", "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(args.fps), "-c:v", "mjpeg",
              "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-pix_fmt", "yuv420p",
-             "-movflags", "+faststart", "-r", str(args.fps), str(folder / "video.mp4")],
+             "-movflags", "+faststart", "-r", str(args.fps), str(folder / "video_silent.mp4")],
             stdin=subprocess.PIPE)
         for i in range(n):
             ff.stdin.write(shot(i / args.fps, type="jpeg", quality=95))
@@ -60,5 +60,5 @@ with sync_playwright() as p:
         ff.wait()
         pt = args.poster if args.poster is not None else page.evaluate("typeof POSTER_T !== 'undefined' ? POSTER_T : 1.5")
         (folder / "poster.jpg").write_bytes(shot(pt, type="jpeg", quality=88))
-        print("wrote", folder / "video.mp4", "and poster.jpg")
+        print("wrote", folder / "video_silent.mp4", "and poster.jpg; now run audio.py to add the score")
     browser.close()

@@ -5,7 +5,7 @@ Built by `outputs/motion-kit/motion.py`, which checks every quote and figure bel
 
 Entries are grouped by the beat of the video in which they appear, in order. Labels (dates, stage names) are marked as such.
 
-Three things are generated from the Storylines data and not listed entry by entry: the Storyline title (used exactly as given), the end card crediting each article by headline and date, and the Read more list on the web page. The end card closes with the line "Every fact on screen comes from these articles · theguardian.com". The date rail's stop labels are the dates of the beats listed below.
+Three things are generated from the Storylines data and not listed entry by entry: the Storyline title (used exactly as given), the end card crediting each article by headline and date, and the Read more list on the web page. The soundtrack is music and sound effects synthesised in code by `outputs/motion-kit/audio.py` (no samples, no licensed music, no speech), so it adds no words or facts. The end card closes with the line "Every fact on screen comes from these articles · theguardian.com". The date rail's stop labels are the dates of the beats listed below.
 
 ## 0:00 · Title
 
@@ -151,4 +151,4 @@ Three things are generated from the Storylines data and not listed entry by entr
 - **The TV pool.** CNN's dot goes dark first, because the White House removed CNN from pool duty; the other four networks then stop filming in solidarity, as the pool article describes.
 - **Why it matters.** The closing quote is from Jacqui Heinrich's statement on the day of the ban. Her full sentence continues: "It is about the right of the American people to receive a full and independent account of the activities, policies and decisions of whoever occupies the nation's highest office." It is cut at the first sentence for length; the cut does not change its meaning.
 - **Left out.** The opinion piece (Margaret Sullivan) is credited on the end card but not quoted: a 15-second video could not label it clearly as opinion.
-- **Images.** None. Type, colour and drawn shapes only. No sound.
+- **Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.

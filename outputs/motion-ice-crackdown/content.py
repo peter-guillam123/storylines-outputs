@@ -15,6 +15,9 @@ SLUG = "ice-crackdown"
 PAGE_TITLE = "ICE immigration enforcement crackdown: a Storylines video"
 KICKER = "Trump administration"
 DURATION = 15
+SOUND = ("Sparse and restrained: a held low chord and soft piano, with a chord at each new date. A muted close as "
+         "the cage appears, three low pulses for the three incidents on 20 September, and a slow swell as the "
+         "arrest figures fill the screen. No stingers and no speech.")
 
 SRC = {
     "cage": "us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report",
@@ -128,7 +131,7 @@ CHECKS = [
     "are in the explainer.",
     "**Dot grid.** 100 dots, each standing for 500 arrests, fill to 50,000. The unit is the video's own, and is labelled.",
     "**The cage graphic.** The squares' areas are in the ratio 18:37.",
-    "**Images.** None. Type, colour and drawn shapes only. No sound.",
+    "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.",
 ]
 
 ANIM_CSS = """
@@ -292,3 +295,40 @@ function frame(t) {
   endCard(t, 13.4);
 }
 """
+
+MIX = {"music_gain": 0.7, "fx_gain": 0.8, "rt": 2.6}
+
+
+def score(A):
+    """Sparse and restrained, in E minor: low piano and a held pad. No stingers."""
+    m, N = A.mix, A.note
+    m.add(A.pad([N("E2"), N("B2")], 15, cutoff=480, a=1.0, r=1.0), 0.0, "music", gain=0.55, verb=0.3)
+    cues = []
+    def chord(t0, ns, vel=0.7):
+        for j, n in enumerate(ns):
+            m.add(A.piano(N(n), 3.0, vel), t0 + j * 0.02, "music", gain=0.9, verb=0.55)
+        cues.append(t0)
+    chord(0.15, ["E2", "B2"], 0.8)
+    chord(1.5, ["E3", "G3", "B3"])
+    chord(4.0, ["C3", "E3", "G3", "B3"])
+    chord(6.4, ["A2", "E3", "C4"])
+    chord(8.6, ["B2", "E3", "F#3"], 0.6)
+    chord(11.0, ["E3", "G3", "B3"])
+    # the cage: the outline draws, then the cage closes inside it
+    m.add(A.sweep_noise(0.7, 300, 1500), 1.8, gain=0.1, verb=0.3)
+    m.add(A.thud(72, 40, 0.6, 9, 0.05), 2.45, gain=0.35, verb=0.3); cues.append(2.45)
+    # removal: a quiet shimmer as the 35 deals appear
+    m.add(A.sweep_noise(0.9, 2200, 6500), 4.9, gain=0.07, pan=0.4, verb=0.5); cues.append(4.9)
+    # court: three low notes with the three bars
+    for t0, n in [(6.8, "A3"), (7.02, "E4"), (7.24, "D4")]:
+        m.add(A.piano(N(n), 2.0, 0.5), t0, "music", gain=0.8, verb=0.5); cues.append(t0)
+    # street: three low pulses, one per incident
+    for t0 in [9.25, 9.6, 9.95]:
+        m.add(A.thud(60, 35, 0.5, 6, 0.0), t0, gain=0.35, verb=0.3); cues.append(t0)
+    # scale: the dots fill as the sound thickens
+    m.add(A.pad([N("E3"), N("B3"), N("E4")], 2.6, cutoff=400, a=1.0, r=0.8, bright_end=2600), 11.1, "music", gain=0.45, verb=0.4)
+    m.add(A.sweep_noise(1.4, 300, 3000), 11.2, gain=0.1, verb=0.3); cues.append(11.2)
+    # end card
+    m.add(A.sweep_noise(0.5, 5000, 800), 13.35, gain=0.08, verb=0.3)
+    chord(13.45, ["E2", "B2", "G3"], 0.6)
+    return cues

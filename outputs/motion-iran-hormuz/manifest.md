@@ -5,7 +5,7 @@ Built by `outputs/motion-kit/motion.py`, which checks every quote and figure bel
 
 Entries are grouped by the beat of the video in which they appear, in order. Labels (dates, stage names) are marked as such.
 
-Three things are generated from the Storylines data and not listed entry by entry: the Storyline title (used exactly as given), the end card crediting each article by headline and date, and the Read more list on the web page. The end card closes with the line "Every fact on screen comes from these articles · theguardian.com". The date rail's stop labels are the dates of the beats listed below.
+Three things are generated from the Storylines data and not listed entry by entry: the Storyline title (used exactly as given), the end card crediting each article by headline and date, and the Read more list on the web page. The soundtrack is music and sound effects synthesised in code by `outputs/motion-kit/audio.py` (no samples, no licensed music, no speech), so it adds no words or facts. The end card closes with the line "Every fact on screen comes from these articles · theguardian.com". The date rail's stop labels are the dates of the beats listed below.
 
 ## 0:00 · Title
 
@@ -166,4 +166,4 @@ Three things are generated from the Storylines data and not listed entry by entr
 - **Iran's offer.** The headline says "six days"; the timetable has the strait reopening on day six and nuclear talks on day seven. The screen shows two of the four US conditions for days one to five (lifting the blockade and ending the war on all fronts); the other two (restoring an oil sanctions waiver, releasing some frozen assets) are on the web page's script and in the explainer.
 - **"Iran grips the strait".** Paraphrases the UN speech article's "stranglehold over energy shipping".
 - **Left out.** The Minab school strike (conflicting figures between two articles), the talks in New York, and reactions from other countries. The opinion piece (Arwa Mahdawi) is credited on the end card but not quoted.
-- **Images.** None. Type, colour and drawn shapes only. No sound.
+- **Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.

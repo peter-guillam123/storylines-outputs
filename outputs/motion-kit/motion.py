@@ -45,6 +45,10 @@ PAGE_CSS = """
 .video-meta{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font:500 .85rem/1.4 var(--sans);color:var(--muted);margin:.8rem .2rem 0}
 .video-meta a{font-weight:700}
 .hero-in{padding-bottom:clamp(4rem,8vw,6.5rem)}
+.snd{font:700 .85rem/1 var(--sans);background:var(--ink);color:var(--paper);border:0;border-radius:99px;padding:.7rem 1rem;cursor:pointer;min-height:40px}
+.snd:hover,.snd:focus-visible{background:var(--accent);color:var(--accent-ink)}
+.video-meta{align-items:center}
+.sound-note{font-size:1rem;background:var(--card);border-radius:10px;padding:.8rem 1rem}
 .script{list-style:none;margin:0;padding:0}
 .script>li{display:grid;grid-template-columns:4.2rem 1fr;gap:1rem;padding:.9rem 0;border-top:1px solid var(--rule)}
 .script .ts{font:800 .85rem/1.6 var(--sans);color:var(--accent-strong);font-variant-numeric:tabular-nums}
@@ -73,7 +77,9 @@ class MotionPage(Page):
             "",
             "Three things are generated from the Storylines data and not listed entry by entry: the Storyline title "
             "(used exactly as given), the end card crediting each article by headline and date, and the Read more "
-            "list on the web page. The end card closes with the line \"Every fact on screen comes from these articles "
+            "list on the web page. The soundtrack is music and sound effects synthesised in code by "
+            "`outputs/motion-kit/audio.py` (no samples, no licensed music, no speech), so it adds no words or facts. The "
+            "end card closes with the line \"Every fact on screen comes from these articles "
             "· theguardian.com\". The date rail's stop labels are the dates of the beats listed below.",
             "",
         ]
@@ -157,7 +163,7 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
     <p class="kicker"><span>Storylines motion</span> <span class="kicker-tag">{esc(m.KICKER)}</span></p>
     <h1>{esc(self.title)}</h1>
     <p class="dek">{dek}</p>
-    <p class="meta">A {m.DURATION}-second video, without sound · Drawn from {n_text} Guardian articles</p>
+    <p class="meta">A {m.DURATION}-second video with music and sound effects, no speech · Drawn from {n_text} Guardian articles</p>
   </div>
 </header>
 <main id="main">
@@ -166,11 +172,12 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
     <source src="video.mp4" type="video/mp4">
     Your browser can’t play this video. <a href="video.mp4">Download it</a> or read what’s on screen below.
   </video>
-  <p class="video-meta"><span>1080p · 16:9 · {m.DURATION} seconds</span><a href="video.mp4" download>Download the MP4</a><a href="../explainer-{m.SLUG}/index.html">Read the explainer</a></p>
+  <p class="video-meta"><button type="button" class="snd" id="snd">Play with sound</button><span>1080p · 16:9 · {m.DURATION} seconds</span><a href="video.mp4" download>Download the MP4</a><a href="../explainer-{m.SLUG}/index.html">Read the explainer</a></p>
 </div>
 <section aria-labelledby="s-script">
   <h2 id="s-script">What’s on screen</h2>
   <p class="rm-intro">Every word in the video, in order, with the Guardian article it comes from. On-screen labels are in small capitals.</p>
+  <p class="sound-note"><strong>Sound.</strong> {esc(m.SOUND)}</p>
   <ol class="script">{rows}</ol>
 </section>
 <section class="readmore" id="read-more" aria-labelledby="rm-h">
@@ -182,12 +189,14 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
 <footer class="foot">
   <div class="foot-in">
     <h2>How this was made</h2>
-    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the Trump administration topic page. An AI model (Claude) read the articles and designed this animation in code, using no words, dates or figures but theirs. The animation is written as a web page (<a href="animation.html">see it play live</a>) and rendered frame by frame to video. Every piece of on-screen text is tied to a passage in the journalism: the full list is in the <a href="manifest.html">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
+    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the Trump administration topic page. An AI model (Claude) read the articles and designed this animation in code, using no words, dates or figures but theirs. The animation is written as a web page (<a href="animation.html">see it play live</a>) and rendered frame by frame to video; the music and sound effects are synthesised in code, with no samples or speech. Every piece of on-screen text is tied to a passage in the journalism: the full list is in the <a href="manifest.html">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
   </div>
 </footer>
 <script>
 (function(){{
   var v=document.querySelector('video');
+  var b=document.getElementById('snd');
+  if(v&&b) b.addEventListener('click',function(){{v.muted=false;v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){{}});b.textContent='Playing with sound';}});
   if(!v||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if(!('IntersectionObserver' in window)) return;
   new IntersectionObserver(function(es){{es.forEach(function(e){{

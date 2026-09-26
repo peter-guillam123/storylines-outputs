@@ -5,7 +5,7 @@ Built by `outputs/motion-kit/motion.py`, which checks every quote and figure bel
 
 Entries are grouped by the beat of the video in which they appear, in order. Labels (dates, stage names) are marked as such.
 
-Three things are generated from the Storylines data and not listed entry by entry: the Storyline title (used exactly as given), the end card crediting each article by headline and date, and the Read more list on the web page. The end card closes with the line "Every fact on screen comes from these articles · theguardian.com". The date rail's stop labels are the dates of the beats listed below.
+Three things are generated from the Storylines data and not listed entry by entry: the Storyline title (used exactly as given), the end card crediting each article by headline and date, and the Read more list on the web page. The soundtrack is music and sound effects synthesised in code by `outputs/motion-kit/audio.py` (no samples, no licensed music, no speech), so it adds no words or facts. The end card closes with the line "Every fact on screen comes from these articles · theguardian.com". The date rail's stop labels are the dates of the beats listed below.
 
 ## 0:00 · Title
 
@@ -148,4 +148,4 @@ Three things are generated from the Storylines data and not listed entry by entr
 - **Alligator Alcatraz.** The screen says the jail has since closed. Staff told inspectors the cages were "calming areas", and DeSantis's office said the area met federal standards; neither fits in a 2.5-second beat, and both are in the explainer.
 - **Dot grid.** 100 dots, each standing for 500 arrests, fill to 50,000. The unit is the video's own, and is labelled.
 - **The cage graphic.** The squares' areas are in the ratio 18:37.
-- **Images.** None. Type, colour and drawn shapes only. No sound.
+- **Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.

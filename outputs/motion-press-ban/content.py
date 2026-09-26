@@ -13,6 +13,10 @@ SLUG = "press-ban"
 PAGE_TITLE = "White House bans CNN, MS Now and Politico: a Storylines video"
 KICKER = "Trump administration"
 DURATION = 15
+SOUND = ("A taut, rhythmic score in a minor key, with a steady pulse through the nine days. Stamps thud as the "
+         "badges are switched off, falling notes as the TV pool goes dark and rising ones as it returns, and a "
+         "rush of air for Air Force One. The rhythm stops for the closing quote, which is underscored by a few "
+         "piano notes. No speech.")
 
 SRC = {
     "ban": "us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house",
@@ -129,7 +133,7 @@ CHECKS = [
     "sentence for length; the cut does not change its meaning.",
     "**Left out.** The opinion piece (Margaret Sullivan) is credited on the end card but not quoted: a 15-second video "
     "could not label it clearly as opinion.",
-    "**Images.** None. Type, colour and drawn shapes only. No sound.",
+    "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.",
 ]
 
 ANIM_CSS = """
@@ -322,3 +326,71 @@ function frame(t) {
   endCard(t, 13.35);
 }
 """
+
+MIX = {"music_gain": 0.55, "fx_gain": 1.0}
+
+
+def score(A):
+    """Taut and rhythmic, in D minor. Hits land on the animation's own cue times."""
+    m, N = A.mix, A.note
+    chords = [(0.0, ["D3", "A3", "F4"]), (4.3, ["Bb2", "F3", "D4"]), (6.0, ["G2", "D3", "Bb3"]),
+              (7.2, ["F2", "C4", "A4"]), (8.1, ["Bb2", "E3", "D4"]), (9.0, ["F2", "C3", "A3"]),
+              (10.1, ["D3", "A3", "F4"]), (11.5, ["Bb2", "F3", "D4"]), (13.35, ["D3", "A3", "E4"])]
+    for i, (t0, ns) in enumerate(chords):
+        t1 = chords[i + 1][0] if i + 1 < len(chords) else 15.0
+        m.add(A.pad([N(n) for n in ns], t1 - t0 + 0.9, cutoff=1100, a=0.25, r=0.8), t0, "music", gain=0.55, verb=0.35)
+    roots = {0: "D2", 4.3: "Bb1", 6.0: "G1", 7.2: "F1", 8.1: "Bb1", 9.0: "F1", 10.1: "D2"}
+    def root(t):
+        k = max(x for x in roots if x <= t + 1e-6)
+        return N(roots[k])
+    for t, x in A.bass_pulse(root, 1.5, 11.5):
+        m.add(x, t, "music", gain=0.9 if round(t / 0.25) % 2 == 0 else 0.6)
+    t = 1.5
+    while t < 11.45:
+        m.add(A.tick(7500, 0.02, 0.35 if round(t / 0.125) % 2 == 0 else 0.18), t, "music", pan=0.3)
+        t += 0.125
+    cues = []
+    # title
+    m.add(A.sweep_noise(0.75, 800, 6000), 0.0, gain=0.22, pan=-0.3, verb=0.2)
+    m.add(A.thud(75, 34, 1.4, 4, 0.4), 0.18, gain=1.0, verb=0.3); cues.append(0.18)
+    m.add(A.sweep_noise(0.4, 5000, 600), 1.15, gain=0.18, verb=0.2)
+    # press passes fly in
+    for i, t0 in enumerate([1.55, 1.65, 1.75]):
+        m.add(A.sweep_noise(0.35, 400, 3200), t0, gain=0.22, pan=0.4 + i * 0.15)
+    # badges disabled: three stamps
+    for i, t0 in enumerate([3.29, 3.36, 3.43]):
+        m.add(A.stamp(), t0, gain=0.85, pan=0.35 + i * 0.12, verb=0.2); cues.append(t0)
+    # the date rail arrives at each day
+    for t0 in [3.1, 4.3, 6.0, 7.2, 9.0, 10.1]:
+        m.add(A.blip(N("A5"), 0.12), t0, gain=0.18, pan=-0.2, verb=0.3); cues.append(t0)
+    # they sue
+    m.add(A.thud(115, 45, 0.9, 6, 0.4), 4.35, gain=0.8, verb=0.3); cues.append(4.35)
+    # pool goes dark: CNN first, then the four others, falling
+    m.add(A.blip(N("E5"), 0.3, 0.5), 4.62, gain=0.35, pan=0.5, verb=0.3); cues.append(4.62)
+    for t0, n in zip([5.0, 5.12, 5.24, 5.36], ["D5", "C5", "A4", "G4"]):
+        m.add(A.blip(N(n), 0.26, 0.6), t0, gain=0.32, pan=0.55, verb=0.3); cues.append(t0)
+    # in court
+    m.add(A.thud(90, 45, 0.7, 7, 0.1), 6.02, gain=0.45)
+    # the order: brighter, a shimmer
+    m.add(A.chime(N("A5")), 7.3, gain=0.5, pan=0.4, verb=0.5)
+    m.add(A.chime(N("E6")), 7.38, gain=0.35, pan=0.5, verb=0.5)
+    m.add(A.sweep_noise(0.7, 600, 8000), 7.25, gain=0.12, verb=0.3); cues.append(7.3)
+    # kept out of the dinner
+    m.add(A.thud(80, 40, 1.0, 5, 0.2), 8.1, gain=0.7, verb=0.3)
+    m.add(A.blip(N("F#5"), 0.4, 0.97), 8.12, gain=0.18, pan=0.5, verb=0.4); cues.append(8.1)
+    # pool back on, rising
+    for t0, n in zip([9.1, 9.2, 9.3, 9.4, 9.5], ["G4", "A4", "C5", "D5", "F5"]):
+        m.add(A.blip(N(n), 0.2, 1.3), t0, gain=0.3, pan=0.55, verb=0.3); cues.append(t0)
+    # Air Force One: a pass left behind
+    m.add(A.sweep_noise(0.45, 300, 3000), 10.15, gain=0.35, pan=-0.2)
+    m.add(A.sweep_noise(0.45, 3000, 6000), 10.55, gain=0.3, pan=0.7)
+    m.add(A.blip(900, 0.7, 0.22), 10.45, gain=0.25, pan=0.3, verb=0.3)
+    m.add(A.thud(70, 38, 0.6, 8, 0.15), 11.1, gain=0.4); cues += [10.15, 10.45, 11.1]
+    # the quote: the rhythm stops, a few piano notes
+    for t0, n in [(11.5, "D4"), (12.1, "F4"), (12.7, "A4")]:
+        m.add(A.piano(N(n), 2.0, 0.8), t0, "music", gain=1.0, verb=0.5); cues.append(t0)
+    # end card
+    m.add(A.sweep_noise(0.5, 6000, 800), 13.3, gain=0.14, verb=0.3)
+    m.add(A.piano(N("D3"), 2.0, 0.9), 13.4, "music", gain=0.9, verb=0.5)
+    m.add(A.piano(N("A3"), 2.0, 0.7), 13.42, "music", gain=0.8, verb=0.5); cues.append(13.35)
+    return cues
