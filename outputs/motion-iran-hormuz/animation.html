@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>US-Iran war and Hormuz negotiations: animation source</title>
+<style>
+:root{--sans:"Avenir Next","Avenir","Helvetica Neue",Arial,sans-serif;--serif:"Charter","Iowan Old Style",Georgia,serif}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;transform-origin:0 0;
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+#stage *{box-sizing:border-box}
+.wm{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .1em;margin-right:.22em}
+.wm:last-child{margin-right:0}
+.wi{display:inline-block;will-change:transform}
+.endcard{position:absolute;inset:0;padding:110px 120px;background:var(--ec-bg);color:var(--ec-ink);z-index:50}
+.ec-k{font:800 30px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ec-accent);margin-bottom:46px}
+.ec-list{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.ec-list li{display:grid;grid-template-columns:150px 1fr auto;gap:28px;align-items:baseline;
+  border-top:2px solid var(--ec-rule);padding-top:20px}
+.ec-d{font:800 24px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ec-accent)}
+.ec-h{font:600 36px/1.22 var(--serif)}
+.ec-kind{font:700 20px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.ec-f{position:absolute;left:120px;bottom:90px;font:600 26px/1 var(--sans);letter-spacing:.04em;opacity:.7}
+
+
+#stage{background:#05191d;color:#eef3f1}
+.bg{position:absolute;inset:-10%;background:radial-gradient(45% 55% at 85% 10%,rgba(242,169,80,.34),transparent 70%),
+  radial-gradient(55% 60% at 5% 100%,rgba(30,160,170,.35),transparent 70%)}
+.grain{position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.title{position:absolute;left:120px;top:250px;transform-origin:0 0;width:1500px;z-index:5}
+.title .kick{font:800 30px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#f2a950;margin-bottom:34px}
+.title .tl{font:800 156px/.96 var(--sans);letter-spacing:-.04em}
+.hd{position:absolute;left:120px;top:70px;font:700 26px/1 var(--sans);opacity:.8}
+.date{position:absolute;left:120px;top:190px;font:800 40px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#f2a950}
+.big{position:absolute;left:120px;top:280px;width:880px;font:800 88px/1.03 var(--sans);letter-spacing:-.03em}
+.sub{position:absolute;left:120px;top:640px;width:860px;font:600 44px/1.2 var(--sans);opacity:.85}
+.map{position:absolute;left:0;top:0;width:1920px;height:1080px}
+.maplab{position:absolute;font:800 26px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#9fd8de}
+.nts{position:absolute;left:1560px;top:900px;font:600 18px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.5}
+.fig{position:absolute;left:112px;top:490px;font:900 200px/.85 var(--sans);letter-spacing:-.05em;color:#f2a950}
+.figlab{position:absolute;left:120px;top:690px;width:840px;font:600 38px/1.2 var(--sans);opacity:.9}
+.vbar{position:absolute;left:120px;height:90px;border-radius:10px;transform-origin:left}
+.vlab{position:absolute;left:140px;font:800 40px/90px var(--sans);letter-spacing:.02em;color:#05191d}
+.tt{position:absolute;left:120px;top:600px;width:900px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+.tile{border-radius:14px;padding:18px 18px 20px;background:rgba(238,243,241,.08);box-shadow:inset 0 0 0 2px rgba(238,243,241,.25);min-height:200px}
+.tile .tl2{font:800 20px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#f2a950}
+.tile .tx{font:700 28px/1.15 var(--sans);margin-top:12px}
+.tile.hot{background:#f2a950;color:#05191d;box-shadow:none}
+.tile.hot .tl2{color:#05191d}
+.routeLab{position:absolute;left:1070px;top:432px;font:800 22px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#f2a950}
+:root{--ec-bg:#eef3f1;--ec-ink:#0f1d20;--ec-accent:#9c520c;--ec-rule:#d0dad8}
+.ec-list{gap:16px!important}.ec-list li{padding-top:16px!important}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const DURATION = 15;
+const T = {
+ "kicker": "Guardian reporting, 14–25 September 2026",
+ "d1": "February",
+ "b1": "The US and Israel strike Iran",
+ "iran": "Iran",
+ "oman": "Oman",
+ "strait": "Strait of Hormuz",
+ "nts": "Diagram, not to scale",
+ "d2": "Since early in the war",
+ "b2": "Iran grips the strait of Hormuz",
+ "b2b": "a key waterway for transporting oil",
+ "d3": "15 Sept",
+ "b3": "The war has cost at least",
+ "cost": "$38bn",
+ "costLab": "so far, says Congress’s budget office, and $3bn more each month",
+ "b4": "The House votes to end the war, for the third time",
+ "vFor": "For 220",
+ "vAg": "Against 204",
+ "desk": "None of the votes has reached Trump’s desk",
+ "d5": "22 Sept",
+ "b5": "At the UN, Trump calls for the “complete economic isolation of Iran”",
+ "b5b": "He also calls talks with Iran “very productive”",
+ "d6": "24 Sept",
+ "b6": "Iran says it has offered to reopen the strait in six days",
+ "day15": "Days 1–5",
+ "t15": "The US would lift its blockade and end the war on all fronts, including Lebanon",
+ "day6": "Day 6",
+ "t6": "The strait would reopen",
+ "day7": "Day 7",
+ "t7": "Nuclear talks would start",
+ "route": "Proposed route: Oman and Iran",
+ "b8": "Iran is waiting for Trump’s answer",
+ "b8b": "Iran’s foreign minister wants a deal before the US midterm elections",
+ "ec": "Drawn from Guardian journalism",
+ "title": "US-Iran war and Hormuz negotiations"
+};
+const CREDITS = [
+ {
+  "date": "15 Sep",
+  "headline": "US House votes for third time to end Iran war after $38bn cost is revealed",
+  "kind": ""
+ },
+ {
+  "date": "22 Sep",
+  "headline": "Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech",
+  "kind": ""
+ },
+ {
+  "date": "23 Sep",
+  "headline": "Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York",
+  "kind": ""
+ },
+ {
+  "date": "24 Sep",
+  "headline": "Iran awaiting response from Trump on proposal to open strait of Hormuz in six days",
+  "kind": ""
+ },
+ {
+  "date": "25 Sep",
+  "headline": "Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms",
+  "kind": ""
+ },
+ {
+  "date": "14 Sep",
+  "headline": "The situation in Iran is dangerously escalating – but whatever you do, don’t call it a war",
+  "kind": "Opinion"
+ }
+];
+</script>
+<script>
+/* Storylines motion: a tiny deterministic animation toolkit.
+   Every frame is a pure function of time t (seconds), so the renderer can
+   seek to any frame and get the same picture. Pages define setup() to build
+   the DOM once and frame(t) to pose it. */
+const W = 1920, H = 1080;
+const STAGE = document.getElementById('stage');
+const clamp = (x, a = 0, b = 1) => (x < a ? a : x > b ? b : x);
+const lerp = (a, b, t) => a + (b - a) * t;
+const P = (t, a, b) => clamp((t - a) / (b - a));
+const E = {
+  lin: t => t,
+  outCubic: t => 1 - Math.pow(1 - t, 3),
+  inCubic: t => t * t * t,
+  inOutCubic: t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+  outQuint: t => 1 - Math.pow(1 - t, 5),
+  outExpo: t => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+  inExpo: t => (t <= 0 ? 0 : Math.pow(2, 10 * t - 10)),
+  inOutExpo: t => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? Math.pow(2, 20 * t - 10) / 2 : (2 - Math.pow(2, -20 * t + 10)) / 2),
+  outBack: t => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); },
+};
+/* in-then-out envelope: 0 before a, eases to 1 by a+din, holds, eases to 0 over [b, b+dout] */
+const env = (t, a, b, din = 0.45, dout = 0.35, ein = E.outExpo, eout = E.inCubic) =>
+  ein(P(t, a, a + din)) * (1 - eout(P(t, b, b + dout)));
+
+function mk(tag, cls, parent, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  (parent || STAGE).appendChild(e);
+  return e;
+}
+function svg(tag, attrs, parent) {
+  const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function tf(e, { x = 0, y = 0, s = 1, sx, sy, r = 0, o } = {}) {
+  e.style.transform = `translate(${x}px,${y}px) rotate(${r}deg) scale(${sx ?? s},${sy ?? s})`;
+  if (o != null) e.style.opacity = o;
+}
+/* Split text into masked words for kinetic reveals. */
+function words(parent, text, cls) {
+  const line = mk('div', cls, parent);
+  const ws = text.split(' ').map(w => {
+    const m = mk('span', 'wm', line);
+    return mk('span', 'wi', m, w);
+  });
+  return { line, ws };
+}
+/* Words rise into their masks, then drop out. */
+function wordsIO(w, t, tin, tout, { stagger = 0.035, dur = 0.55, ease = E.outExpo, outDur = 0.3 } = {}) {
+  w.ws.forEach((e, i) => {
+    const pin = ease(P(t, tin + i * stagger, tin + i * stagger + dur));
+    const pout = tout == null ? 0 : E.inCubic(P(t, tout + i * stagger * 0.4, tout + i * stagger * 0.4 + outDur));
+    e.style.transform = `translateY(${(1 - pin) * 112 - pout * 112}%)`;
+  });
+  w.line.style.visibility = t < tin - 0.01 || (tout != null && t > tout + outDur + w.ws.length * stagger) ? 'hidden' : 'visible';
+}
+/* A number that counts between two values. */
+function counter(e, t, a, b, from, to, fmt, ease = E.outExpo) {
+  e.textContent = fmt(lerp(from, to, ease(P(t, a, b))));
+}
+const fmtInt = v => Math.round(v).toLocaleString('en-GB');
+
+/* The date rail: evenly spaced labelled stops along the bottom; a playhead
+   eases between stops at given times. keys = [[time, stopIndex], ...] */
+function rail(stops, { y = 980, x0 = 120, x1 = 1800, color = '#fff', accent = '#f60' } = {}) {
+  const g = mk('div', 'rail');
+  g.style.cssText = `position:absolute;left:0;top:0;width:${W}px;height:${H}px;pointer-events:none`;
+  const line = mk('div', 'rail-line', g);
+  line.style.cssText = `position:absolute;left:${x0}px;top:${y}px;height:2px;width:${x1 - x0}px;background:${color};opacity:.25;transform-origin:left`;
+  const prog = mk('div', 'rail-prog', g);
+  prog.style.cssText = `position:absolute;left:${x0}px;top:${y - 1}px;height:4px;width:${x1 - x0}px;background:${accent};transform-origin:left`;
+  const xs = stops.map((_, i) => (stops.length === 1 ? x0 : x0 + ((x1 - x0) * i) / (stops.length - 1)));
+  const dots = stops.map((s, i) => {
+    const d = mk('div', 'rail-dot', g);
+    d.style.cssText = `position:absolute;left:${xs[i] - 9}px;top:${y - 8}px;width:18px;height:18px;border-radius:50%;border:3px solid ${color};background:transparent;box-sizing:border-box`;
+    const l = mk('div', 'rail-lab', g, s);
+    l.style.cssText = `position:absolute;left:${xs[i]}px;top:${y + 22}px;transform:translateX(-50%);font:700 22px/1 var(--sans);letter-spacing:.12em;color:${color};white-space:nowrap`;
+    return { d, l };
+  });
+  const head = mk('div', 'rail-head', g);
+  head.style.cssText = `position:absolute;left:0;top:${y - 15}px;width:32px;height:32px;border-radius:50%;background:${accent};box-shadow:0 0 0 10px ${accent}33,0 0 40px ${accent}`;
+  return {
+    g,
+    pose(t, keys, vis) {
+      g.style.opacity = vis;
+      let pos = keys[0][1];
+      for (let i = 1; i < keys.length; i++) {
+        const [tk, sk] = keys[i], [tp, sp] = keys[i - 1];
+        if (t >= tk) pos = sk; else if (t > tk - 0.5) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.5, tk))); break; } else break;
+      }
+      const fi = Math.floor(pos), fr = pos - fi;
+      const x = fi >= xs.length - 1 ? xs[xs.length - 1] : lerp(xs[fi], xs[fi + 1], fr);
+      head.style.transform = `translateX(${x - 16}px)`;
+      prog.style.transform = `scaleX(${(x - x0) / (x1 - x0)})`;
+      line.style.transform = `scaleX(${E.outExpo(clamp(vis * 1.2))})`;
+      dots.forEach((d, i) => {
+        const on = pos >= i - 0.02;
+        d.d.style.background = on ? accent : 'transparent';
+        d.d.style.borderColor = on ? accent : color;
+        d.l.style.opacity = Math.abs(pos - i) < 0.35 ? 1 : on ? 0.55 : 0.3;
+        d.l.style.color = Math.abs(pos - i) < 0.35 ? accent : color;
+      });
+    },
+  };
+}
+
+/* The end card: credits every Guardian article the video draws on. */
+function endCard(t, t0, opts) {
+  if (!endCard.el) {
+    const c = mk('div', 'endcard');
+    const k = mk('div', 'ec-k', c, 'Drawn from Guardian journalism');
+    const list = mk('ol', 'ec-list', c);
+    const items = CREDITS.map(cr => {
+      const li = mk('li', '', list);
+      mk('span', 'ec-d', li, cr.date);
+      mk('span', 'ec-h', li, cr.headline);
+      if (cr.kind) mk('span', 'ec-kind', li, cr.kind);
+      return li;
+    });
+    const f = mk('div', 'ec-f', c, 'Every fact on screen comes from these articles · theguardian.com');
+    endCard.el = { c, k, items, f };
+  }
+  const e = endCard.el;
+  const p = E.outExpo(P(t, t0, t0 + 0.6));
+  e.c.style.visibility = t < t0 ? 'hidden' : 'visible';
+  e.c.style.clipPath = `inset(${(1 - p) * 100}% 0 0 0)`;
+  tf(e.k, { y: (1 - E.outExpo(P(t, t0 + 0.15, t0 + 0.7))) * 40, o: P(t, t0 + 0.15, t0 + 0.5) });
+  e.items.forEach((li, i) => {
+    const q = E.outExpo(P(t, t0 + 0.25 + i * 0.06, t0 + 0.85 + i * 0.06));
+    tf(li, { y: (1 - q) * 30, o: q });
+  });
+  tf(e.f, { o: P(t, t0 + 0.7, t0 + 1.0) });
+}
+
+let READY = false;
+function renderAt(t) { frame(Math.min(t, DURATION - 1e-4)); }
+function fit() {
+  const s = Math.min(innerWidth / W, innerHeight / H);
+  STAGE.style.transform = `translate(${(innerWidth - W * s) / 2}px,${(innerHeight - H * s) / 2}px) scale(${s})`;
+}
+document.fonts.ready.then(() => {
+  setup();
+  renderAt(0);
+  READY = true;
+  if (!location.search.includes('render')) {
+    fit();
+    addEventListener('resize', fit);
+    const t0 = performance.now();
+    const loop = now => { renderAt(((now - t0) / 1000) % (DURATION + 1.5)); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+});
+
+
+const POSTER_T = 11.4;
+let S = {};
+// channel centreline, right (the Gulf) to left (open sea), in stage coordinates
+const CH = 'M1880 470 C 1700 470, 1560 520, 1440 560 S 1180 600, 1040 640';
+function setup() {
+  S.bg = mk('div', 'bg'); mk('div', 'grain');
+  // --- the strait diagram
+  const m = svg('svg', { class: 'map', viewBox: '0 0 1920 1080' }, STAGE);
+  const defs = svg('defs', {}, m);
+  const lg = svg('linearGradient', { id: 'landfade', x1: '1000', x2: '1420', y1: 0, y2: 0, gradientUnits: 'userSpaceOnUse' }, defs);
+  svg('stop', { offset: 0, 'stop-color': '#0d3940', 'stop-opacity': 0 }, lg); svg('stop', { offset: 1, 'stop-color': '#0d3940', 'stop-opacity': 1 }, lg);
+  const cg = svg('linearGradient', { id: 'coastfade', x1: '1000', x2: '1300', y1: 0, y2: 0, gradientUnits: 'userSpaceOnUse' }, defs);
+  svg('stop', { offset: 0, 'stop-color': '#4fc3cf', 'stop-opacity': 0 }, cg); svg('stop', { offset: 1, 'stop-color': '#4fc3cf', 'stop-opacity': 1 }, cg);
+  S.mapG = svg('g', {}, m);
+  S.north = svg('path', { d: 'M1000 0 H1920 V400 C 1800 410, 1700 420, 1590 470 C 1520 500, 1470 520, 1420 512 C 1330 500, 1230 520, 1130 560 C 1080 578, 1030 580, 1000 578 Z', fill: 'url(#landfade)' }, S.mapG);
+  S.south = svg('path', { d: 'M1920 560 C 1800 555, 1700 580, 1620 610 C 1560 632, 1520 640, 1500 700 C 1480 760, 1400 800, 1300 820 C 1200 840, 1100 860, 1000 900 V1080 H1920 Z', fill: 'url(#landfade)' }, S.mapG);
+  S.coastN = svg('path', { d: 'M1000 578 C 1030 580, 1080 578, 1130 560 C 1230 520, 1330 500, 1420 512 C 1470 520, 1520 500, 1590 470 C 1700 420, 1800 410, 1920 400', fill: 'none', stroke: 'url(#coastfade)', 'stroke-width': 3 }, S.mapG);
+  S.coastS = svg('path', { d: 'M1920 560 C 1800 555, 1700 580, 1620 610 C 1560 632, 1520 640, 1500 700 C 1480 760, 1400 800, 1300 820 C 1200 840, 1100 860, 1000 900', fill: 'none', stroke: 'url(#coastfade)', 'stroke-width': 3 }, S.mapG);
+  S.ch = svg('path', { d: CH, fill: 'none', stroke: 'none' }, S.mapG);
+  S.chLen = S.ch.getTotalLength();
+  S.route = svg('path', { d: 'M1880 455 C 1700 450, 1560 495, 1440 535 S 1180 575, 1040 615', fill: 'none', stroke: '#f2a950', 'stroke-width': 6, 'stroke-dasharray': '18 14' }, S.mapG);
+  S.routeLen = S.route.getTotalLength();
+  S.ships = Array.from({ length: 22 }, () => svg('rect', { width: 34, height: 12, rx: 6, fill: '#eef3f1' }, S.mapG));
+  S.rings = [0, 1, 2].map(() => svg('circle', { r: 10, fill: 'none', stroke: '#f2a950', 'stroke-width': 4 }, S.mapG));
+  S.labs = [['iran', 1640, 300], ['oman', 1640, 760], ['strait', 1130, 640]].map(([k, x, y]) => {
+    const e = mk('div', 'maplab', null, T[k]); e.style.left = x + 'px'; e.style.top = y + 'px'; return e; });
+  S.labs[2].style.fontSize = '20px'; S.labs[2].style.color = '#eef3f1';
+  S.nts = mk('div', 'nts', null, T.nts);
+  S.routeLab = mk('div', 'routeLab', null, T.route);
+
+  // --- figures
+  S.cost = mk('div', 'fig'); S.costLab = mk('div', 'figlab', null, T.costLab);
+  S.vFor = mk('div', 'vbar'); S.vAg = mk('div', 'vbar');
+  S.vFor.style.cssText += ';top:600px;background:#f2a950'; S.vAg.style.cssText += ';top:710px;background:#9fd8de';
+  S.vForL = mk('div', 'vlab', null, T.vFor); S.vForL.style.top = '600px';
+  S.vAgL = mk('div', 'vlab', null, T.vAg); S.vAgL.style.top = '710px';
+
+  // --- timetable tiles
+  const tt = mk('div', 'tt'); S.tt = tt;
+  S.tiles = [['day15', 't15'], ['day6', 't6'], ['day7', 't7']].map(([a, b]) => {
+    const e = mk('div', 'tile', tt); mk('div', 'tl2', e, T[a]); mk('div', 'tx', e, T[b]); return e; });
+
+  // --- title
+  S.title = mk('div', 'title');
+  S.kick = words(S.title, T.kicker, 'kick');
+  S.tl = [words(S.title, 'US-Iran war', 'tl'), words(S.title, 'and Hormuz', 'tl'), words(S.title, 'negotiations', 'tl')];
+  S.hd = mk('div', 'hd', null, T.title);
+  S.rail = rail(['Feb', '15 Sept', '22 Sept', '24 Sept'], { color: '#eef3f1', accent: '#f2a950' });
+  S.dates = ['d1', 'd2', 'd3', 'd5', 'd6'].map(k => words(STAGE, T[k], 'date'));
+  S.b = {};
+  ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b8'].forEach(k => S.b[k] = words(STAGE, T[k], 'big'));
+  S.b8b = words(STAGE, T.b8b, 'sub');
+  S.b2b = words(STAGE, T.b2b, 'sub'); S.b2b.line.style.top = '500px';
+  S.b5b = words(STAGE, T.b5b, 'sub'); S.b5b.line.style.top = '780px';
+  S.desk = words(STAGE, T.desk, 'sub'); S.desk.line.style.top = '830px'; S.desk.line.style.fontSize = '36px';
+}
+
+function frame(t) {
+  tf(S.bg, { x: Math.sin(t * 0.35) * 40, y: Math.cos(t * 0.25) * 30 });
+  // title
+  wordsIO(S.kick, t, 0.1, 1.05, { stagger: 0.02 });
+  S.tl.forEach((w, i) => wordsIO(w, t, 0.15 + i * 0.12, 1.15 + i * 0.03, { stagger: 0.05, dur: 0.6 }));
+  S.title.style.visibility = t < 1.6 ? 'visible' : 'hidden';
+  S.hd.style.opacity = E.outCubic(P(t, 1.45, 1.9)) * (1 - P(t, 13.2, 13.5));
+  S.rail.pose(t, [[0, 0], [1.5, 0], [3.0, 0.35], [4.8, 1], [7.8, 2], [9.2, 3]],
+    E.outCubic(P(t, 1.4, 1.9)) * (1 - E.inCubic(P(t, 11.9, 12.3))));
+  const bt = [[1.5, 2.9], [3.0, 4.7], [4.8, 7.7], [7.8, 9.1], [9.2, 11.9]];
+  S.dates.forEach((w, i) => wordsIO(w, t, bt[i][0], bt[i][1], { stagger: 0.03 }));
+  wordsIO(S.b.b1, t, 1.6, 2.9);
+  wordsIO(S.b.b2, t, 3.05, 4.7, { stagger: 0.03 });
+  wordsIO(S.b.b3, t, 4.85, 6.3, { stagger: 0.03 });
+  wordsIO(S.b.b4, t, 6.4, 7.7, { stagger: 0.03 });
+  wordsIO(S.b.b5, t, 7.85, 9.1, { stagger: 0.03 });
+  wordsIO(S.b.b6, t, 9.25, 11.85, { stagger: 0.04 });
+  wordsIO(S.b.b8, t, 12.0, 13.3, { stagger: 0.04, dur: 0.6 });
+  wordsIO(S.b8b, t, 12.35, 13.3, { stagger: 0.03 });
+
+  // map: appears with the war, dims behind the figures, returns for the offer
+  const mapIn = E.outCubic(P(t, 1.3, 2.0));
+  const dim = 0.5 * env(t, 4.75, 9.15, 0.35, 0.35, E.inOutCubic, E.inOutCubic);
+  const mapOut = 1 - E.inCubic(P(t, 13.0, 13.4));
+  S.mapG.style.opacity = mapIn * (1 - 0.8 * dim) * mapOut;
+  const drawC = E.inOutCubic(P(t, 1.3, 2.3));
+  [S.coastN, S.coastS].forEach(c => { c.style.strokeDasharray = 2400; c.style.strokeDashoffset = 2400 * (1 - drawC); });
+  S.north.style.opacity = S.south.style.opacity = E.outCubic(P(t, 1.6, 2.4));
+  S.labs.forEach((l, i) => l.style.opacity = E.outCubic(P(t, 2.0 + i * 0.1, 2.4 + i * 0.1)) * (1 - 0.8 * dim) * mapOut);
+  S.nts.style.opacity = 0.5 * E.outCubic(P(t, 2.2, 2.6)) * (1 - dim) * mapOut;
+  tf(S.mapG, { x: 0, y: (1 - mapIn) * 40 });
+
+  // strikes (February): rings pulse on the north side
+  S.rings.forEach((r, i) => {
+    const q = P(t, 1.7 + i * 0.25, 2.6 + i * 0.25);
+    r.setAttribute('cx', [1520, 1700, 1280][i]); r.setAttribute('cy', [330, 250, 420][i]);
+    r.setAttribute('r', 10 + 90 * E.outCubic(q)); r.style.opacity = q > 0 && q < 1 ? 1 - q : 0;
+  });
+
+  // shipping: dense, then thinning to a trickle as Iran grips the strait
+  const grip = E.inOutCubic(P(t, 3.1, 4.3));
+  S.ships.forEach((sh, i) => {
+    const u = ((t * 0.09 + i / S.ships.length) % 1);
+    const p = S.ch.getPointAtLength(S.chLen * u);
+    const keep = i % 7 === 0 ? 1 : 1 - grip;
+    sh.setAttribute('x', p.x - 17); sh.setAttribute('y', p.y - 6 + ((i * 37) % 3 - 1) * 14);
+    sh.style.opacity = Math.min(1, Math.sin(u * Math.PI) * 3) * keep * E.outCubic(P(t, 1.5, 2.2));
+  });
+
+  wordsIO(S.b2b, t, 3.4, 4.7, { stagger: 0.03 });
+  wordsIO(S.b5b, t, 8.3, 9.1, { stagger: 0.025 });
+  wordsIO(S.desk, t, 7.0, 7.7, { stagger: 0.02 });
+
+  // cost
+  const vCost = env(t, 4.9, 6.3, 0.5, 0.25);
+  counter(S.cost, t, 4.9, 5.8, 0, 38, v => '$' + Math.round(v) + 'bn');
+  tf(S.cost, { y: (1 - E.outExpo(P(t, 4.9, 5.4))) * 60, o: vCost });
+  tf(S.costLab, { y: (1 - E.outExpo(P(t, 5.1, 5.6))) * 30, o: vCost });
+
+  // vote
+  const vV = env(t, 6.45, 7.7, 0.4, 0.25);
+  const g1 = E.outExpo(P(t, 6.5, 7.2)), g2 = E.outExpo(P(t, 6.6, 7.3));
+  S.vFor.style.width = (820 * 220 / 220) + 'px'; S.vAg.style.width = (820 * 204 / 220) + 'px';
+  S.vFor.style.transform = `scaleX(${g1})`; S.vAg.style.transform = `scaleX(${g2})`;
+  S.vFor.style.opacity = S.vAg.style.opacity = vV;
+  S.vForL.style.opacity = vV * P(t, 6.8, 7.0); S.vAgL.style.opacity = vV * P(t, 6.9, 7.1);
+
+  // Iran's offer: timetable tiles and the proposed route
+  const vT = env(t, 9.4, 11.9, 0.4, 0.3);
+  S.tiles.forEach((e, i) => {
+    const a = 9.5 + i * 0.55;
+    tf(e, { y: (1 - E.outExpo(P(t, a, a + 0.5))) * 50, o: E.outCubic(P(t, a, a + 0.3)) * vT });
+    e.classList.toggle('hot', t > a + 0.15 && t < a + 0.8);
+  });
+  const rd = E.inOutCubic(P(t, 10.1, 10.9));
+  S.route.style.strokeDashoffset = 0;
+  S.route.style.clipPath = `inset(0 0 0 ${(1 - rd) * 100}%)`;
+  S.route.style.opacity = t > 10.05 ? env(t, 10.05, 12.9, 0.2, 0.3) : 0;
+  S.routeLab.style.opacity = env(t, 10.4, 11.9, 0.3, 0.3);
+  endCard(t, 13.4);
+}
+
+</script>
+</body></html>

@@ -9,3 +9,6 @@ outputs/*/sources/
 
 .DS_Store
 __pycache__/
+
+.claude/
+outputs/*/stills/

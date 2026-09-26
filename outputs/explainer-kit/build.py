@@ -188,6 +188,9 @@ class Page:
         css = (KIT / "explainer.css").read_text()
         js = (KIT / "explainer.js").read_text()
         n_text = sum(1 for a in self.articles.values() if not a["media"])
+        motion = self.folder.parent / self.folder.name.replace("explainer-", "motion-")
+        video_link = (f' · <a href="../{motion.name}/index.html">Watch the 15-second video</a>'
+                      if self.folder.name.startswith("explainer-") and (motion / "video.mp4").exists() else "")
         n_fetched = sum(1 for a in self.articles.values() if not a["media"] and a["fetched"])
         read_line = ("read the full text of each text article" if n_fetched == n_text else
                      f"read the full text of {n_fetched} of the {n_text} text articles (the other {n_text - n_fetched} "
@@ -217,7 +220,7 @@ class Page:
     <p class="kicker"><span>Storylines explainer</span> <span class="kicker-tag">{esc(m.KICKER)}</span></p>
     <h1>{esc(self.title)}</h1>
     <p class="dek">{dek}</p>
-    <p class="meta">Drawn from {n_text} Guardian articles published {span} · About a five-minute read</p>
+    <p class="meta">Drawn from {n_text} Guardian articles published {span} · About a five-minute read{video_link}</p>
     {self.thread()}
   </div>
 </header>
@@ -248,7 +251,7 @@ class Page:
 
     def write_manifest(self):
         m = self.mod
-        out = [f"# Provenance manifest: {self.title}", "",
+        out = [f"# Provenance manifest: {self.title}", ""] + (self.manifest_intro() if hasattr(self, "manifest_intro") else [
                f"Output: `index.html` in this folder (web version of this manifest: `manifest.html`). Storyline {m.STORYLINE_INDEX + 1} of `storylines-data/{m.DATA_FILE}`.",
                "Built by `outputs/explainer-kit/build.py`, which checks every quote and figure below against the fetched article text.",
                "", "Every piece of text on the page is listed in the order it appears. Headings, labels and instructions "
@@ -257,7 +260,7 @@ class Page:
                "Two parts of the page are generated straight from the Storylines data and are not listed entry by entry: "
                "the chain of five key stories in the header and the Read more list. Both reproduce each article's headline, "
                "byline and publication date exactly as the Guardian published them. The line under the title counts the text "
-               "articles in the Storyline and gives the span of their publication dates.", ""]
+               "articles in the Storyline and gives the span of their publication dates.", ""])
         sec, i = None, 0
         for s, c in self.manifest:
             if s != sec:
@@ -335,7 +338,7 @@ li>span{{font:700 .68rem "Avenir Next","Segoe UI",system-ui,sans-serif;letter-sp
 .nt{{color:var(--muted)}}
 code{{font-size:.9em}}
 </style></head><body><main>
-<p class="k"><a href="index.html">Back to the explainer</a></p>
+<p class="k"><a href="index.html">Back to the {getattr(self, "kind", "explainer")}</a></p>
 <h1>Provenance manifest: {esc(self.title)}</h1>
 {"".join(body)}
 </main></body></html>

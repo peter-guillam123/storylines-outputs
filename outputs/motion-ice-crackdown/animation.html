@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE immigration enforcement crackdown: animation source</title>
+<style>
+:root{--sans:"Avenir Next","Avenir","Helvetica Neue",Arial,sans-serif;--serif:"Charter","Iowan Old Style",Georgia,serif}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;transform-origin:0 0;
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+#stage *{box-sizing:border-box}
+.wm{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .1em;margin-right:.22em}
+.wm:last-child{margin-right:0}
+.wi{display:inline-block;will-change:transform}
+.endcard{position:absolute;inset:0;padding:110px 120px;background:var(--ec-bg);color:var(--ec-ink);z-index:50}
+.ec-k{font:800 30px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ec-accent);margin-bottom:46px}
+.ec-list{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.ec-list li{display:grid;grid-template-columns:150px 1fr auto;gap:28px;align-items:baseline;
+  border-top:2px solid var(--ec-rule);padding-top:20px}
+.ec-d{font:800 24px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ec-accent)}
+.ec-h{font:600 36px/1.22 var(--serif)}
+.ec-kind{font:700 20px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.ec-f{position:absolute;left:120px;bottom:90px;font:600 26px/1 var(--sans);letter-spacing:.04em;opacity:.7}
+
+
+#stage{background:#111316;color:#ebe8e3}
+.bg{position:absolute;inset:-10%;background:radial-gradient(45% 55% at 85% 10%,rgba(196,83,47,.30),transparent 70%),
+  radial-gradient(55% 60% at 5% 100%,rgba(110,140,170,.25),transparent 70%)}
+.grain{position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.title{position:absolute;left:120px;top:250px;width:1600px}
+.title .kick{font:800 30px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#f08a64;margin-bottom:34px}
+.title .tl{font:800 156px/.96 var(--sans);letter-spacing:-.04em}
+.hd{position:absolute;left:120px;top:70px;font:700 26px/1 var(--sans);opacity:.8}
+.strip{position:absolute;left:1060px;top:62px;width:740px;display:grid;grid-template-columns:repeat(4,1fr)}
+.strip .sg{position:relative;padding-top:26px;font:800 20px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.strip .sg::before{content:"";position:absolute;left:0;right:10px;top:0;height:8px;border-radius:4px;background:currentColor}
+.date{position:absolute;left:120px;top:190px;font:800 40px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.big{position:absolute;left:120px;top:280px;width:900px;font:800 84px/1.04 var(--sans);letter-spacing:-.03em}
+.sub{position:absolute;left:120px;width:880px;font:600 40px/1.2 var(--sans);opacity:.9}
+.inc{position:absolute;left:1120px;width:700px;font:600 44px/1.2 var(--sans)}
+.inc b{color:#f08a64;font-weight:800}
+.sq{position:absolute;border:5px solid #ebe8e3;border-radius:4px}
+.sq.small{background:repeating-linear-gradient(90deg,#c39be0 0 5px,transparent 5px 16px);border-color:#c39be0}
+.sql{position:absolute;font:700 34px/1.2 var(--sans);width:520px}
+.sql.l18{color:#c39be0}
+.n2{position:absolute;left:1120px;top:330px;font:900 150px/.85 var(--sans);letter-spacing:-.05em;color:#a6cc85}
+.n2l{position:absolute;left:1128px;top:480px;width:680px;font:600 38px/1.2 var(--sans)}
+.dealdots{position:absolute;left:1128px;top:620px;width:680px;display:flex;flex-wrap:wrap;gap:12px}
+.dealdots i{width:26px;height:26px;border-radius:50%;background:#a6cc85}
+.deals{position:absolute;left:1128px;top:750px;font:800 26px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#a6cc85}
+.mh{position:absolute;left:1120px;top:330px;font:800 26px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#79bde0}
+.mbar{position:absolute;left:1120px;height:120px;background:#79bde0;border-radius:8px;transform-origin:left}
+.mlab{position:absolute;left:1120px;font:800 40px/1 var(--sans)}
+.place{position:absolute;left:1180px;width:30px;height:30px;border-radius:50%;background:#f08a64}
+.grid{position:absolute;left:1120px;top:250px;width:700px;display:grid;grid-template-columns:repeat(10,1fr);gap:18px}
+.grid i{width:46px;height:46px;border-radius:50%;background:#f08a64}
+.key{position:absolute;left:1120px;top:900px;font:700 24px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+:root{--ec-bg:#f3f1ee;--ec-ink:#1b1e22;--ec-accent:#a23f1f;--ec-rule:#dad6d0}
+.ec-list{gap:14px!important}.ec-list li{padding-top:14px!important}.ec-h{font-size:33px!important}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const DURATION = 15;
+const T = {
+ "kicker": "Guardian reporting, 14–24 September 2026",
+ "st": "Street · Detention · Court · Removal",
+ "d1": "Reported 14 Sept",
+ "b1": "Detainees at the since-closed Alligator Alcatraz were locked in metal cages, a watchdog finds",
+ "sq18": "The cage: about 18 sq ft",
+ "sq37": "ICE’s own minimum for one person: 37 sq ft",
+ "d2": "18 Sept",
+ "b2": "An appeals court rules Trump’s third-country deportation policy unlawful",
+ "b2b": "“The third country deportation policy continues” – Homeland Security",
+ "n2": "25,000+",
+ "n2l": "people deported to countries that are not their own",
+ "deals": "35 deals with other countries",
+ "d3": "Reported 19 Sept",
+ "b3": "Almost 200,000 children ordered removed since Trump returned, an advocacy group finds",
+ "mh": "Children ordered removed each month",
+ "m1": "Jan 2025: 7,366",
+ "m2": "Jul 2026: 16,750",
+ "m3": "Aug 2026: 14,744",
+ "msrc": "Source: Mobile Pathways analysis of court data",
+ "d4": "Sun 20 Sept",
+ "b4": "Three violent incidents on one Sunday",
+ "i1": "Evanston: a US citizen is hurt in an arrest attempt",
+ "i2": "Austin: an ICE agent shoots a man at a traffic stop",
+ "i3": "Michigan: a man dies after reportedly fleeing officers",
+ "d5": "July",
+ "b5": "A record 50,000 arrests in July alone",
+ "b5b": "as enforcement “surges”, especially into Democratic-run cities and states",
+ "key": "Each dot: 500 arrests",
+ "ec": "Drawn from Guardian journalism",
+ "title": "ICE immigration enforcement crackdown"
+};
+const CREDITS = [
+ {
+  "date": "14 Sep",
+  "headline": "Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says",
+  "kind": ""
+ },
+ {
+  "date": "15 Sep",
+  "headline": "Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women",
+  "kind": ""
+ },
+ {
+  "date": "18 Sep",
+  "headline": "Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say",
+  "kind": ""
+ },
+ {
+  "date": "21 Sep",
+  "headline": "ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas",
+  "kind": ""
+ },
+ {
+  "date": "24 Sep",
+  "headline": "US citizen injured after ICE agents reportedly mistook him for fugitive",
+  "kind": ""
+ },
+ {
+  "date": "21 Sep",
+  "headline": "What is Trump’s third-country deportation policy and whom does it target?",
+  "kind": ""
+ },
+ {
+  "date": "19 Sep",
+  "headline": "Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children",
+  "kind": ""
+ },
+ {
+  "date": "21 Sep",
+  "headline": "Protesters gather in Austin after ICE agent shoots and wounds man – video",
+  "kind": "Video"
+ }
+];
+</script>
+<script>
+/* Storylines motion: a tiny deterministic animation toolkit.
+   Every frame is a pure function of time t (seconds), so the renderer can
+   seek to any frame and get the same picture. Pages define setup() to build
+   the DOM once and frame(t) to pose it. */
+const W = 1920, H = 1080;
+const STAGE = document.getElementById('stage');
+const clamp = (x, a = 0, b = 1) => (x < a ? a : x > b ? b : x);
+const lerp = (a, b, t) => a + (b - a) * t;
+const P = (t, a, b) => clamp((t - a) / (b - a));
+const E = {
+  lin: t => t,
+  outCubic: t => 1 - Math.pow(1 - t, 3),
+  inCubic: t => t * t * t,
+  inOutCubic: t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+  outQuint: t => 1 - Math.pow(1 - t, 5),
+  outExpo: t => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+  inExpo: t => (t <= 0 ? 0 : Math.pow(2, 10 * t - 10)),
+  inOutExpo: t => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? Math.pow(2, 20 * t - 10) / 2 : (2 - Math.pow(2, -20 * t + 10)) / 2),
+  outBack: t => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); },
+};
+/* in-then-out envelope: 0 before a, eases to 1 by a+din, holds, eases to 0 over [b, b+dout] */
+const env = (t, a, b, din = 0.45, dout = 0.35, ein = E.outExpo, eout = E.inCubic) =>
+  ein(P(t, a, a + din)) * (1 - eout(P(t, b, b + dout)));
+
+function mk(tag, cls, parent, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  (parent || STAGE).appendChild(e);
+  return e;
+}
+function svg(tag, attrs, parent) {
+  const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function tf(e, { x = 0, y = 0, s = 1, sx, sy, r = 0, o } = {}) {
+  e.style.transform = `translate(${x}px,${y}px) rotate(${r}deg) scale(${sx ?? s},${sy ?? s})`;
+  if (o != null) e.style.opacity = o;
+}
+/* Split text into masked words for kinetic reveals. */
+function words(parent, text, cls) {
+  const line = mk('div', cls, parent);
+  const ws = text.split(' ').map(w => {
+    const m = mk('span', 'wm', line);
+    return mk('span', 'wi', m, w);
+  });
+  return { line, ws };
+}
+/* Words rise into their masks, then drop out. */
+function wordsIO(w, t, tin, tout, { stagger = 0.035, dur = 0.55, ease = E.outExpo, outDur = 0.3 } = {}) {
+  w.ws.forEach((e, i) => {
+    const pin = ease(P(t, tin + i * stagger, tin + i * stagger + dur));
+    const pout = tout == null ? 0 : E.inCubic(P(t, tout + i * stagger * 0.4, tout + i * stagger * 0.4 + outDur));
+    e.style.transform = `translateY(${(1 - pin) * 112 - pout * 112}%)`;
+  });
+  w.line.style.visibility = t < tin - 0.01 || (tout != null && t > tout + outDur + w.ws.length * stagger) ? 'hidden' : 'visible';
+}
+/* A number that counts between two values. */
+function counter(e, t, a, b, from, to, fmt, ease = E.outExpo) {
+  e.textContent = fmt(lerp(from, to, ease(P(t, a, b))));
+}
+const fmtInt = v => Math.round(v).toLocaleString('en-GB');
+
+/* The date rail: evenly spaced labelled stops along the bottom; a playhead
+   eases between stops at given times. keys = [[time, stopIndex], ...] */
+function rail(stops, { y = 980, x0 = 120, x1 = 1800, color = '#fff', accent = '#f60' } = {}) {
+  const g = mk('div', 'rail');
+  g.style.cssText = `position:absolute;left:0;top:0;width:${W}px;height:${H}px;pointer-events:none`;
+  const line = mk('div', 'rail-line', g);
+  line.style.cssText = `position:absolute;left:${x0}px;top:${y}px;height:2px;width:${x1 - x0}px;background:${color};opacity:.25;transform-origin:left`;
+  const prog = mk('div', 'rail-prog', g);
+  prog.style.cssText = `position:absolute;left:${x0}px;top:${y - 1}px;height:4px;width:${x1 - x0}px;background:${accent};transform-origin:left`;
+  const xs = stops.map((_, i) => (stops.length === 1 ? x0 : x0 + ((x1 - x0) * i) / (stops.length - 1)));
+  const dots = stops.map((s, i) => {
+    const d = mk('div', 'rail-dot', g);
+    d.style.cssText = `position:absolute;left:${xs[i] - 9}px;top:${y - 8}px;width:18px;height:18px;border-radius:50%;border:3px solid ${color};background:transparent;box-sizing:border-box`;
+    const l = mk('div', 'rail-lab', g, s);
+    l.style.cssText = `position:absolute;left:${xs[i]}px;top:${y + 22}px;transform:translateX(-50%);font:700 22px/1 var(--sans);letter-spacing:.12em;color:${color};white-space:nowrap`;
+    return { d, l };
+  });
+  const head = mk('div', 'rail-head', g);
+  head.style.cssText = `position:absolute;left:0;top:${y - 15}px;width:32px;height:32px;border-radius:50%;background:${accent};box-shadow:0 0 0 10px ${accent}33,0 0 40px ${accent}`;
+  return {
+    g,
+    pose(t, keys, vis) {
+      g.style.opacity = vis;
+      let pos = keys[0][1];
+      for (let i = 1; i < keys.length; i++) {
+        const [tk, sk] = keys[i], [tp, sp] = keys[i - 1];
+        if (t >= tk) pos = sk; else if (t > tk - 0.5) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.5, tk))); break; } else break;
+      }
+      const fi = Math.floor(pos), fr = pos - fi;
+      const x = fi >= xs.length - 1 ? xs[xs.length - 1] : lerp(xs[fi], xs[fi + 1], fr);
+      head.style.transform = `translateX(${x - 16}px)`;
+      prog.style.transform = `scaleX(${(x - x0) / (x1 - x0)})`;
+      line.style.transform = `scaleX(${E.outExpo(clamp(vis * 1.2))})`;
+      dots.forEach((d, i) => {
+        const on = pos >= i - 0.02;
+        d.d.style.background = on ? accent : 'transparent';
+        d.d.style.borderColor = on ? accent : color;
+        d.l.style.opacity = Math.abs(pos - i) < 0.35 ? 1 : on ? 0.55 : 0.3;
+        d.l.style.color = Math.abs(pos - i) < 0.35 ? accent : color;
+      });
+    },
+  };
+}
+
+/* The end card: credits every Guardian article the video draws on. */
+function endCard(t, t0, opts) {
+  if (!endCard.el) {
+    const c = mk('div', 'endcard');
+    const k = mk('div', 'ec-k', c, 'Drawn from Guardian journalism');
+    const list = mk('ol', 'ec-list', c);
+    const items = CREDITS.map(cr => {
+      const li = mk('li', '', list);
+      mk('span', 'ec-d', li, cr.date);
+      mk('span', 'ec-h', li, cr.headline);
+      if (cr.kind) mk('span', 'ec-kind', li, cr.kind);
+      return li;
+    });
+    const f = mk('div', 'ec-f', c, 'Every fact on screen comes from these articles · theguardian.com');
+    endCard.el = { c, k, items, f };
+  }
+  const e = endCard.el;
+  const p = E.outExpo(P(t, t0, t0 + 0.6));
+  e.c.style.visibility = t < t0 ? 'hidden' : 'visible';
+  e.c.style.clipPath = `inset(${(1 - p) * 100}% 0 0 0)`;
+  tf(e.k, { y: (1 - E.outExpo(P(t, t0 + 0.15, t0 + 0.7))) * 40, o: P(t, t0 + 0.15, t0 + 0.5) });
+  e.items.forEach((li, i) => {
+    const q = E.outExpo(P(t, t0 + 0.25 + i * 0.06, t0 + 0.85 + i * 0.06));
+    tf(li, { y: (1 - q) * 30, o: q });
+  });
+  tf(e.f, { o: P(t, t0 + 0.7, t0 + 1.0) });
+}
+
+let READY = false;
+function renderAt(t) { frame(Math.min(t, DURATION - 1e-4)); }
+function fit() {
+  const s = Math.min(innerWidth / W, innerHeight / H);
+  STAGE.style.transform = `translate(${(innerWidth - W * s) / 2}px,${(innerHeight - H * s) / 2}px) scale(${s})`;
+}
+document.fonts.ready.then(() => {
+  setup();
+  renderAt(0);
+  READY = true;
+  if (!location.search.includes('render')) {
+    fit();
+    addEventListener('resize', fit);
+    const t0 = performance.now();
+    const loop = now => { renderAt(((now - t0) / 1000) % (DURATION + 1.5)); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+});
+
+
+const POSTER_T = 12.7;
+const SC = ['#f08a64', '#c39be0', '#79bde0', '#a6cc85'];   // street, detention, court, removal
+let S = {};
+function setup() {
+  S.bg = mk('div', 'bg'); mk('div', 'grain');
+  S.title = mk('div', 'title');
+  S.kick = words(S.title, T.kicker, 'kick');
+  S.tl = [words(S.title, 'ICE immigration', 'tl'), words(S.title, 'enforcement', 'tl'), words(S.title, 'crackdown', 'tl')];
+  S.hd = mk('div', 'hd', null, T.title);
+  const st = mk('div', 'strip'); S.strip = st;
+  S.sg = T.st.split(' · ').map((n, i) => { const e = mk('div', 'sg', st, n); return e; });
+  S.rail = rail(['14 Sept', '18 Sept', '19 Sept', '20 Sept'], { color: '#ebe8e3', accent: '#f08a64' });
+  S.dates = ['d1', 'd2', 'd3', 'd4', 'd5'].map((k, i) => { const w = words(STAGE, T[k], 'date'); w.line.style.color = [SC[1], SC[3], SC[2], SC[0], SC[0]][i]; return w; });
+  S.b = {};
+  ['b1', 'b2', 'b3', 'b4', 'b5'].forEach(k => S.b[k] = words(STAGE, T[k], 'big'));
+  S.b2b = words(STAGE, T.b2b, 'sub'); S.b2b.line.style.top = '690px';
+  S.b5b = words(STAGE, T.b5b, 'sub'); S.b5b.line.style.top = '480px';
+  S.inc = ['i1', 'i2', 'i3'].map((k, i) => { const w = words(STAGE, T[k], 'inc'); w.line.style.top = (300 + i * 170) + 'px'; return w; });
+  // cage
+  S.sq37 = mk('div', 'sq'); S.sq18 = mk('div', 'sq small');
+  const big = 420, small = Math.round(big * Math.sqrt(18 / 37));
+  Object.assign(S.sq37.style, { left: '1120px', top: '300px', width: big + 'px', height: big + 'px' });
+  Object.assign(S.sq18.style, { left: '1120px', top: (300 + big - small) + 'px', width: small + 'px', height: small + 'px' });
+  S.l18 = mk('div', 'sql l18', null, T.sq18); Object.assign(S.l18.style, { left: '1120px', top: '750px' });
+  S.l37 = mk('div', 'sql', null, T.sq37); Object.assign(S.l37.style, { left: '1120px', top: '800px' });
+  // removal
+  S.n2 = mk('div', 'n2', null, T.n2); S.n2l = mk('div', 'n2l', null, T.n2l);
+  const dd = mk('div', 'dealdots'); S.dd = Array.from({ length: 35 }, () => mk('i', '', dd));
+  S.deals = mk('div', 'deals', null, T.deals);
+  // court
+  S.mh = mk('div', 'mh', null, T.mh);
+  S.mb = [[7366, 'm1'], [16750, 'm2'], [14744, 'm3']].map(([v, k], i) => {
+    const b = mk('div', 'mbar'); Object.assign(b.style, { top: (390 + i * 160) + 'px', height: '80px', width: Math.round(680 * v / 16750) + 'px' });
+    const l = mk('div', 'mlab', null, T[k]); l.style.top = (480 + i * 160) + 'px'; l.style.fontSize = '34px';
+    return { b, l }; });
+  S.msrc = mk('div', 'key', null, T.msrc); S.msrc.style.top = '870px';
+  // street
+  S.places = [0, 1, 2].map(i => { const e = mk('div', 'place'); e.style.top = (312 + i * 170) + 'px'; e.style.left = '1060px'; return e; });
+  // scale
+  const g = mk('div', 'grid'); S.dots = Array.from({ length: 100 }, () => mk('i', '', g));
+  S.key = mk('div', 'key', null, T.key);
+}
+
+function frame(t) {
+  tf(S.bg, { x: Math.sin(t * 0.3) * 30, y: Math.cos(t * 0.22) * 24 });
+  wordsIO(S.kick, t, 0.1, 1.05, { stagger: 0.02 });
+  S.tl.forEach((w, i) => wordsIO(w, t, 0.15 + i * 0.12, 1.15 + i * 0.03, { stagger: 0.05, dur: 0.6, ease: E.outCubic }));
+  S.title.style.visibility = t < 1.6 ? 'visible' : 'hidden';
+  S.hd.style.opacity = E.outCubic(P(t, 1.45, 1.9)) * (1 - P(t, 13.2, 13.5));
+
+  // stage strip: lights up the stage each beat belongs to
+  const beats = [[1.5, 4.0, 1], [4.0, 6.4, 3], [6.4, 8.6, 2], [8.6, 11.0, 0]];
+  const stripVis = E.outCubic(P(t, 1.5, 2.0)) * (1 - P(t, 13.2, 13.5));
+  S.strip.style.opacity = stripVis;
+  S.sg.forEach((e, i) => {
+    let on = 0, seen = 0;
+    beats.forEach(([a, b, s]) => { if (s === i) { on = Math.max(on, env(t, a, b - 0.1, 0.3, 0.3, E.outCubic, E.inCubic)); if (t > a) seen = 1; } });
+    if (t > 11.0) on = 0.6;
+    e.style.color = SC[i];
+    e.style.opacity = 0.25 + 0.75 * Math.max(on, seen * 0.35);
+  });
+
+  S.rail.pose(t, [[0, 0], [1.5, 0], [4.0, 1], [6.4, 2], [8.6, 3]],
+    E.outCubic(P(t, 1.4, 1.9)) * (1 - E.inCubic(P(t, 10.8, 11.2))));
+  const bt = [[1.5, 3.9], [4.0, 6.3], [6.4, 8.5], [8.6, 10.9], [11.0, 13.3]];
+  S.dates.forEach((w, i) => wordsIO(w, t, bt[i][0], bt[i][1], { stagger: 0.03, ease: E.outCubic }));
+  const o = { stagger: 0.03, ease: E.outCubic, dur: 0.5 };
+  wordsIO(S.b.b1, t, 1.6, 3.9, o);
+  wordsIO(S.b.b2, t, 4.1, 6.3, o);
+  wordsIO(S.b2b, t, 4.8, 6.3, { ...o, stagger: 0.02 });
+  wordsIO(S.b.b3, t, 6.5, 8.5, o);
+  wordsIO(S.b.b4, t, 8.7, 10.9, o);
+  S.inc.forEach((w, i) => wordsIO(w, t, 9.25 + i * 0.35, 10.9, { ...o, stagger: 0.02 }));
+  wordsIO(S.b.b5, t, 11.1, 13.3, o);
+  wordsIO(S.b5b, t, 11.5, 13.3, { ...o, stagger: 0.02 });
+
+  // cage: the ICE minimum draws, then the cage appears inside it
+  const vC = env(t, 1.8, 3.85, 0.5, 0.3, E.outCubic);
+  const d37 = E.outCubic(P(t, 1.8, 2.5));
+  S.sq37.style.clipPath = `inset(0 ${(1 - d37) * 100}% 0 0)`;
+  S.sq37.style.opacity = vC;
+  const d18 = E.outCubic(P(t, 2.4, 2.9));
+  tf(S.sq18, { y: (1 - d18) * 30, o: d18 * vC });
+  tf(S.l18, { o: E.outCubic(P(t, 2.6, 2.9)) * vC });
+  tf(S.l37, { o: E.outCubic(P(t, 2.1, 2.4)) * vC });
+
+  // removal
+  const vR = env(t, 4.2, 6.3, 0.45, 0.3, E.outCubic);
+  counter(S.n2, t, 4.2, 5.0, 0, 25000, v => fmtInt(v) + (v > 24999 ? '+' : ''), E.outCubic);
+  tf(S.n2, { y: (1 - E.outCubic(P(t, 4.2, 4.6))) * 40, o: vR });
+  tf(S.n2l, { o: E.outCubic(P(t, 4.4, 4.7)) * vR });
+  S.dd.forEach((d, i) => { const q = E.outCubic(P(t, 4.9 + i * 0.018, 5.15 + i * 0.018)); d.style.transform = `scale(${q})`; d.style.opacity = vR; });
+  tf(S.deals, { o: E.outCubic(P(t, 5.3, 5.6)) * vR });
+
+  // court
+  const vM = env(t, 6.6, 8.5, 0.45, 0.3, E.outCubic);
+  S.mh.style.opacity = vM;
+  S.mb.forEach(({ b, l }, i) => {
+    const a = 6.8 + i * 0.22;
+    b.style.transform = `scaleX(${E.outCubic(P(t, a, a + 0.6))})`; b.style.opacity = (i === 0 ? 0.55 : 1) * vM;
+    l.style.opacity = E.outCubic(P(t, a + 0.3, a + 0.6)) * vM; });
+  S.msrc.style.opacity = E.outCubic(P(t, 7.4, 7.7)) * vM;
+
+  // street: a marker beside each incident
+  S.places.forEach((p, i) => {
+    const a = 9.25 + i * 0.35;
+    const q = E.outCubic(P(t, a, a + 0.3)) * (1 - E.inCubic(P(t, 10.9, 11.2)));
+    const pulse = 1 + 0.25 * Math.max(0, Math.sin((t - a) * 5));
+    p.style.transform = `scale(${q * pulse})`; p.style.opacity = q;
+    p.style.boxShadow = `0 0 ${20 * q}px #f08a64`;
+  });
+
+  // scale: 100 dots fill in, each 500 arrests
+  const vG = env(t, 11.1, 13.2, 0.4, 0.3, E.outCubic);
+  S.dots.forEach((d, i) => {
+    const r = Math.floor(i / 10), c = i % 10;
+    const q = E.outCubic(P(t, 11.2 + (r + c) * 0.045, 11.5 + (r + c) * 0.045));
+    d.style.transform = `scale(${q})`; d.style.opacity = vG;
+  });
+  S.key.style.opacity = E.outCubic(P(t, 11.9, 12.2)) * vG;
+  endCard(t, 13.4);
+}
+
+</script>
+</body></html>
