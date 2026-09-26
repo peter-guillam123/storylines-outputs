@@ -70,6 +70,7 @@ strong{font-weight:700}
   margin-left:.22em;border-radius:99px;background:var(--chip);color:var(--chip-ink);font:700 .66em/1 var(--sans);
   text-decoration:none;vertical-align:.28em;position:relative}
 .cite:hover,.cite:focus-visible{background:var(--accent);color:var(--accent-ink)}
+.cite::before{content:"";position:absolute;inset:-12px -8px}
 @media (hover:hover) and (pointer:fine){
   .cite::after{content:attr(data-h);display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
     width:max-content;max-width:17rem;padding:.55rem .7rem;border-radius:8px;background:var(--ink);color:var(--paper);

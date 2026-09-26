@@ -232,7 +232,7 @@ class Page:
 <footer class="foot">
   <div class="foot-in">
     <h2>How this was made</h2>
-    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the Trump administration topic page. An AI model (Claude) then {read_line} and wrote this summary, using nothing but those articles. Every sentence is tied to a passage in the journalism: the full list is in the <a href="manifest.md">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
+    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the Trump administration topic page. An AI model (Claude) then {read_line} and wrote this summary, using nothing but those articles. Every sentence is tied to a passage in the journalism: the full list is in the <a href="manifest.html">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
   </div>
 </footer>
 <script>
@@ -249,7 +249,7 @@ class Page:
     def write_manifest(self):
         m = self.mod
         out = [f"# Provenance manifest: {self.title}", "",
-               f"Output: `index.html` in this folder. Storyline {m.STORYLINE_INDEX + 1} of `storylines-data/{m.DATA_FILE}`.",
+               f"Output: `index.html` in this folder (web version of this manifest: `manifest.html`). Storyline {m.STORYLINE_INDEX + 1} of `storylines-data/{m.DATA_FILE}`.",
                "Built by `outputs/explainer-kit/build.py`, which checks every quote and figure below against the fetched article text.",
                "", "Every piece of text on the page is listed in the order it appears. Headings, labels and instructions "
                "are marked as such: they make no claim beyond facts sourced elsewhere on the page.",
@@ -276,6 +276,71 @@ class Page:
             out.append("")
         out += ["## Checks", ""] + [f"- {x}" for x in m.CHECKS] + [""]
         (self.folder / "manifest.md").write_text("\n".join(out))
+        self.write_manifest_html(out)
+
+    def write_manifest_html(self, md_lines):
+        """A readable web version of manifest.md, so the page's footer link works when hosted."""
+        def inline(t):
+            t = esc(t)
+            t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+            t = re.sub(r"`(.+?)`", r"<code>\1</code>", t)
+            return re.sub(r"\[(.+?)\]\((https?://[^)]+)\)", r'<a href="\2">\1</a>', t)
+        body, in_ul = [], False
+        for line in md_lines:
+            if line.startswith("- ") and not in_ul:
+                body.append("<ul>")
+                in_ul = True
+            if not line.startswith("- ") and in_ul:
+                body.append("</ul>")
+                in_ul = False
+            if line.startswith("# "):
+                continue
+            elif line.startswith("## "):
+                body.append(f"<h2>{inline(line[3:])}</h2>")
+            elif line.startswith("- Supports: "):
+                body.append(f'<li class="sup"><span>Supports</span><q>{inline(line[12:])}</q></li>')
+            elif line.startswith("- Source: "):
+                body.append(f'<li class="src"><span>Source</span>{inline(line[10:])}</li>')
+            elif line.startswith("- Note: "):
+                body.append(f'<li class="nt"><span>Note</span>{inline(line[8:])}</li>')
+            elif line.startswith("- "):
+                body.append(f"<li>{inline(line[2:])}</li>")
+            elif line.startswith("**") and re.match(r"\*\*\d+\.\*\*", line):
+                n, txt = re.match(r"\*\*(\d+)\.\*\* ?(.*)", line).groups()
+                body.append(f'<p class="entry"><b>{n}</b>{inline(txt)}</p>')
+            elif line.strip():
+                body.append(f"<p>{inline(line)}</p>")
+        if in_ul:
+            body.append("</ul>")
+        page = f"""<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provenance manifest: {esc(self.title)}</title>
+<style>
+*{{box-sizing:border-box}}
+:root{{--paper:#f5f3ef;--ink:#1b1d21;--muted:#5e6064;--rule:#dcd7cf;--card:#ebe7e0;--accent:#c4532f}}
+@media (prefers-color-scheme:dark){{:root{{--paper:#121417;--ink:#ebe8e3;--muted:#a3a5a8;--rule:#2a2d31;--card:#1c1f23;--accent:#f08a64}}}}
+html{{overflow-x:clip}}
+body{{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.55 "Charter","Iowan Old Style",Georgia,serif}}
+main{{max-width:46rem;margin:0 auto;padding:2rem 1rem 4rem}}
+a{{color:inherit;text-decoration-color:var(--accent);text-underline-offset:.15em;overflow-wrap:anywhere}}
+.k{{font:700 .75rem "Avenir Next","Segoe UI",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}}
+h1{{font:800 clamp(1.7rem,5vw,2.4rem)/1.1 "Avenir Next","Segoe UI",system-ui,sans-serif;letter-spacing:-.02em;margin:.3rem 0 1.2rem}}
+h2{{font:800 1.25rem/1.2 "Avenir Next","Segoe UI",system-ui,sans-serif;margin:2.4rem 0 .8rem;padding-top:1rem;border-top:3px solid var(--ink)}}
+.entry{{margin:1.2rem 0 .3rem;display:grid;grid-template-columns:2.4rem 1fr;font-size:1.05rem}}
+.entry b{{font:800 .85rem "Avenir Next","Segoe UI",system-ui,sans-serif;color:var(--muted);padding-top:.2rem}}
+ul{{margin:0 0 0 2.4rem;padding:0;list-style:none;font-size:.92rem}}
+li{{margin:.3rem 0}}
+li>span{{font:700 .68rem "Avenir Next","Segoe UI",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:.5rem}}
+.sup q{{display:block;background:var(--card);border-left:3px solid var(--accent);padding:.4rem .7rem;margin-top:.2rem;quotes:none}}
+.nt{{color:var(--muted)}}
+code{{font-size:.9em}}
+</style></head><body><main>
+<p class="k"><a href="index.html">Back to the explainer</a></p>
+<h1>Provenance manifest: {esc(self.title)}</h1>
+{"".join(body)}
+</main></body></html>
+"""
+        (self.folder / "manifest.html").write_text(page)
 
 
 if __name__ == "__main__":

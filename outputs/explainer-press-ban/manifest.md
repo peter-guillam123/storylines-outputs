@@ -1,6 +1,6 @@
 # Provenance manifest: White House bans CNN, MS Now and Politico
 
-Output: `index.html` in this folder. Storyline 1 of `storylines-data/trump-administration.json`.
+Output: `index.html` in this folder (web version of this manifest: `manifest.html`). Storyline 1 of `storylines-data/trump-administration.json`.
 Built by `outputs/explainer-kit/build.py`, which checks every quote and figure below against the fetched article text.
 
 Every piece of text on the page is listed in the order it appears. Headings, labels and instructions are marked as such: they make no claim beyond facts sourced elsewhere on the page.
