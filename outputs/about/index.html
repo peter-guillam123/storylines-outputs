@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Storylines outputs</title>
+<meta name="description" content="What the Storylines outputs project is, how the outputs are made and a diary of what has been built.">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --serif:"Charter","Bitstream Charter","Iowan Old Style","Sitka Text",Cambria,Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI","Helvetica Neue",system-ui,-apple-system,Roboto,sans-serif;
+  --paper:#f4f2ee;--ink:#1a1c20;--muted:#5d5f63;--rule:#dad6cf;--accent:#c4532f;--card:#e9e5de;--focus:#2c63d6;
+  --hero:#15171b;--hero-ink:#f1eee9;--hero-accent:#f08a64;
+}
+@media (prefers-color-scheme:dark){:root{--paper:#121417;--ink:#ebe8e3;--muted:#a3a5a8;--rule:#2a2d31;--accent:#f08a64;--card:#1c1f23;--focus:#86adff}}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font:1.125rem/1.62 var(--serif)}
+a{color:inherit;text-decoration-color:var(--accent);text-underline-offset:.18em}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:3px}
+header{background:var(--hero);color:var(--hero-ink);padding:clamp(2.2rem,6vw,4rem) 1rem 2.4rem}
+header div,main{max-width:40rem;margin:0 auto}
+.kicker{font:700 .78rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--hero-accent);margin:0 0 1rem}
+h1{font:800 clamp(2.2rem,6vw,3.6rem)/1 var(--sans);letter-spacing:-.03em;margin:0}
+main{padding:0 1rem 4rem}
+h2{font:800 1.6rem/1.15 var(--sans);letter-spacing:-.02em;margin:2.6rem 0 1rem}
+h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--accent);border-radius:2px;margin-bottom:.8rem}
+.diary{list-style:none;margin:0;padding:0}
+.diary>li{border-top:1px solid var(--rule);padding:1.2rem 0}
+.diary time{font:800 .8rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.diary h3{font:800 1.2rem/1.25 var(--sans);margin:.3rem 0 .5rem}
+.milestone{display:inline-block;margin-left:.5rem;font:800 .66rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;
+  background:var(--accent);color:var(--paper);padding:.3rem .45rem;border-radius:4px;vertical-align:.15rem}
+.outputs{list-style:none;padding:0;margin:0}
+.outputs li{background:var(--card);border-radius:12px;padding:.9rem 1rem;margin:.6rem 0}
+.outputs a{font:700 1.02rem/1.35 var(--sans)}
+.outputs span{display:block;font-size:.95rem;color:var(--muted);margin-top:.2rem}
+</style>
+</head>
+<body>
+<header><div>
+  <p class="kicker">Storylines outputs</p>
+  <h1>About this project</h1>
+</div></header>
+<main>
+  <h2>What it is</h2>
+  <p>Storylines is a Guardian module for topic pages. A model reads the latest 200 pieces on a topic and picks the three strongest Storylines: chains of connected events, each with five key stories and a few supporting pieces such as explainers, opinion and video. It selects and orders the journalism, and writes nothing but a short title.</p>
+  <p>This project tests an idea: that this kind of structured, editorially grounded selection is a good foundation for much richer formats. The outputs can be as ambitious in form as they like. In substance they must stay entirely faithful to the Guardian’s journalism. If anything in an output can’t be traced back to a Guardian article, the experiment has failed.</p>
+
+  <h2>How the outputs are made</h2>
+  <p>Claude, an AI model, fetches the full text of each article in a Storyline through the Guardian’s Content API. It then writes the output using those articles and nothing else: no web searches, and none of its own knowledge.</p>
+  <p>Every sentence is tied to the passage in the article that supports it. A build script checks each quote and figure against the article text, and refuses to build the page if one doesn’t match. Each output comes with a provenance manifest, listing every piece of text, its source and the supporting passage, followed by a note of anything uncertain or left out.</p>
+  <p>None of the outputs has yet been checked by a Guardian editor.</p>
+
+  <h2>Outputs so far</h2>
+  <ul class="outputs">
+    <li><a href="../explainer-press-ban/index.html">White House bans CNN, MS Now and Politico</a><span>Explainer, with a day-by-day grid of the nine days from the ban to Air Force One</span></li>
+    <li><a href="../explainer-iran-hormuz/index.html">US-Iran war and Hormuz negotiations</a><span>Explainer, with Iran’s seven-day timetable as a step-through diagram</span></li>
+    <li><a href="../explainer-ice-crackdown/index.html">ICE immigration enforcement crackdown</a><span>Explainer, with the immigration system drawn stage by stage</span></li>
+  </ul>
+
+  <h2>Diary</h2>
+  <ol class="diary">
+    <li>
+      <time datetime="2026-09-26">26 September 2026</time>
+      <h3>The first explainers <span class="milestone">Milestone</span></h3>
+      <p>Three explainers, one for each Storyline on the Trump administration topic page, generated on 26 September. Each is a single page that works offline and on a phone, meant to take about five minutes to read.</p>
+      <p>The three Storylines have different shapes, so each page has its own diagram. The press ban is a tight chain of events over nine days, so it gets a day-by-day grid showing who did what and whether the outlets could get into the building. The Iran Storyline turns on an offer with a timetable, so the diagram is that timetable, set against the 60 days of the June agreement. The ICE Storyline is less a chain than a set of reports on different parts of one system, so it is organised by stage: arrest, detention, the courts and removal.</p>
+      <p>The words and the checking come from a shared kit. Each explainer’s text lives in a file that pairs every sentence with its supporting passage, and the build fails on any quote or figure it can’t find in the source.</p>
+      <p>The build checks that quotes and figures exist in the articles, but not whether a paraphrase says more than the article does. So a second pass had a separate fact-checker read each page against the full articles. They found no wrong figures, but several dozen places where the wording went further than the reporting: a hedge dropped (“reportedly mistook him” became “a mistaken arrest”), a quote trimmed so that it changed meaning, an analyst’s judgment stated as fact, and one detail from outside the sources entirely (Benjamin Netanyahu described as Israel’s prime minister, which none of the articles says). All were fixed.</p>
+      <p>Two ICE articles, on the Austin shooting and on miscarriages in detention, could not be fetched at our Content API access level. That explainer uses only their headlines and standfirsts, and says so in its manifest.</p>
+    </li>
+  </ol>
+</main>
+</body>
+</html>

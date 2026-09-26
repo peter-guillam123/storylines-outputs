@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>US-Iran war and Hormuz negotiations: a Storylines explainer</title>
+<meta name="description" content="The US has been at war with Iran since February. Now Iran is offering to reopen a vital oil route within days, on terms that would require difficult concessions from Donald Trump.">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --serif:"Charter","Bitstream Charter","Iowan Old Style","Sitka Text",Cambria,Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI","Helvetica Neue",system-ui,-apple-system,Roboto,sans-serif;
+  --measure:40rem;
+  --wide:66rem;
+}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font:1.125rem/1.62 var(--serif);
+  font-feature-settings:"onum" 0,"lnum" 1;overflow-x:hidden}
+a{color:inherit;text-decoration-color:var(--accent);text-decoration-thickness:.09em;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:.16em}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:1rem;top:-4rem;background:var(--ink);color:var(--paper);padding:.6rem 1rem;
+  font:600 1rem var(--sans);z-index:9;border-radius:6px}
+.skip:focus{top:1rem}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---- hero ---- */
+.hero{background:var(--hero-bg);color:var(--hero-ink);position:relative;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-20%;z-index:-1;background:var(--hero-glow);filter:blur(10px)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-in{max-width:var(--wide);margin:0 auto;padding:clamp(2.2rem,6vw,5rem) 1rem clamp(1.6rem,4vw,3rem)}
+.kicker{font:700 .78rem/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;margin:0 0 1.4rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.kicker span:first-child{color:var(--accent-on-hero)}
+.kicker-tag{border:1px solid currentColor;border-radius:99px;padding:.25rem .6rem;opacity:.8;letter-spacing:.08em}
+.hero h1{font:800 clamp(2.5rem,7.6vw,5.6rem)/.98 var(--sans);letter-spacing:-.035em;margin:0;max-width:14ch;
+  text-wrap:balance}
+.dek{font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.45;max-width:36rem;margin:1.4rem 0 .9rem;opacity:.94}
+.meta{font:500 .85rem/1.4 var(--sans);opacity:.72;margin:0 0 2.2rem}
+
+/* the chain of five key stories */
+.thread ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.thread ol::before{content:"";position:absolute;left:0;right:0;top:.55rem;height:2px;background:var(--accent-on-hero);
+  transform-origin:left;animation:draw 1.4s cubic-bezier(.6,.1,.2,1) .2s both}
+.thread li{position:relative;padding:1.7rem 1rem 0 0;animation:rise .7s ease both;animation-delay:calc(.35s + var(--i)*.14s)}
+.thread li::before{content:"";position:absolute;left:0;top:0;width:1.1rem;height:1.1rem;border-radius:50%;
+  background:var(--hero-bg-solid);border:3px solid var(--accent-on-hero)}
+.thread a{text-decoration:none;display:block}
+.thread a:hover .t-head{text-decoration:underline;text-decoration-color:var(--accent-on-hero)}
+.t-date{display:block;font:700 .78rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-on-hero)}
+.t-head{display:block;font:500 .9rem/1.35 var(--sans);margin-top:.3rem;opacity:.9}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:760px){
+  .thread ol{grid-template-columns:1fr}
+  .thread ol::before{left:.5rem;right:auto;top:.6rem;bottom:.6rem;width:2px;height:auto;transform-origin:top;animation-name:drawv}
+  .thread li{padding:0 0 1.1rem 2rem}
+  .thread li:last-child{padding-bottom:0}
+  .thread li::before{top:.1rem}
+  .t-head{margin-top:.1rem}
+}
+@keyframes drawv{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* ---- body ---- */
+main{padding:0 1rem}
+main>section,.block{max-width:var(--measure);margin:0 auto}
+main>section{padding:clamp(2.4rem,6vw,4rem) 0 0}
+.wide{max-width:var(--wide);margin-left:auto;margin-right:auto}
+h2{font:800 clamp(1.6rem,3.6vw,2.2rem)/1.1 var(--sans);letter-spacing:-.02em;margin:0 0 1.1rem}
+h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--accent);border-radius:2px;margin-bottom:.9rem}
+h3{font:700 1.15rem/1.25 var(--sans);margin:1.8rem 0 .5rem;letter-spacing:-.01em}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.25rem;line-height:1.55}
+strong{font-weight:700}
+
+/* citation chips */
+.cite{display:inline-flex;align-items:center;justify-content:center;min-width:1.35em;height:1.35em;padding:0 .3em;
+  margin-left:.22em;border-radius:99px;background:var(--chip);color:var(--chip-ink);font:700 .66em/1 var(--sans);
+  text-decoration:none;vertical-align:.28em;position:relative}
+.cite:hover,.cite:focus-visible{background:var(--accent);color:var(--accent-ink)}
+@media (hover:hover) and (pointer:fine){
+  .cite::after{content:attr(data-h);display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+    width:max-content;max-width:17rem;padding:.55rem .7rem;border-radius:8px;background:var(--ink);color:var(--paper);
+    font:500 .8rem/1.35 var(--sans);text-align:left;pointer-events:none;z-index:5}
+  .cite:hover::after,.cite:focus-visible::after{display:block}
+}
+
+/* in short */
+.inshort{list-style:none;margin:0;padding:0;counter-reset:s}
+.inshort li{counter-increment:s;position:relative;padding:1rem 0 1rem 3.2rem;border-top:1px solid var(--rule)}
+.inshort li:last-child{border-bottom:1px solid var(--rule)}
+.inshort li::before{content:counter(s);position:absolute;left:0;top:.95rem;font:800 1.9rem/1 var(--sans);color:var(--accent)}
+
+/* chronology */
+.chron{list-style:none;margin:0;padding:0;position:relative}
+.chron>li{display:grid;grid-template-columns:7.2rem 1fr;gap:1.2rem;padding:0 0 1.6rem;position:relative}
+.chron>li::before{content:"";position:absolute;left:7.2rem;margin-left:.55rem;top:.5rem;bottom:-.4rem;width:2px;background:var(--rule)}
+.chron>li:last-child::before{display:none}
+.chron .when{font:800 1rem/1.2 var(--sans);text-align:right;padding-top:.15rem}
+.chron .when small:empty{display:none}
+.chron .when small{display:block;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.chron .what{padding-left:1.2rem;position:relative}
+.chron .what::before{content:"";position:absolute;left:-.62rem;top:.42rem;width:.8rem;height:.8rem;border-radius:50%;
+  background:var(--paper);border:3px solid var(--accent)}
+.chron .what h3{margin:0 0 .35rem}
+.chron .what p:last-child{margin-bottom:0}
+@media (max-width:600px){
+  .chron>li{grid-template-columns:1fr;gap:.2rem;padding-left:1.4rem}
+  .chron>li::before{left:.3rem;margin:0;top:.4rem}
+  .chron .when{text-align:left}
+  .chron .what{padding-left:0}
+  .chron .what::before{left:-1.45rem;top:-1.55rem}
+}
+
+/* people */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr));gap:1rem;list-style:none;padding:0;margin:1.2rem 0 0}
+.card{background:var(--card);border-radius:14px;padding:1.1rem 1.15rem 1.2rem;border-top:5px solid var(--card-accent,var(--accent));font-size:1rem;line-height:1.5}
+.card h3{margin:0 0 .1rem;font-size:1.05rem}
+.card .role{font:600 .78rem/1.3 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+.card p:last-child{margin-bottom:0}
+.card blockquote{margin:.6rem 0 0;padding-left:.8rem;border-left:3px solid var(--card-accent,var(--accent));font-style:italic}
+
+/* opinion */
+.opinion{background:var(--opinion-bg);border-radius:16px;padding:1.4rem 1.3rem 1.3rem;margin:1.2rem 0;position:relative}
+.opinion .tag{display:inline-block;font:800 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  background:var(--opinion-ink);color:var(--opinion-bg);padding:.4rem .6rem;border-radius:4px;margin-bottom:.8rem}
+.opinion .by{font:700 1rem var(--sans);margin:0 0 .6rem}
+.pull{font:italic 1.45rem/1.3 var(--serif);margin:.4rem 0 1rem;padding:0;quotes:none}
+
+/* figures */
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:14px;overflow:hidden;margin:1.4rem 0}
+.fig{background:var(--paper);padding:1.1rem 1.1rem 1.2rem}
+.fig .num{font:800 clamp(2rem,5vw,2.7rem)/1 var(--sans);letter-spacing:-.03em;color:var(--accent-strong)}
+.fig p{font-size:.95rem;line-height:1.45;margin:.5rem 0 0}
+
+/* interactive frame */
+.panel{background:var(--card);border-radius:18px;padding:clamp(1rem,3vw,1.8rem);margin:1.6rem auto 0}
+.panel-h{font:800 1.3rem/1.2 var(--sans);margin:0 0 .3rem;letter-spacing:-.01em}
+.panel-sub{font:500 .95rem/1.45 var(--sans);color:var(--muted);margin:0 0 1.2rem}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font:500 .82rem var(--sans);color:var(--muted);margin:1rem 0 0;padding:0;list-style:none}
+.legend i{display:inline-block;width:.9rem;height:.9rem;border-radius:3px;vertical-align:-.12rem;margin-right:.35rem}
+
+/* read more */
+.readmore{padding-bottom:3rem}
+.rm-intro{color:var(--muted);font-size:1rem}
+.rm-group h3{font:800 .78rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 .4rem}
+.rm-group ol{list-style:none;margin:0;padding:0}
+.rm-group li{display:grid;grid-template-columns:2rem 1fr;padding:.7rem 0;border-top:1px solid var(--rule)}
+.rm-group li>a{font:700 1.02rem/1.35 var(--sans);text-decoration:none}
+.rm-group li>a:hover{text-decoration:underline;text-decoration-color:var(--accent)}
+.rm-n{grid-row:span 2;font:800 .8rem/1.6 var(--sans);color:var(--chip-ink);background:var(--chip);border-radius:99px;
+  width:1.5rem;height:1.5rem;text-align:center;line-height:1.5rem;margin-top:.05rem}
+.rm-meta{font:500 .85rem var(--sans);color:var(--muted);margin-top:.2rem}
+
+/* footer */
+.foot{background:var(--hero-bg-solid);color:var(--hero-ink);padding:2.4rem 1rem 3rem;margin-top:2rem}
+.foot-in{max-width:var(--measure);margin:0 auto;font-size:1rem}
+.foot h2{font-size:1.2rem}
+.foot h2::before{background:var(--accent-on-hero)}
+.foot a{text-decoration-color:var(--accent-on-hero)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+@media print{.hero,.foot{background:none;color:#000}.cite::after{display:none}}
+
+:root{
+--paper:#f1f4f2;--ink:#0f1d20;--muted:#51626a;--rule:#d0dad8;--card:#e2eae8;
+--accent:#d9822b;--accent-strong:#9c520c;--accent-ink:#0f1d20;--chip:#0f1d20;--chip-ink:#f1f4f2;--focus:#1f6fd1;
+--hero-bg:#06242a;--hero-bg-solid:#08262c;--hero-ink:#eef3f1;--accent-on-hero:#f2a950;
+--hero-glow:radial-gradient(60% 70% at 92% 0%,rgba(242,169,80,.5),transparent 60%),radial-gradient(70% 70% at 0% 110%,rgba(30,160,170,.45),transparent 60%);
+--opinion-bg:#e8e3f6;--opinion-ink:#2f2357;
+--sea:#1b7f8c;--sea-soft:#cfe6e8;--us:#0f1d20;--iran:#1b7f8c;
+}
+@media (prefers-color-scheme: dark){:root{
+--paper:#0c1618;--ink:#e6eeec;--muted:#9fb0b4;--rule:#1f2e31;--card:#142326;
+--accent:#f2a950;--accent-strong:#f6bd74;--accent-ink:#0c1618;--chip:#e6eeec;--chip-ink:#0c1618;--focus:#7fb4ff;
+--opinion-bg:#1e1a33;--opinion-ink:#d8ccff;
+--sea:#4fc3cf;--sea-soft:#133a3f;--us:#e6eeec;--iran:#4fc3cf;
+}}
+
+.tt{display:grid;grid-template-columns:5fr 1.35fr 1.35fr;gap:6px;margin:.4rem 0 0}
+.tt button{all:unset;box-sizing:border-box;cursor:pointer;border-radius:12px;padding:.8rem .8rem .9rem;
+  background:var(--paper);box-shadow:inset 0 0 0 2px var(--rule);font-family:var(--sans);min-width:0;position:relative}
+.tt button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.tt button[aria-pressed=true]{background:var(--ink);color:var(--paper);box-shadow:none}
+.tt .dl{display:block;font:800 .72rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.tt .dt{display:block;font:800 1.05rem/1.2 var(--sans);margin-top:.35rem}
+.tt .who{display:inline-block;margin-top:.5rem;font:700 .66rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;
+  padding:.3rem .45rem;border-radius:4px;background:var(--sea-soft);color:var(--ink)}
+.tt button[aria-pressed=true] .who{background:var(--accent);color:var(--accent-ink)}
+.ticks{display:grid;grid-template-columns:repeat(7,1fr);margin:.5rem 0 0;padding:0;list-style:none;
+  font:700 .7rem var(--sans);color:var(--muted);text-align:center}
+.ticks li{border-top:2px solid var(--rule);padding-top:.3rem}
+.ticks li.hot{border-color:var(--accent);color:var(--ink)}
+.tt-detail{margin-top:1rem;background:var(--paper);border-radius:14px;padding:1.1rem 1.2rem}
+.tt-detail h3{margin:0 0 .5rem}
+.tt-detail ul{margin:.2rem 0 .8rem;padding-left:1.2rem}
+.tt-detail li{margin:.25rem 0}
+.snag{border-left:4px solid var(--accent);padding:.1rem 0 .1rem .8rem;margin:.6rem 0 0}
+.snag strong{font-family:var(--sans)}
+.cmp{margin-top:1.6rem}
+.cmp-h{font:800 1rem/1.3 var(--sans);margin:0 0 .6rem}
+.bar{display:grid;grid-template-columns:9.5rem 1fr;gap:.8rem;align-items:center;margin:.45rem 0;font:600 .9rem/1.3 var(--sans)}
+.bar .track{height:1.9rem;border-radius:6px;background:var(--paper);position:relative;overflow:hidden}
+.bar .fill{position:absolute;inset:0 auto 0 0;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;
+  padding-right:.5rem;font:800 .85rem var(--sans);color:var(--paper);background:var(--muted);transform-origin:left;
+  animation:grow 1.1s cubic-bezier(.5,.1,.2,1) both}
+.bar .fill.new{background:var(--accent);color:var(--accent-ink);min-width:3.2rem}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:600px){
+  .tt{grid-template-columns:1fr 1fr}
+  .tt button:first-child{grid-column:1/-1}
+  .ticks{display:none}
+  .bar{grid-template-columns:1fr;gap:.25rem}
+}
+.basics{display:grid;grid-template-columns:repeat(auto-fit,minmax(11.5rem,1fr));gap:.8rem;margin-top:1rem}
+.basics .card{font-size:.95rem}
+.basics .card{border-top-color:var(--sea)}
+.table-list{list-style:none;margin:1rem 0 0;padding:0}
+.table-list li{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;padding:.75rem 0;border-top:1px solid var(--rule);font-size:1rem;line-height:1.5}
+.table-list li strong{font:800 .95rem/1.4 var(--sans)}
+@media (max-width:600px){.table-list li{grid-template-columns:1fr;gap:.1rem}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the explainer</a>
+<header class="hero">
+  <div class="hero-in">
+    <p class="kicker"><span>Storylines explainer</span> <span class="kicker-tag">Trump administration</span></p>
+    <h1>US-Iran war and Hormuz negotiations</h1>
+    <p class="dek">The US has been at war with Iran since February. Now Iran is offering to reopen a vital oil route within days, on terms that would require difficult concessions from Donald Trump.</p>
+    <p class="meta">Drawn from 6 Guardian articles published 14–25 September 2026 · About a five-minute read</p>
+    <nav class="thread" aria-label="The five key stories in this Storyline, oldest first"><ol><li style="--i:0"><a href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener"><span class="t-date">15 Sep</span><span class="t-head">US House votes for third time to end Iran war after $38bn cost is revealed</span></a></li><li style="--i:1"><a href="https://www.theguardian.com/us-news/2026/sep/22/trump-calls-on-allies-enforce-complete-economic-isolation-iran-un-speech" target="_blank" rel="noopener"><span class="t-date">22 Sep</span><span class="t-head">Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech</span></a></li><li style="--i:2"><a href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener"><span class="t-date">23 Sep</span><span class="t-head">Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York</span></a></li><li style="--i:3"><a href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener"><span class="t-date">24 Sep</span><span class="t-head">Iran awaiting response from Trump on proposal to open strait of Hormuz in six days</span></a></li><li style="--i:4"><a href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener"><span class="t-date">25 Sep</span><span class="t-head">Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms</span></a></li></ol></nav>
+  </div>
+</header>
+<main id="main">
+<section aria-labelledby="s-short"><h2 id="s-short">In short</h2><ol class="inshort">
+<li>The US and Israel launched joint strikes on Iran in February. Since early in the war Iran has had a stranglehold on energy shipping through the strait of Hormuz,<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/22/trump-calls-on-allies-enforce-complete-economic-isolation-iran-un-speech" target="_blank" rel="noopener" aria-label="Source 2: Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech (Guardian, 22 September 2026)" data-h="Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech">2</a> and reopening it is expected to relieve pressure on global energy markets.<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li>
+<li>The war is hugely unpopular in the US, the Guardian reports.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a> Congress’s budget office puts the cost at $38bn or more, and the House of Representatives has voted three times to end it.<a class="cite" href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener" aria-label="Source 1: US House votes for third time to end Iran war after $38bn cost is revealed (Guardian, 15 September 2026)" data-h="US House votes for third time to end Iran war after $38bn cost is revealed">1</a></li>
+<li>During the UN general assembly in New York, Iran offered to reopen the strait within days if the US makes big concessions, including an end to the fighting in Lebanon. Iran is waiting for Trump’s answer.<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a></li></ol></section>
+<section aria-labelledby="s-basics"><h2 id="s-basics">The basics</h2><div class="basics">
+<div class="card"><h3>What is the strait of Hormuz?</h3><p>A key waterway for transporting oil.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a> Oman lies on its south side.<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a> The latest published figures suggest fewer than five identifiable tankers a day are getting through, though US navy estimates are much higher.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a></p></div>
+<div class="card"><h3>What was the June deal?</h3><p>On 17 June the US and Iran agreed a memorandum of understanding.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a> Trump signed it.<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a> Its implementation fell apart after each side accused the other of breaking it by trying to take control of the strait, though Iran’s president says it remains the starting point.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a></p></div>
+<div class="card"><h3>How is the US squeezing Iran?</h3><p>Through sanctions and a naval blockade that makes it nearly impossible for Iran to export oil, depriving it of badly needed foreign currency.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a></p></div>
+</div></section>
+<section aria-labelledby="s-chron"><h2 id="s-chron">What happened, in order</h2><ol class="chron">
+<li><div class="when"><small></small>February</div><div class="what"><h3>The war begins</h3><p>The US and Israel launched joint strikes on Iran.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/22/trump-calls-on-allies-enforce-complete-economic-isolation-iran-un-speech" target="_blank" rel="noopener" aria-label="Source 2: Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech (Guardian, 22 September 2026)" data-h="Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech">2</a></p></div></li>
+<li><div class="when"><small></small>June–July</div><div class="what"><h3>A deal, and votes to end the war</h3><p>The US and Iran agreed a memorandum of understanding on 17 June; its implementation later fell apart.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a> In June and July the House passed resolutions to end US action in Iran.<a class="cite" href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener" aria-label="Source 1: US House votes for third time to end Iran war after $38bn cost is revealed (Guardian, 15 September 2026)" data-h="US House votes for third time to end Iran war after $38bn cost is revealed">1</a></p></div></li>
+<li><div class="when"><small>Tuesday</small>15 Sept</div><div class="what"><h3>The bill arrives</h3><p>A Congressional Budget Office report put the cost of the war at $38bn or more, and estimated it would grow by $3bn for every month it continues, depending on its intensity. Defending against Iranian missiles and drones has used up so many interceptor missiles that rebuilding the stockpile “would probably take at least five years, even if production was increased”, the CBO said. A few hours after the report, the House voted 220 to 204 to end the war, its third such vote. In a White House statement responding to reports of shortages, Trump said the US had “far more munitions than anyone in the world”.<a class="cite" href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener" aria-label="Source 1: US House votes for third time to end Iran war after $38bn cost is revealed (Guardian, 15 September 2026)" data-h="US House votes for third time to end Iran war after $38bn cost is revealed">1</a></p><p>None of the House resolutions has reached the president, who would almost certainly veto them. Earlier, the Senate also passed one, on its 10th attempt, but Republican senators reversed course the next day after Trump berated them.<a class="cite" href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener" aria-label="Source 1: US House votes for third time to end Iran war after $38bn cost is revealed (Guardian, 15 September 2026)" data-h="US House votes for third time to end Iran war after $38bn cost is revealed">1</a></p><p>The Pentagon’s own review of the war, released the day before, did not address its internal investigation into a strike on a school in Minab on the war’s first day, which killed 156 people, including 120 children.<a class="cite" href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener" aria-label="Source 1: US House votes for third time to end Iran war after $38bn cost is revealed (Guardian, 15 September 2026)" data-h="US House votes for third time to end Iran war after $38bn cost is revealed">1</a></p></div></li>
+<li><div class="when"><small>Tuesday</small>22 Sept</div><div class="what"><h3>Trump at the UN</h3><p>In a speech to the UN general assembly, Trump said: “I call on all nations to help to enforce the complete economic isolation of Iran.” He said he had a “big decision” to make: a deal, or “do I annihilate the Islamic republic and do it quickly”. He said the midterm elections would not affect his decisions: “The only thing that does is that Iran will never have a nuclear weapon.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/22/trump-calls-on-allies-enforce-complete-economic-isolation-iran-un-speech" target="_blank" rel="noopener" aria-label="Source 2: Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech (Guardian, 22 September 2026)" data-h="Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech">2</a></p></div></li>
+<li><div class="when"><small>Reported</small>23 Sept</div><div class="what"><h3>Talks in a UN room</h3><p>Iran’s foreign minister, Abbas Araghchi, met Trump’s envoys Steve Witkoff and Jared Kushner for three hours at the UN headquarters, with Qatar mediating. Trump said the talks had been very productive, and the price of Brent crude oil fell below $100 a barrel for the first time in two weeks. Iran denied it had dropped its conditions. Its foreign ministry said the aim was to convey demands including “the end of the war in all its dimensions”.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a></p></div></li>
+<li><div class="when"><small>Thursday</small>24 Sept</div><div class="what"><h3>Iran’s offer</h3><p>Iran said it had told Trump it would reopen the strait and start nuclear talks within a week if the US met its conditions. “We have introduced a plan to the US through the mediators,” Araghchi said. Saudi Arabia had been expected to endorse the new shipping route the week before but pulled back, partly out of anger at attacks on it by the Iranian-backed Houthis in Yemen. Brent crude was trading at about $107 a barrel,<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a> against $64 before the fighting.<a class="cite" href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener" aria-label="Source 1: US House votes for third time to end Iran war after $38bn cost is revealed (Guardian, 15 September 2026)" data-h="US House votes for third time to end Iran war after $38bn cost is revealed">1</a></p></div></li>
+</ol></section>
+<figure class="panel wide" aria-labelledby="tt-h"><p class="panel-h" id="tt-h">Iran’s seven-day timetable</p><p class="panel-sub">Iran’s offer, as reported by the Guardian from New York on 25 September. A Guardian headline the day before described it as opening the strait “in six days”: the strait reopens on day six and nuclear talks follow on day seven. Select a stage to see what it involves.</p><div class="tt"><button type="button" aria-pressed="true" aria-controls="tt0"><span class="dl">Days 1 to 5</span><span class="dt">The US acts</span><span class="who">Up to the US</span></button><button type="button" aria-pressed="false" aria-controls="tt1"><span class="dl">Day 6</span><span class="dt">The strait reopens</span><span class="who">Up to Iran</span></button><button type="button" aria-pressed="false" aria-controls="tt2"><span class="dl">Day 7</span><span class="dt">Nuclear talks begin</span><span class="who">Both sides</span></button></div><ol class="ticks" aria-hidden="true"><li data-d="1">1</li><li data-d="2">2</li><li data-d="3">3</li><li data-d="4">4</li><li data-d="5">5</li><li data-d="6">6</li><li data-d="7">7</li></ol><div class="tt-detail" id="tt0" role="region" aria-label="Days 1 to 5: The US acts"><h3>Days 1 to 5: The US acts</h3><ul><li>Lift the naval blockade on Iran’s oil ports<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li><li>Restore the waiver that lifted sanctions on Iran’s oil exports<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li><li>End the war on all fronts<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li><li>Allow the release of some of Iran’s frozen assets<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li></ul><div class="snag"><strong>The catch</strong> <p>Patrick Wintour writes that the hardest step for Trump is probably ordering Benjamin Netanyahu to end Israel’s attacks on Hezbollah in Lebanon. Iranian diplomats say a deal would be feasible if Trump could rein in Netanyahu in Lebanon.<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></p></div></div><div class="tt-detail" id="tt1" role="region" aria-label="Day 6: The strait reopens"><h3>Day 6: The strait reopens</h3><ul><li>Iran reopens the strait of Hormuz<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li><li>Ships use a new route designated by Oman and Iran<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li></ul><div class="snag"><strong>The catch</strong> <p>The new route runs mainly through Iranian waters. Wintour writes that the strait would reopen largely on Iran’s terms. Saudi Arabia is concerned that the route deal is between Iran and Oman only, without the other Gulf states as joint signatories.<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></p></div></div><div class="tt-detail" id="tt2" role="region" aria-label="Day 7: Nuclear talks begin"><h3>Day 7: Nuclear talks begin</h3><ul><li>Talks start on the future of Iran’s civil nuclear programme<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li><li>Including a protocol to let UN nuclear inspectors back in to Iran’s damaged sites and its stockpile of highly enriched uranium<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></li></ul><div class="snag"><strong>The catch</strong> <p>Under the June agreement, these talks would not have started for 60 days.<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a></p></div></div><div class="cmp"><p class="cmp-h">When would nuclear talks begin?</p><div class="bar"><span>June agreement</span><span class="track"><span class="fill" style="width:100%">Day 60</span></span></div><div class="bar"><span>Iran’s new offer</span><span class="track"><span class="fill new" style="width:11.7%">Day 7</span></span></div></div></figure>
+<section aria-labelledby="s-who"><h2 id="s-who">Who’s who, and where they stand</h2><ul class="cards">
+<li class="card"><h3>Donald Trump</h3><p class="role">US president</p><p>Says he must choose between a deal and whether to “annihilate the Islamic republic”, and that the only thing on his mind is that “Iran will never have a nuclear weapon”.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/22/trump-calls-on-allies-enforce-complete-economic-isolation-iran-un-speech" target="_blank" rel="noopener" aria-label="Source 2: Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech (Guardian, 22 September 2026)" data-h="Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech">2</a></p></li>
+<li class="card"><h3>Abbas Araghchi</h3><p class="role">Iran’s foreign minister</p><p>Says Iran’s conditions are “nothing new”. He doubts Witkoff can deliver: twice, he said, Witkoff called their talks “productive and good”, only for the US to bomb Iran the next day.<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></p></li>
+<li class="card"><h3>Masoud Pezeshkian</h3><p class="role">Iran’s president</p><p>Admits Iranians want the war to end, but says the public has withstood sanctions for 45 years.<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></p></li>
+<li class="card"><h3>Other voices in Iran</h3><p class="role">Inside the system</p><p>A faction in Iran argues that Tehran should escalate the conflict while the US president is vulnerable, rather than let the deadlock drift. Praising Pezeshkian’s UN speech, the Revolutionary Guards commander, Ahmad Vahidi, said: “We are not afraid of war.”<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a></p></li>
+<li class="card"><h3>Congress</h3><p class="role">Divided</p><p>Democrat Seth Moulton: “Remember when Donald Trump said that this war would last just a few weeks?” Republican Brian Mast says Trump is against “forever wars, and that is what he is ending”, meaning decades of hostilities from Iran.<a class="cite" href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener" aria-label="Source 1: US House votes for third time to end Iran war after $38bn cost is revealed (Guardian, 15 September 2026)" data-h="US House votes for third time to end Iran war after $38bn cost is revealed">1</a></p></li>
+</ul>
+<h3>Around the table</h3><ul class="table-list">
+<li><strong>Israel</strong><span>Iranian officials fear Israel will pull Trump away from the deal. Israel may object to giving Iran such clear control over the shipping route.<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a></span></li>
+<li><strong>Oman</strong><span>Has agreed the new route with Iran, Iran says.<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a></span></li>
+<li><strong>Saudi Arabia</strong><span>Concerned that the route deal leaves out the other Gulf states as joint signatories.<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></span></li>
+<li><strong>China</strong><span>Fully supports the proposal, according to Araghchi.<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a></span></li>
+<li><strong>UK</strong><span>Its foreign secretary, Ed Miliband, met Araghchi in New York, the first meeting between UK and Iranian ministers for a year. He said the UK wanted a diplomatic solution and freedom of navigation in the strait.<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a></span></li>
+</ul></section>
+<section aria-labelledby="s-op"><h2 id="s-op">Is it even a war?</h2>
+<aside class="opinion" aria-label="Opinion"><span class="tag">Opinion</span><p class="by">Arwa Mahdawi, Guardian columnist</p><p>Mahdawi argues that the administration keeps insisting this is not a war, and that this matters because only Congress can declare one. She quotes JD Vance, the vice-president: “I wouldn’t call it a war.” And she quotes Trump at a fundraising dinner in March: “They don’t like the word ‘war’ because you’re supposed to get approval.”<a class="cite" href="https://www.theguardian.com/commentisfree/2026/sep/14/iran-war-trump-semantics" target="_blank" rel="noopener" aria-label="Source 6: The situation in Iran is dangerously escalating – but whatever you do, don’t call it a war (Guardian, 14 September 2026)" data-h="The situation in Iran is dangerously escalating – but whatever you do, don’t call it a war">6</a></p><blockquote class="pull">“What we call this ‘military conflict’ isn’t just semantics, it matters greatly.”<a class="cite" href="https://www.theguardian.com/commentisfree/2026/sep/14/iran-war-trump-semantics" target="_blank" rel="noopener" aria-label="Source 6: The situation in Iran is dangerously escalating – but whatever you do, don’t call it a war (Guardian, 14 September 2026)" data-h="The situation in Iran is dangerously escalating – but whatever you do, don’t call it a war">6</a></blockquote></aside>
+<p>This is the only opinion piece in the Storyline.</p>
+</section>
+<section aria-labelledby="s-next"><h2 id="s-next">What happens next</h2>
+<p>Araghchi said he would stay in New York over the weekend to wait for an American answer, but was not in a hurry.<a class="cite" href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener" aria-label="Source 4: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days (Guardian, 24 September 2026)" data-h="Iran awaiting response from Trump on proposal to open strait of Hormuz in six days">4</a> The US midterm elections are in November, and the White House is under pressure to bring down oil prices before then.<a class="cite" href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener" aria-label="Source 3: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York (Guardian, 23 September 2026)" data-h="Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York">3</a> For Patrick Wintour, the real question for Trump is whether he is prepared to go back to war after the midterms, and if not, whether he believes the US can squeeze Iran’s economy until its leadership gives in.<a class="cite" href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener" aria-label="Source 5: Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms (Guardian, 25 September 2026)" data-h="Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms">5</a></p>
+</section>
+<section class="readmore" id="read-more" aria-labelledby="rm-h">
+  <h2 id="rm-h">Read more</h2>
+  <p class="rm-intro">Every fact on this page comes from these Guardian articles. The numbers match the source links in the text.</p>
+  <section class="rm-group"><h3>Key stories</h3><ol><li><span class="rm-n" aria-hidden="true">1</span><a href="https://www.theguardian.com/world/2026/sep/15/iran-war-cost-cbo-report" target="_blank" rel="noopener">US House votes for third time to end Iran war after $38bn cost is revealed</a><span class="rm-meta">Joseph Gedeon and Andrew Roth in Washington · 15 September 2026</span></li><li><span class="rm-n" aria-hidden="true">2</span><a href="https://www.theguardian.com/us-news/2026/sep/22/trump-calls-on-allies-enforce-complete-economic-isolation-iran-un-speech" target="_blank" rel="noopener">Trump calls on allies to enforce ‘complete economic isolation of Iran’ in UN speech</a><span class="rm-meta">Andrew Roth in New York · 22 September 2026</span></li><li><span class="rm-n" aria-hidden="true">3</span><a href="https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york" target="_blank" rel="noopener">Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York</a><span class="rm-meta">Patrick Wintour in New York · 23 September 2026</span></li><li><span class="rm-n" aria-hidden="true">4</span><a href="https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz" target="_blank" rel="noopener">Iran awaiting response from Trump on proposal to open strait of Hormuz in six days</a><span class="rm-meta">Patrick Wintour in New York · 24 September 2026</span></li><li><span class="rm-n" aria-hidden="true">5</span><a href="https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections" target="_blank" rel="noopener">Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms</a><span class="rm-meta">Patrick Wintour in New York · 25 September 2026</span></li></ol></section><section class="rm-group"><h3>Opinion</h3><ol><li><span class="rm-n" aria-hidden="true">6</span><a href="https://www.theguardian.com/commentisfree/2026/sep/14/iran-war-trump-semantics" target="_blank" rel="noopener">The situation in Iran is dangerously escalating – but whatever you do, don’t call it a war</a><span class="rm-meta">Arwa Mahdawi · 14 September 2026</span></li></ol></section>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot-in">
+    <h2>How this was made</h2>
+    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the Trump administration topic page. An AI model (Claude) then read the full text of each text article and wrote this summary, using nothing but those articles. Every sentence is tied to a passage in the journalism: the full list is in the <a href="manifest.md">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
+  </div>
+</footer>
+<script>
+/* Shared script for Storylines explainers. Page-specific code follows. */
+
+
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('.tt button'));
+  var panes=[].slice.call(document.querySelectorAll('.tt-detail'));
+  if(!btns.length) return;
+  function show(i){
+    btns.forEach(function(b,j){b.setAttribute('aria-pressed', i===j ? 'true':'false');});
+    panes.forEach(function(p,j){p.hidden = i!==j;});
+    document.querySelectorAll('.ticks li').forEach(function(t){
+      var d=+t.dataset.d; t.classList.toggle('hot', i===0 ? d<=5 : d===i+5);});
+  }
+  btns.forEach(function(b,i){b.addEventListener('click',function(){show(i);});});
+  show(0);
+})();
+
+</script>
+</body>
+</html>

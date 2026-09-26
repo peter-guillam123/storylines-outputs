@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>White House bans CNN, MS Now and Politico: a Storylines explainer</title>
+<meta name="description" content="In nine days, a ban on three news organisations led to a lawsuit, a halt to the TV networks’ pool coverage of the president, a court order and a fresh exclusion. This is what happened, in order.">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --serif:"Charter","Bitstream Charter","Iowan Old Style","Sitka Text",Cambria,Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI","Helvetica Neue",system-ui,-apple-system,Roboto,sans-serif;
+  --measure:40rem;
+  --wide:66rem;
+}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font:1.125rem/1.62 var(--serif);
+  font-feature-settings:"onum" 0,"lnum" 1;overflow-x:hidden}
+a{color:inherit;text-decoration-color:var(--accent);text-decoration-thickness:.09em;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:.16em}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:1rem;top:-4rem;background:var(--ink);color:var(--paper);padding:.6rem 1rem;
+  font:600 1rem var(--sans);z-index:9;border-radius:6px}
+.skip:focus{top:1rem}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---- hero ---- */
+.hero{background:var(--hero-bg);color:var(--hero-ink);position:relative;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-20%;z-index:-1;background:var(--hero-glow);filter:blur(10px)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-in{max-width:var(--wide);margin:0 auto;padding:clamp(2.2rem,6vw,5rem) 1rem clamp(1.6rem,4vw,3rem)}
+.kicker{font:700 .78rem/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;margin:0 0 1.4rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.kicker span:first-child{color:var(--accent-on-hero)}
+.kicker-tag{border:1px solid currentColor;border-radius:99px;padding:.25rem .6rem;opacity:.8;letter-spacing:.08em}
+.hero h1{font:800 clamp(2.5rem,7.6vw,5.6rem)/.98 var(--sans);letter-spacing:-.035em;margin:0;max-width:14ch;
+  text-wrap:balance}
+.dek{font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.45;max-width:36rem;margin:1.4rem 0 .9rem;opacity:.94}
+.meta{font:500 .85rem/1.4 var(--sans);opacity:.72;margin:0 0 2.2rem}
+
+/* the chain of five key stories */
+.thread ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.thread ol::before{content:"";position:absolute;left:0;right:0;top:.55rem;height:2px;background:var(--accent-on-hero);
+  transform-origin:left;animation:draw 1.4s cubic-bezier(.6,.1,.2,1) .2s both}
+.thread li{position:relative;padding:1.7rem 1rem 0 0;animation:rise .7s ease both;animation-delay:calc(.35s + var(--i)*.14s)}
+.thread li::before{content:"";position:absolute;left:0;top:0;width:1.1rem;height:1.1rem;border-radius:50%;
+  background:var(--hero-bg-solid);border:3px solid var(--accent-on-hero)}
+.thread a{text-decoration:none;display:block}
+.thread a:hover .t-head{text-decoration:underline;text-decoration-color:var(--accent-on-hero)}
+.t-date{display:block;font:700 .78rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-on-hero)}
+.t-head{display:block;font:500 .9rem/1.35 var(--sans);margin-top:.3rem;opacity:.9}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:760px){
+  .thread ol{grid-template-columns:1fr}
+  .thread ol::before{left:.5rem;right:auto;top:.6rem;bottom:.6rem;width:2px;height:auto;transform-origin:top;animation-name:drawv}
+  .thread li{padding:0 0 1.1rem 2rem}
+  .thread li:last-child{padding-bottom:0}
+  .thread li::before{top:.1rem}
+  .t-head{margin-top:.1rem}
+}
+@keyframes drawv{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* ---- body ---- */
+main{padding:0 1rem}
+main>section,.block{max-width:var(--measure);margin:0 auto}
+main>section{padding:clamp(2.4rem,6vw,4rem) 0 0}
+.wide{max-width:var(--wide);margin-left:auto;margin-right:auto}
+h2{font:800 clamp(1.6rem,3.6vw,2.2rem)/1.1 var(--sans);letter-spacing:-.02em;margin:0 0 1.1rem}
+h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--accent);border-radius:2px;margin-bottom:.9rem}
+h3{font:700 1.15rem/1.25 var(--sans);margin:1.8rem 0 .5rem;letter-spacing:-.01em}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.25rem;line-height:1.55}
+strong{font-weight:700}
+
+/* citation chips */
+.cite{display:inline-flex;align-items:center;justify-content:center;min-width:1.35em;height:1.35em;padding:0 .3em;
+  margin-left:.22em;border-radius:99px;background:var(--chip);color:var(--chip-ink);font:700 .66em/1 var(--sans);
+  text-decoration:none;vertical-align:.28em;position:relative}
+.cite:hover,.cite:focus-visible{background:var(--accent);color:var(--accent-ink)}
+@media (hover:hover) and (pointer:fine){
+  .cite::after{content:attr(data-h);display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+    width:max-content;max-width:17rem;padding:.55rem .7rem;border-radius:8px;background:var(--ink);color:var(--paper);
+    font:500 .8rem/1.35 var(--sans);text-align:left;pointer-events:none;z-index:5}
+  .cite:hover::after,.cite:focus-visible::after{display:block}
+}
+
+/* in short */
+.inshort{list-style:none;margin:0;padding:0;counter-reset:s}
+.inshort li{counter-increment:s;position:relative;padding:1rem 0 1rem 3.2rem;border-top:1px solid var(--rule)}
+.inshort li:last-child{border-bottom:1px solid var(--rule)}
+.inshort li::before{content:counter(s);position:absolute;left:0;top:.95rem;font:800 1.9rem/1 var(--sans);color:var(--accent)}
+
+/* chronology */
+.chron{list-style:none;margin:0;padding:0;position:relative}
+.chron>li{display:grid;grid-template-columns:7.2rem 1fr;gap:1.2rem;padding:0 0 1.6rem;position:relative}
+.chron>li::before{content:"";position:absolute;left:7.2rem;margin-left:.55rem;top:.5rem;bottom:-.4rem;width:2px;background:var(--rule)}
+.chron>li:last-child::before{display:none}
+.chron .when{font:800 1rem/1.2 var(--sans);text-align:right;padding-top:.15rem}
+.chron .when small:empty{display:none}
+.chron .when small{display:block;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.chron .what{padding-left:1.2rem;position:relative}
+.chron .what::before{content:"";position:absolute;left:-.62rem;top:.42rem;width:.8rem;height:.8rem;border-radius:50%;
+  background:var(--paper);border:3px solid var(--accent)}
+.chron .what h3{margin:0 0 .35rem}
+.chron .what p:last-child{margin-bottom:0}
+@media (max-width:600px){
+  .chron>li{grid-template-columns:1fr;gap:.2rem;padding-left:1.4rem}
+  .chron>li::before{left:.3rem;margin:0;top:.4rem}
+  .chron .when{text-align:left}
+  .chron .what{padding-left:0}
+  .chron .what::before{left:-1.45rem;top:-1.55rem}
+}
+
+/* people */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr));gap:1rem;list-style:none;padding:0;margin:1.2rem 0 0}
+.card{background:var(--card);border-radius:14px;padding:1.1rem 1.15rem 1.2rem;border-top:5px solid var(--card-accent,var(--accent));font-size:1rem;line-height:1.5}
+.card h3{margin:0 0 .1rem;font-size:1.05rem}
+.card .role{font:600 .78rem/1.3 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+.card p:last-child{margin-bottom:0}
+.card blockquote{margin:.6rem 0 0;padding-left:.8rem;border-left:3px solid var(--card-accent,var(--accent));font-style:italic}
+
+/* opinion */
+.opinion{background:var(--opinion-bg);border-radius:16px;padding:1.4rem 1.3rem 1.3rem;margin:1.2rem 0;position:relative}
+.opinion .tag{display:inline-block;font:800 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  background:var(--opinion-ink);color:var(--opinion-bg);padding:.4rem .6rem;border-radius:4px;margin-bottom:.8rem}
+.opinion .by{font:700 1rem var(--sans);margin:0 0 .6rem}
+.pull{font:italic 1.45rem/1.3 var(--serif);margin:.4rem 0 1rem;padding:0;quotes:none}
+
+/* figures */
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:14px;overflow:hidden;margin:1.4rem 0}
+.fig{background:var(--paper);padding:1.1rem 1.1rem 1.2rem}
+.fig .num{font:800 clamp(2rem,5vw,2.7rem)/1 var(--sans);letter-spacing:-.03em;color:var(--accent-strong)}
+.fig p{font-size:.95rem;line-height:1.45;margin:.5rem 0 0}
+
+/* interactive frame */
+.panel{background:var(--card);border-radius:18px;padding:clamp(1rem,3vw,1.8rem);margin:1.6rem auto 0}
+.panel-h{font:800 1.3rem/1.2 var(--sans);margin:0 0 .3rem;letter-spacing:-.01em}
+.panel-sub{font:500 .95rem/1.45 var(--sans);color:var(--muted);margin:0 0 1.2rem}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font:500 .82rem var(--sans);color:var(--muted);margin:1rem 0 0;padding:0;list-style:none}
+.legend i{display:inline-block;width:.9rem;height:.9rem;border-radius:3px;vertical-align:-.12rem;margin-right:.35rem}
+
+/* read more */
+.readmore{padding-bottom:3rem}
+.rm-intro{color:var(--muted);font-size:1rem}
+.rm-group h3{font:800 .78rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 .4rem}
+.rm-group ol{list-style:none;margin:0;padding:0}
+.rm-group li{display:grid;grid-template-columns:2rem 1fr;padding:.7rem 0;border-top:1px solid var(--rule)}
+.rm-group li>a{font:700 1.02rem/1.35 var(--sans);text-decoration:none}
+.rm-group li>a:hover{text-decoration:underline;text-decoration-color:var(--accent)}
+.rm-n{grid-row:span 2;font:800 .8rem/1.6 var(--sans);color:var(--chip-ink);background:var(--chip);border-radius:99px;
+  width:1.5rem;height:1.5rem;text-align:center;line-height:1.5rem;margin-top:.05rem}
+.rm-meta{font:500 .85rem var(--sans);color:var(--muted);margin-top:.2rem}
+
+/* footer */
+.foot{background:var(--hero-bg-solid);color:var(--hero-ink);padding:2.4rem 1rem 3rem;margin-top:2rem}
+.foot-in{max-width:var(--measure);margin:0 auto;font-size:1rem}
+.foot h2{font-size:1.2rem}
+.foot h2::before{background:var(--accent-on-hero)}
+.foot a{text-decoration-color:var(--accent-on-hero)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+@media print{.hero,.foot{background:none;color:#000}.cite::after{display:none}}
+
+:root{
+--paper:#f6f2ea;--ink:#16171c;--muted:#5f5c56;--rule:#ddd5c7;--card:#ede6d9;
+--accent:#e5482c;--accent-strong:#bf3219;--accent-ink:#fff;--chip:#16171c;--chip-ink:#f6f2ea;--focus:#2d5bd8;
+--hero-bg:#121318;--hero-bg-solid:#15161b;--hero-ink:#f6f2ea;--accent-on-hero:#ff7a5c;
+--hero-glow:radial-gradient(55% 75% at 88% 8%,rgba(255,91,58,.55),transparent 62%),radial-gradient(45% 60% at 5% 105%,rgba(122,96,255,.28),transparent 60%);
+--opinion-bg:#e9e3fb;--opinion-ink:#2f2357;
+--neg:#e5482c;--neg-soft:#f7d3c9;--pos:#17835f;--pos-soft:#cfeadd;--mid:#c98a0b;--mid-soft:#f5e3b5;--hatch:rgba(229,72,44,.16);--court:#3148a8;
+}
+@media (prefers-color-scheme: dark){:root{
+--paper:#131419;--ink:#ece8e0;--muted:#a7a39c;--rule:#2e2f36;--card:#1d1e25;
+--accent:#ff6a4d;--accent-strong:#ff8c73;--accent-ink:#16171c;--chip:#ece8e0;--chip-ink:#131419;--focus:#8fb0ff;
+--opinion-bg:#211c35;--opinion-ink:#d8ccff;
+--neg:#ff6a4d;--neg-soft:#4a211b;--pos:#4fd1a0;--pos-soft:#153a2d;--mid:#f0b43c;--mid-soft:#3d3014;--hatch:rgba(255,106,77,.16);--court:#9db0ff;
+}}
+
+.days{display:grid;grid-template-rows:auto repeat(3,auto);grid-auto-flow:column;
+  grid-template-columns:7.5rem repeat(9,minmax(0,1fr));gap:4px;margin-top:.4rem}
+.days>div{min-width:0}
+.lane-name{font:700 .74rem/1.25 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;padding-right:.6rem}
+.dh{padding:.5rem .45rem .55rem;border-radius:10px 10px 4px 4px;background:var(--paper);font-family:var(--sans)}
+.dh .wd{display:block;font:700 .7rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.dh .dn{display:block;font:800 1.5rem/1.05 var(--sans);letter-spacing:-.02em}
+.st{display:block;margin-top:.4rem;font:700 .68rem/1.2 var(--sans);padding:.28rem .35rem;border-radius:5px}
+.st.neg{background:var(--neg-soft);color:var(--ink);box-shadow:inset 3px 0 0 var(--neg)}
+.st.mid{background:var(--mid-soft);color:var(--ink);box-shadow:inset 3px 0 0 var(--mid)}
+.st.pos{background:var(--pos-soft);color:var(--ink);box-shadow:inset 3px 0 0 var(--pos)}
+.st.neu{background:var(--rule);color:var(--ink)}
+.cell{background:var(--paper);border-radius:4px;padding:.35rem;min-height:4.2rem;display:flex;flex-direction:column;gap:.3rem}
+.cell.paused{background:repeating-linear-gradient(135deg,var(--hatch) 0 6px,transparent 6px 12px),var(--paper)}
+.cell.paused .ptag{font:700 .64rem/1.2 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-strong)}
+.ev{display:block;font:600 .8rem/1.28 var(--sans);text-decoration:none;padding:.4rem .45rem;border-radius:7px;
+  background:var(--ink);color:var(--paper);transition:transform .15s}
+.ev:hover,.ev:focus-visible{background:var(--accent);color:var(--accent-ink);transform:translateY(-1px)}
+.ev.court{background:var(--court);color:var(--paper)}
+.ev.court:hover,.ev.court:focus-visible{background:var(--accent);color:var(--accent-ink)}
+.ev.tv{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.legend .l-neg{background:var(--neg)}.legend .l-mid{background:var(--mid)}.legend .l-pos{background:var(--pos)}
+.legend .l-hatch{background:repeating-linear-gradient(135deg,var(--accent) 0 3px,transparent 3px 6px)}
+.cell.paused .ptag{visibility:hidden}
+.cell.paused .ptag.first{visibility:visible}
+@media (max-width:860px){
+  .days{grid-auto-flow:row;grid-template-rows:none;grid-template-columns:5.2rem minmax(0,1fr);gap:0 6px}
+  .days>div:first-child,.lane-name{display:none}
+  .dh{grid-row:span 3;border-radius:10px;margin-bottom:8px}
+  .dh .dn{font-size:1.3rem}
+  .cell{min-height:0;padding:0;background:none;gap:0}
+  .cell>*{margin-bottom:6px}
+  .cell.paused{background:none}
+  .cell.paused .ptag{visibility:visible;display:block;padding:.35rem .45rem;border-radius:7px;
+    background:repeating-linear-gradient(135deg,var(--hatch) 0 6px,transparent 6px 12px)}
+  .ev{font-size:.88rem;padding:.45rem .6rem}
+  .lane-cap{position:static!important;width:auto!important;height:auto!important;clip:auto!important;
+    display:block;font:700 .62rem/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-bottom:.1rem}
+}
+.chron>li:target .what{background:var(--card);border-radius:10px;box-shadow:0 0 0 .6rem var(--card)}
+.chron>li{scroll-margin-top:1.5rem}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the explainer</a>
+<header class="hero">
+  <div class="hero-in">
+    <p class="kicker"><span>Storylines explainer</span> <span class="kicker-tag">Trump administration</span></p>
+    <h1>White House bans CNN, MS Now and Politico</h1>
+    <p class="dek">In nine days, a ban on three news organisations led to a lawsuit, a halt to the TV networks’ pool coverage of the president, a court order and a fresh exclusion. This is what happened, in order.</p>
+    <p class="meta">Drawn from 6 Guardian articles published 18–26 September 2026 · About a five-minute read</p>
+    <nav class="thread" aria-label="The five key stories in this Storyline, oldest first"><ol><li style="--i:0"><a href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener"><span class="t-date">18 Sep</span><span class="t-head">Trump bans CNN, MS Now and Politico from White House</span></a></li><li style="--i:1"><a href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener"><span class="t-date">21 Sep</span><span class="t-head">CNN, MS Now and Politico sue Trump after being blocked from White House</span></a></li><li style="--i:2"><a href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener"><span class="t-date">25 Sep</span><span class="t-head">CNN and MS Now journalists denied access to White House state dinner despite court ruling</span></a></li><li style="--i:3"><a href="https://www.theguardian.com/media/2026/sep/25/trump-media-ban-white-house-pool" target="_blank" rel="noopener"><span class="t-date">25 Sep</span><span class="t-head">White House television pool resumes after banned news outlets regain access</span></a></li><li style="--i:4"><a href="https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one" target="_blank" rel="noopener"><span class="t-date">26 Sep</span><span class="t-head">White House blocks CNN from Air Force One in latest escalation with news media</span></a></li></ol></nav>
+  </div>
+</header>
+<main id="main">
+<section aria-labelledby="s-short"><h2 id="s-short">In short</h2><ol class="inshort">
+<li>On Friday 18 September, Donald Trump announced that he was banning CNN, MS Now and Politico from the White House over their coverage.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener" aria-label="Source 1: Trump bans CNN, MS Now and Politico from White House (Guardian, 18 September 2026)" data-h="Trump bans CNN, MS Now and Politico from White House">1</a></li>
+<li>The three sued.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener" aria-label="Source 2: CNN, MS Now and Politico sue Trump after being blocked from White House (Guardian, 21 September 2026)" data-h="CNN, MS Now and Politico sue Trump after being blocked from White House">2</a> A federal judge ordered the White House to let them back in for 14 days, saying their passes had probably been taken away without due process.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a></li>
+<li>Even after the ruling, CNN and MS Now journalists were kept out of a state dinner that evening,<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a> and CNN was then blocked from Air Force One.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one" target="_blank" rel="noopener" aria-label="Source 5: White House blocks CNN from Air Force One in latest escalation with news media (Guardian, 26 September 2026)" data-h="White House blocks CNN from Air Force One in latest escalation with news media">5</a></li>
+<li>The White House argued the ban was needed for national security; the judge was sceptical that this was the real motive.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a></li></ol></section>
+<figure class="panel wide" aria-labelledby="dg-h"><p class="panel-h" id="dg-h">Nine days, day by day</p><p class="panel-sub">Each box is one development. Select it to jump to the full account below. The top row shows whether the three outlets could get into the White House.</p><div class="days"><div aria-hidden="true"></div><div class="lane-name" aria-hidden="true">The White House</div><div class="lane-name" aria-hidden="true">The outlets and the court</div><div class="lane-name" aria-hidden="true">The TV networks</div><div class="dh"><span class="wd">Fri</span><span class="dn">18</span><span class="vh"> September. Access for the three outlets: </span><span class="st neu">Ban announced</span></div><div class="cell"><a class="ev wh" href="#d18"><span class="lane-cap vh">The White House<span class="vh">:</span> </span>Trump announces the ban on Truth Social</a></div><div class="cell"></div><div class="cell"></div><div class="dh"><span class="wd">Sat</span><span class="dn">19</span><span class="vh"> September. Access for the three outlets: </span><span class="st neg">Barred</span></div><div class="cell"><a class="ev wh" href="#d19"><span class="lane-cap vh">The White House<span class="vh">:</span> </span>Badges disabled and taken</a></div><div class="cell"></div><div class="cell"></div><div class="dh"><span class="wd">Sun</span><span class="dn">20</span><span class="vh"> September. Access for the three outlets: </span><span class="st neg">Barred</span></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="dh"><span class="wd">Mon</span><span class="dn">21</span><span class="vh"> September. Access for the three outlets: </span><span class="st neg">Barred</span></div><div class="cell"><a class="ev wh" href="#d21"><span class="lane-cap vh">The White House<span class="vh">:</span> </span>CNN kept from Monday’s pool duty</a></div><div class="cell"><a class="ev court" href="#d21"><span class="lane-cap vh">The outlets and the court<span class="vh">:</span> </span>The three outlets sue</a></div><div class="cell paused"><a class="ev tv" href="#d21"><span class="lane-cap vh">The TV networks<span class="vh">:</span> </span>Pool stops filming the president</a><span class="ptag">TV pool paused</span></div><div class="dh"><span class="wd">Tue</span><span class="dn">22</span><span class="vh"> September. Access for the three outlets: </span><span class="st neg">Barred</span></div><div class="cell"><a class="ev wh" href="#d22"><span class="lane-cap vh">The White House<span class="vh">:</span> </span>Letters give formal notice</a></div><div class="cell"></div><div class="cell paused"><span class="ptag first">TV pool paused</span></div><div class="dh"><span class="wd">Wed</span><span class="dn">23</span><span class="vh"> September. Access for the three outlets: </span><span class="st neg">Barred</span></div><div class="cell"></div><div class="cell"><a class="ev court" href="#d23"><span class="lane-cap vh">The outlets and the court<span class="vh">:</span> </span>Hearing before Judge Kelly</a></div><div class="cell paused"><span class="ptag">TV pool paused</span></div><div class="dh"><span class="wd">Thu</span><span class="dn">24</span><span class="vh"> September. Access for the three outlets: </span><span class="st mid">Let in at midday</span></div><div class="cell"><a class="ev wh" href="#d24"><span class="lane-cap vh">The White House<span class="vh">:</span> </span>Let in at midday</a><a class="ev wh" href="#d24"><span class="lane-cap vh">The White House<span class="vh">:</span> </span>CNN and MS Now reporters kept out of state dinner</a></div><div class="cell"><a class="ev court" href="#d24"><span class="lane-cap vh">The outlets and the court<span class="vh">:</span> </span>Judge orders access restored for 14 days</a></div><div class="cell paused"><a class="ev tv" href="#d24"><span class="lane-cap vh">The TV networks<span class="vh">:</span> </span>No network video of Xi summit</a><span class="ptag">TV pool paused</span></div><div class="dh"><span class="wd">Fri</span><span class="dn">25</span><span class="vh"> September. Access for the three outlets: </span><span class="st pos">CNN access restored</span></div><div class="cell"></div><div class="cell"></div><div class="cell"><a class="ev tv" href="#d25"><span class="lane-cap vh">The TV networks<span class="vh">:</span> </span>Pool resumes, with CBS</a></div><div class="dh"><span class="wd">Sat</span><span class="dn">26</span><span class="vh"> September. Access for the three outlets: </span><span class="st mid">CNN off the plane</span></div><div class="cell"><a class="ev wh" href="#d26"><span class="lane-cap vh">The White House<span class="vh">:</span> </span>CNN left off Air Force One</a></div><div class="cell"></div><div class="cell"></div></div><ul class="legend"><li><i class="l-neg"></i>Barred from the building</li><li><i class="l-mid"></i>Partly restored or new exclusion</li><li><i class="l-pos"></i>Access confirmed restored</li><li><i class="l-hatch"></i>TV pool not filming</li></ul></figure>
+<section aria-labelledby="s-chron"><h2 id="s-chron">What happened, in order</h2><ol class="chron">
+<li id="d18"><div class="when"><small>Friday</small>18 Sept</div><div class="what"><h3>The ban</h3><p>On Truth Social, Trump said he was expelling the three outlets “effective immediately” over their “constant ‘reporting’ FAKE NEWS!” He added: “Other Fake News Media Outlets to follow.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener" aria-label="Source 1: Trump bans CNN, MS Now and Politico from White House (Guardian, 18 September 2026)" data-h="Trump bans CNN, MS Now and Politico from White House">1</a></p><p>That day CNN had reported that an “entirely false” intelligence report about a Chinese ship, made with the help of AI, had “almost started a war”. Trump said the ban was unrelated to that day’s reporting: “It’s really just cumulative stories over the last few years.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener" aria-label="Source 1: Trump bans CNN, MS Now and Politico from White House (Guardian, 18 September 2026)" data-h="Trump bans CNN, MS Now and Politico from White House">1</a></p></div></li>
+<li id="d19"><div class="when"><small>Saturday</small>19 Sept</div><div class="what"><h3>Badges switched off</h3><p>Journalists from MS Now and CNN tried to enter the White House and were told their badges had been disabled. The badges were taken.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener" aria-label="Source 2: CNN, MS Now and Politico sue Trump after being blocked from White House (Guardian, 21 September 2026)" data-h="CNN, MS Now and Politico sue Trump after being blocked from White House">2</a></p></div></li>
+<li id="d21"><div class="when"><small>Monday</small>21 Sept</div><div class="what"><h3>The lawsuit, and the cameras stop</h3><p>The three sued in the federal court in Washington DC and asked for an order lifting the ban while the case goes on. “Without notice or process, the White House revoked our journalists’ credentials because it objected to our reporting,” they said.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener" aria-label="Source 2: CNN, MS Now and Politico sue Trump after being blocked from White House (Guardian, 21 September 2026)" data-h="CNN, MS Now and Politico sue Trump after being blocked from White House">2</a></p><p>CNN was due to film the president that day for the rest of the media, as the TV pooler. The White House removed it from the pool.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener" aria-label="Source 2: CNN, MS Now and Politico sue Trump after being blocked from White House (Guardian, 21 September 2026)" data-h="CNN, MS Now and Politico sue Trump after being blocked from White House">2</a> In solidarity, the other pool networks (NBC, ABC, CBS and Fox News) stopped filming White House events, leaving an effective TV blackout of the president during the UN general assembly.<a class="cite" href="https://www.theguardian.com/media/2026/sep/25/trump-media-ban-white-house-pool" target="_blank" rel="noopener" aria-label="Source 4: White House television pool resumes after banned news outlets regain access (Guardian, 25 September 2026)" data-h="White House television pool resumes after banned news outlets regain access">4</a></p><p>Responding to news of the lawsuit, Trump wrote on Truth Social: “The White House is not instituting an assault on the Free Press, something which I cherish. It is instituting an assault on the FAKE NEWS, something that has grown like Cancer in our beloved United States of America.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener" aria-label="Source 2: CNN, MS Now and Politico sue Trump after being blocked from White House (Guardian, 21 September 2026)" data-h="CNN, MS Now and Politico sue Trump after being blocked from White House">2</a></p></div></li>
+<li id="d22"><div class="when"><small>Tuesday</small>22 Sept</div><div class="what"><h3>Formal notice, after the fact</h3><p>Letters to each outlet accused them of behaviour that broke White House standards, “including by trafficking in verifiable falsehoods about national security and other issues, and publishing sensitive or classified information”. They gave the outlets until 5pm on Friday to contest the ban.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a></p></div></li>
+<li id="d23"><div class="when"><small>Wednesday</small>23 Sept</div><div class="what"><h3>In court</h3><p>Earlier in the week, in a court filing, justice department lawyers had argued the ban was needed for national security. At a hearing on Wednesday, Judge Timothy Kelly appeared sceptical of the White House’s case.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a></p></div></li>
+<li id="d24"><div class="when"><small>Thursday</small>24 Sept</div><div class="what"><h3>A ruling, then a closed door</h3><p>Early in the morning, Kelly ordered access restored for 14 days. He found the outlets were likely to show their passes had been revoked without due process, and was “skeptical … that defendants’ interest in safeguarding national security is the actual motivation” for the ban.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a></p><p>Lawyers for the outlets told the judge their journalists were turned away that morning. The White House’s director of press operations said in a sworn statement that badges were reactivated as of 9.07am.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a> The journalists were not let in until midday.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one" target="_blank" rel="noopener" aria-label="Source 5: White House blocks CNN from Air Force One in latest escalation with news media (Guardian, 26 September 2026)" data-h="White House blocks CNN from Air Force One in latest escalation with news media">5</a> That evening, CNN and MS Now journalists were kept out of the state dinner for China’s president, Xi Jinping. CNN reported that it was allowed only a photojournalist and an audio technician, not its reporter and producer.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a></p></div></li>
+<li id="d25"><div class="when"><small>Friday</small>25 Sept</div><div class="what"><h3>Cameras back on</h3><p>The TV pool resumed, with CBS as the day’s pooler. “CNN’s access to the White House has been restored, and the TV pool appears to be functioning as normal,” the CNN anchor Pamela Brown told viewers.<a class="cite" href="https://www.theguardian.com/media/2026/sep/25/trump-media-ban-white-house-pool" target="_blank" rel="noopener" aria-label="Source 4: White House television pool resumes after banned news outlets regain access (Guardian, 25 September 2026)" data-h="White House television pool resumes after banned news outlets regain access">4</a></p></div></li>
+<li id="d26"><div class="when"><small>Saturday</small>26 Sept</div><div class="what"><h3>Off the plane</h3><p>The White House blocked CNN from Saturday’s Air Force One flight with Trump to a college football game in Tennessee, leaving it off the schedule guidance sent to reporters. The White House did not immediately respond to the Guardian’s request for comment.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one" target="_blank" rel="noopener" aria-label="Source 5: White House blocks CNN from Air Force One in latest escalation with news media (Guardian, 26 September 2026)" data-h="White House blocks CNN from Air Force One in latest escalation with news media">5</a></p></div></li>
+</ol></section>
+<section aria-labelledby="s-who"><h2 id="s-who">Who’s who, and where they stand</h2><ul class="cards">
+<li class="card"><h3>Donald Trump</h3><p class="role">US president</p><p>Says the outlets write “FICTION and LIES”. “I don’t think that a court should allow fake news to be written day after day after day.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener" aria-label="Source 1: Trump bans CNN, MS Now and Politico from White House (Guardian, 18 September 2026)" data-h="Trump bans CNN, MS Now and Politico from White House">1</a></p></li>
+<li class="card"><h3>The White House and justice department</h3><p class="role">Defending the ban</p><p>Argue the ban protects national security, pointing to articles that relied on non-public information.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a></p></li>
+<li class="card"><h3>CNN, MS Now and Politico</h3><p class="role">Suing to get back in</p><p>Say they are being punished for what they report, and had no chance to contest the ban before their passes were revoked. Their lawsuit says “this ban could not be a more direct assault on the First Amendment”.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener" aria-label="Source 2: CNN, MS Now and Politico sue Trump after being blocked from White House (Guardian, 21 September 2026)" data-h="CNN, MS Now and Politico sue Trump after being blocked from White House">2</a></p></li>
+<li class="card"><h3>The rest of the press</h3><p class="role">Correspondents and TV networks</p><p>Jacqui Heinrich, president of the White House Correspondents’ Association: “This is about more than the rights of journalists … It is about the right of the American people to receive a full and independent account of the activities, policies and decisions of whoever occupies the nation’s highest office.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener" aria-label="Source 1: Trump bans CNN, MS Now and Politico from White House (Guardian, 18 September 2026)" data-h="Trump bans CNN, MS Now and Politico from White House">1</a> The five pool networks, CNN among them: “No administration should restrict a news organization because it objects to its reporting.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener" aria-label="Source 2: CNN, MS Now and Politico sue Trump after being blocked from White House (Guardian, 21 September 2026)" data-h="CNN, MS Now and Politico sue Trump after being blocked from White House">2</a></p></li>
+<li class="card"><h3>Press freedom advocates</h3><p class="role">Backing the outlets</p><p>Jameel Jaffer of the Knight First Amendment Institute: “The first amendment prohibits the president from punishing journalists because he doesn’t like their coverage.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener" aria-label="Source 1: Trump bans CNN, MS Now and Politico from White House (Guardian, 18 September 2026)" data-h="Trump bans CNN, MS Now and Politico from White House">1</a></p></li>
+</ul></section>
+<section aria-labelledby="s-ctx"><h2 id="s-ctx">Not the first time</h2>
+<p>The Associated Press was banned from Oval Office and Air Force One pool events after it kept using “Gulf of Mexico” instead of “Gulf of America”. It sued, and that case is still going.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener" aria-label="Source 1: Trump bans CNN, MS Now and Politico from White House (Guardian, 18 September 2026)" data-h="Trump bans CNN, MS Now and Politico from White House">1</a> Since 2025 the White House, not the correspondents’ association, has chosen which outlets join the pool each day.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one" target="_blank" rel="noopener" aria-label="Source 5: White House blocks CNN from Air Force One in latest escalation with news media (Guardian, 26 September 2026)" data-h="White House blocks CNN from Air Force One in latest escalation with news media">5</a> But the courts have sided with reporters before: in Trump’s first term, legal challenges won back the press badges of Jim Acosta, then of CNN, and Brian Karem, then of Playboy.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener" aria-label="Source 2: CNN, MS Now and Politico sue Trump after being blocked from White House (Guardian, 21 September 2026)" data-h="CNN, MS Now and Politico sue Trump after being blocked from White House">2</a></p>
+</section>
+<section aria-labelledby="s-op"><h2 id="s-op">Should the press walk out?</h2>
+<aside class="opinion" aria-label="Opinion"><span class="tag">Opinion</span><p class="by">Margaret Sullivan, Guardian US columnist</p><p>Sullivan argues that suing is right but not enough. She wants the biggest newspapers and TV networks to boycott the White House briefing room until their colleagues get their credentials back, and says reporters can do the job from outside the building.<a class="cite" href="https://www.theguardian.com/commentisfree/2026/sep/21/white-house-press-corps-boycott" target="_blank" rel="noopener" aria-label="Source 6: The Washington press corps needs to boycott White House events (Guardian, 21 September 2026)" data-h="The Washington press corps needs to boycott White House events">6</a></p><blockquote class="pull">“And principle should trump access.”<a class="cite" href="https://www.theguardian.com/commentisfree/2026/sep/21/white-house-press-corps-boycott" target="_blank" rel="noopener" aria-label="Source 6: The Washington press corps needs to boycott White House events (Guardian, 21 September 2026)" data-h="The Washington press corps needs to boycott White House events">6</a></blockquote></aside>
+<p>This is the only opinion piece in the Storyline. It has no piece arguing against a boycott.</p>
+</section>
+<section aria-labelledby="s-next"><h2 id="s-next">What happens next</h2>
+<p>The judge’s order runs for 14 days, and a hearing on a preliminary injunction is due within that time. Trump has said the White House would appeal any ruling against it,<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener" aria-label="Source 3: CNN and MS Now journalists denied access to White House state dinner despite court ruling (Guardian, 25 September 2026)" data-h="CNN and MS Now journalists denied access to White House state dinner despite court ruling">3</a> and on the day of the ban he said more outlets might follow: “There may be others to join them.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener" aria-label="Source 1: Trump bans CNN, MS Now and Politico from White House (Guardian, 18 September 2026)" data-h="Trump bans CNN, MS Now and Politico from White House">1</a></p>
+</section>
+<section class="readmore" id="read-more" aria-labelledby="rm-h">
+  <h2 id="rm-h">Read more</h2>
+  <p class="rm-intro">Every fact on this page comes from these Guardian articles. The numbers match the source links in the text.</p>
+  <section class="rm-group"><h3>Key stories</h3><ol><li><span class="rm-n" aria-hidden="true">1</span><a href="https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house" target="_blank" rel="noopener">Trump bans CNN, MS Now and Politico from White House</a><span class="rm-meta">Lucy Campbell and Robert Mackey · 18 September 2026</span></li><li><span class="rm-n" aria-hidden="true">2</span><a href="https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit" target="_blank" rel="noopener">CNN, MS Now and Politico sue Trump after being blocked from White House</a><span class="rm-meta">Jeremy Barr · 21 September 2026</span></li><li><span class="rm-n" aria-hidden="true">3</span><a href="https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban" target="_blank" rel="noopener">CNN and MS Now journalists denied access to White House state dinner despite court ruling</a><span class="rm-meta">Jeremy Barr in Washington and Robert Mackey · 25 September 2026</span></li><li><span class="rm-n" aria-hidden="true">4</span><a href="https://www.theguardian.com/media/2026/sep/25/trump-media-ban-white-house-pool" target="_blank" rel="noopener">White House television pool resumes after banned news outlets regain access</a><span class="rm-meta">Jeremy Barr in Washington · 25 September 2026</span></li><li><span class="rm-n" aria-hidden="true">5</span><a href="https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one" target="_blank" rel="noopener">White House blocks CNN from Air Force One in latest escalation with news media</a><span class="rm-meta">Uwa Ede-Osifo · 26 September 2026</span></li></ol></section><section class="rm-group"><h3>Opinion</h3><ol><li><span class="rm-n" aria-hidden="true">6</span><a href="https://www.theguardian.com/commentisfree/2026/sep/21/white-house-press-corps-boycott" target="_blank" rel="noopener">The Washington press corps needs to boycott White House events</a><span class="rm-meta">Margaret Sullivan · 21 September 2026</span></li></ol></section><section class="rm-group"><h3>Watch and listen</h3><ol><li><span class="rm-n" aria-hidden="true">7</span><a href="https://www.theguardian.com/news/audio/2026/sep/22/trump-v-the-media-the-latest" target="_blank" rel="noopener">Trump v the media: US networks unite in boycott – The Latest</a><span class="rm-meta">Audio · 25 September 2026</span></li><li><span class="rm-n" aria-hidden="true">8</span><a href="https://www.theguardian.com/us-news/video/2026/sep/24/cnn-reporter-betsy-klein-white-house-trump-media-ban-ruling" target="_blank" rel="noopener">CNN reporter arrives at White House after judge rules against Trump&#x27;s media ban – video</a><span class="rm-meta">Video · 24 September 2026</span></li></ol></section>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot-in">
+    <h2>How this was made</h2>
+    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the Trump administration topic page. An AI model (Claude) then read the full text of each text article and wrote this summary, using nothing but those articles. Every sentence is tied to a passage in the journalism: the full list is in the <a href="manifest.md">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
+  </div>
+</footer>
+<script>
+/* Shared script for Storylines explainers. Page-specific code follows. */
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Kept local only: internal pipeline data, prompts and notes
+CLAUDE.md
+storylines-data/
+prompts/
+storylines-structure-and-ambition.md
+
+# Full text of fetched Guardian articles: not for republishing
+outputs/*/sources/
+
+.DS_Store
+__pycache__/

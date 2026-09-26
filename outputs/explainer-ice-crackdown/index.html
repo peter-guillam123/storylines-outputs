@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE immigration enforcement crackdown: a Storylines explainer</title>
+<meta name="description" content="In September, Guardian reporting followed the Trump administration’s immigration crackdown through each stage: arrests on the street, detention, the courts, and removal to countries that are not people’s own.">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --serif:"Charter","Bitstream Charter","Iowan Old Style","Sitka Text",Cambria,Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI","Helvetica Neue",system-ui,-apple-system,Roboto,sans-serif;
+  --measure:40rem;
+  --wide:66rem;
+}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font:1.125rem/1.62 var(--serif);
+  font-feature-settings:"onum" 0,"lnum" 1;overflow-x:hidden}
+a{color:inherit;text-decoration-color:var(--accent);text-decoration-thickness:.09em;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:.16em}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:1rem;top:-4rem;background:var(--ink);color:var(--paper);padding:.6rem 1rem;
+  font:600 1rem var(--sans);z-index:9;border-radius:6px}
+.skip:focus{top:1rem}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---- hero ---- */
+.hero{background:var(--hero-bg);color:var(--hero-ink);position:relative;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-20%;z-index:-1;background:var(--hero-glow);filter:blur(10px)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-in{max-width:var(--wide);margin:0 auto;padding:clamp(2.2rem,6vw,5rem) 1rem clamp(1.6rem,4vw,3rem)}
+.kicker{font:700 .78rem/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;margin:0 0 1.4rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.kicker span:first-child{color:var(--accent-on-hero)}
+.kicker-tag{border:1px solid currentColor;border-radius:99px;padding:.25rem .6rem;opacity:.8;letter-spacing:.08em}
+.hero h1{font:800 clamp(2.5rem,7.6vw,5.6rem)/.98 var(--sans);letter-spacing:-.035em;margin:0;max-width:14ch;
+  text-wrap:balance}
+.dek{font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.45;max-width:36rem;margin:1.4rem 0 .9rem;opacity:.94}
+.meta{font:500 .85rem/1.4 var(--sans);opacity:.72;margin:0 0 2.2rem}
+
+/* the chain of five key stories */
+.thread ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.thread ol::before{content:"";position:absolute;left:0;right:0;top:.55rem;height:2px;background:var(--accent-on-hero);
+  transform-origin:left;animation:draw 1.4s cubic-bezier(.6,.1,.2,1) .2s both}
+.thread li{position:relative;padding:1.7rem 1rem 0 0;animation:rise .7s ease both;animation-delay:calc(.35s + var(--i)*.14s)}
+.thread li::before{content:"";position:absolute;left:0;top:0;width:1.1rem;height:1.1rem;border-radius:50%;
+  background:var(--hero-bg-solid);border:3px solid var(--accent-on-hero)}
+.thread a{text-decoration:none;display:block}
+.thread a:hover .t-head{text-decoration:underline;text-decoration-color:var(--accent-on-hero)}
+.t-date{display:block;font:700 .78rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-on-hero)}
+.t-head{display:block;font:500 .9rem/1.35 var(--sans);margin-top:.3rem;opacity:.9}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:760px){
+  .thread ol{grid-template-columns:1fr}
+  .thread ol::before{left:.5rem;right:auto;top:.6rem;bottom:.6rem;width:2px;height:auto;transform-origin:top;animation-name:drawv}
+  .thread li{padding:0 0 1.1rem 2rem}
+  .thread li:last-child{padding-bottom:0}
+  .thread li::before{top:.1rem}
+  .t-head{margin-top:.1rem}
+}
+@keyframes drawv{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* ---- body ---- */
+main{padding:0 1rem}
+main>section,.block{max-width:var(--measure);margin:0 auto}
+main>section{padding:clamp(2.4rem,6vw,4rem) 0 0}
+.wide{max-width:var(--wide);margin-left:auto;margin-right:auto}
+h2{font:800 clamp(1.6rem,3.6vw,2.2rem)/1.1 var(--sans);letter-spacing:-.02em;margin:0 0 1.1rem}
+h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--accent);border-radius:2px;margin-bottom:.9rem}
+h3{font:700 1.15rem/1.25 var(--sans);margin:1.8rem 0 .5rem;letter-spacing:-.01em}
+p{margin:0 0 1.05rem}
+.lede{font-size:1.25rem;line-height:1.55}
+strong{font-weight:700}
+
+/* citation chips */
+.cite{display:inline-flex;align-items:center;justify-content:center;min-width:1.35em;height:1.35em;padding:0 .3em;
+  margin-left:.22em;border-radius:99px;background:var(--chip);color:var(--chip-ink);font:700 .66em/1 var(--sans);
+  text-decoration:none;vertical-align:.28em;position:relative}
+.cite:hover,.cite:focus-visible{background:var(--accent);color:var(--accent-ink)}
+@media (hover:hover) and (pointer:fine){
+  .cite::after{content:attr(data-h);display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+    width:max-content;max-width:17rem;padding:.55rem .7rem;border-radius:8px;background:var(--ink);color:var(--paper);
+    font:500 .8rem/1.35 var(--sans);text-align:left;pointer-events:none;z-index:5}
+  .cite:hover::after,.cite:focus-visible::after{display:block}
+}
+
+/* in short */
+.inshort{list-style:none;margin:0;padding:0;counter-reset:s}
+.inshort li{counter-increment:s;position:relative;padding:1rem 0 1rem 3.2rem;border-top:1px solid var(--rule)}
+.inshort li:last-child{border-bottom:1px solid var(--rule)}
+.inshort li::before{content:counter(s);position:absolute;left:0;top:.95rem;font:800 1.9rem/1 var(--sans);color:var(--accent)}
+
+/* chronology */
+.chron{list-style:none;margin:0;padding:0;position:relative}
+.chron>li{display:grid;grid-template-columns:7.2rem 1fr;gap:1.2rem;padding:0 0 1.6rem;position:relative}
+.chron>li::before{content:"";position:absolute;left:7.2rem;margin-left:.55rem;top:.5rem;bottom:-.4rem;width:2px;background:var(--rule)}
+.chron>li:last-child::before{display:none}
+.chron .when{font:800 1rem/1.2 var(--sans);text-align:right;padding-top:.15rem}
+.chron .when small:empty{display:none}
+.chron .when small{display:block;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.chron .what{padding-left:1.2rem;position:relative}
+.chron .what::before{content:"";position:absolute;left:-.62rem;top:.42rem;width:.8rem;height:.8rem;border-radius:50%;
+  background:var(--paper);border:3px solid var(--accent)}
+.chron .what h3{margin:0 0 .35rem}
+.chron .what p:last-child{margin-bottom:0}
+@media (max-width:600px){
+  .chron>li{grid-template-columns:1fr;gap:.2rem;padding-left:1.4rem}
+  .chron>li::before{left:.3rem;margin:0;top:.4rem}
+  .chron .when{text-align:left}
+  .chron .what{padding-left:0}
+  .chron .what::before{left:-1.45rem;top:-1.55rem}
+}
+
+/* people */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr));gap:1rem;list-style:none;padding:0;margin:1.2rem 0 0}
+.card{background:var(--card);border-radius:14px;padding:1.1rem 1.15rem 1.2rem;border-top:5px solid var(--card-accent,var(--accent));font-size:1rem;line-height:1.5}
+.card h3{margin:0 0 .1rem;font-size:1.05rem}
+.card .role{font:600 .78rem/1.3 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+.card p:last-child{margin-bottom:0}
+.card blockquote{margin:.6rem 0 0;padding-left:.8rem;border-left:3px solid var(--card-accent,var(--accent));font-style:italic}
+
+/* opinion */
+.opinion{background:var(--opinion-bg);border-radius:16px;padding:1.4rem 1.3rem 1.3rem;margin:1.2rem 0;position:relative}
+.opinion .tag{display:inline-block;font:800 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  background:var(--opinion-ink);color:var(--opinion-bg);padding:.4rem .6rem;border-radius:4px;margin-bottom:.8rem}
+.opinion .by{font:700 1rem var(--sans);margin:0 0 .6rem}
+.pull{font:italic 1.45rem/1.3 var(--serif);margin:.4rem 0 1rem;padding:0;quotes:none}
+
+/* figures */
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:14px;overflow:hidden;margin:1.4rem 0}
+.fig{background:var(--paper);padding:1.1rem 1.1rem 1.2rem}
+.fig .num{font:800 clamp(2rem,5vw,2.7rem)/1 var(--sans);letter-spacing:-.03em;color:var(--accent-strong)}
+.fig p{font-size:.95rem;line-height:1.45;margin:.5rem 0 0}
+
+/* interactive frame */
+.panel{background:var(--card);border-radius:18px;padding:clamp(1rem,3vw,1.8rem);margin:1.6rem auto 0}
+.panel-h{font:800 1.3rem/1.2 var(--sans);margin:0 0 .3rem;letter-spacing:-.01em}
+.panel-sub{font:500 .95rem/1.45 var(--sans);color:var(--muted);margin:0 0 1.2rem}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font:500 .82rem var(--sans);color:var(--muted);margin:1rem 0 0;padding:0;list-style:none}
+.legend i{display:inline-block;width:.9rem;height:.9rem;border-radius:3px;vertical-align:-.12rem;margin-right:.35rem}
+
+/* read more */
+.readmore{padding-bottom:3rem}
+.rm-intro{color:var(--muted);font-size:1rem}
+.rm-group h3{font:800 .78rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 .4rem}
+.rm-group ol{list-style:none;margin:0;padding:0}
+.rm-group li{display:grid;grid-template-columns:2rem 1fr;padding:.7rem 0;border-top:1px solid var(--rule)}
+.rm-group li>a{font:700 1.02rem/1.35 var(--sans);text-decoration:none}
+.rm-group li>a:hover{text-decoration:underline;text-decoration-color:var(--accent)}
+.rm-n{grid-row:span 2;font:800 .8rem/1.6 var(--sans);color:var(--chip-ink);background:var(--chip);border-radius:99px;
+  width:1.5rem;height:1.5rem;text-align:center;line-height:1.5rem;margin-top:.05rem}
+.rm-meta{font:500 .85rem var(--sans);color:var(--muted);margin-top:.2rem}
+
+/* footer */
+.foot{background:var(--hero-bg-solid);color:var(--hero-ink);padding:2.4rem 1rem 3rem;margin-top:2rem}
+.foot-in{max-width:var(--measure);margin:0 auto;font-size:1rem}
+.foot h2{font-size:1.2rem}
+.foot h2::before{background:var(--accent-on-hero)}
+.foot a{text-decoration-color:var(--accent-on-hero)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+@media print{.hero,.foot{background:none;color:#000}.cite::after{display:none}}
+
+:root{
+--paper:#f3f1ee;--ink:#1b1e22;--muted:#5c5f63;--rule:#dad6d0;--card:#e8e4de;
+--accent:#c4532f;--accent-strong:#a23f1f;--accent-ink:#fff;--chip:#1b1e22;--chip-ink:#f3f1ee;--focus:#2c63d6;
+--hero-bg:#161a1e;--hero-bg-solid:#171b1f;--hero-ink:#f1eee9;--accent-on-hero:#f08a64;
+--hero-glow:radial-gradient(55% 70% at 90% 5%,rgba(196,83,47,.45),transparent 60%),radial-gradient(60% 70% at 0% 110%,rgba(110,140,170,.35),transparent 60%);
+--opinion-bg:#e8e3f6;--opinion-ink:#2f2357;
+--s1:#c4532f;--s2:#7b4f96;--s3:#2c6a8a;--s4:#4f7036;
+}
+@media (prefers-color-scheme: dark){:root{
+--paper:#121417;--ink:#ebe8e3;--muted:#a3a5a8;--rule:#2a2d31;--card:#1c1f23;
+--accent:#f08a64;--accent-strong:#f5a384;--accent-ink:#121417;--chip:#ebe8e3;--chip-ink:#121417;--focus:#86adff;
+--s1:#f08a64;--s2:#c39be0;--s3:#79bde0;--s4:#a6cc85;
+}}
+
+.flow{list-style:none;padding:0;margin-left:0;margin-right:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:.4rem;counter-reset:st}
+.stage{background:var(--paper);border-radius:14px;padding:1rem 1rem 1.1rem;position:relative;border-top:6px solid var(--sc);
+  counter-increment:st;display:flex;flex-direction:column}
+.stage:not(:last-child)::after{content:"";position:absolute;right:-12px;top:2.2rem;width:12px;height:2px;background:var(--rule)}
+.stage .sn{font:800 .7rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--sc)}
+.stage h3{margin:.3rem 0 .6rem;font-size:1.15rem}
+.stage .big{font:800 clamp(1.9rem,3.4vw,2.5rem)/1 var(--sans);letter-spacing:-.03em;color:var(--sc)}
+.stage .cap{font:500 .86rem/1.4 var(--sans);margin:.35rem 0 .8rem;color:var(--ink)}
+.stage ul{list-style:none;margin:auto 0 0;padding:.7rem 0 0;border-top:1px solid var(--rule)}
+.stage li{margin:.35rem 0}
+.stage li a{display:grid;grid-template-columns:3.3rem 1fr;gap:.4rem;font:600 .84rem/1.3 var(--sans);text-decoration:none}
+.stage li a:hover span:last-child,.stage li a:focus-visible span:last-child{text-decoration:underline;text-decoration-color:var(--sc)}
+.stage .dt{font-weight:800;color:var(--sc)}
+.s1{--sc:var(--s1)}.s2{--sc:var(--s2)}.s3{--sc:var(--s3)}.s4{--sc:var(--s4)}
+.ribbon{margin:.6rem 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:4px}
+.ribbon li{border-top:5px solid var(--sc);padding:.45rem .35rem 0;font:600 .76rem/1.3 var(--sans)}
+.ribbon b{display:block;font:800 .95rem/1.1 var(--sans)}
+.ribbon-h{font:800 .78rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:1.4rem 0 0}
+@media (max-width:860px){
+  .flow{grid-template-columns:1fr 1fr}
+  .stage:not(:last-child)::after{display:none}
+  .ribbon{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:520px){.flow{grid-template-columns:1fr}.ribbon{grid-template-columns:1fr}.ribbon li{display:grid;grid-template-columns:4rem 1fr;border-top:0;border-left:5px solid var(--sc);padding:.3rem .6rem}}
+.stage-sec{scroll-margin-top:1rem}
+.stage-sec h2::before{background:var(--sc)}
+.cage{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;margin:1.2rem 0 1.4rem;font:600 .88rem/1.35 var(--sans)}
+.cage-key{list-style:none;margin:0;padding:0;max-width:14rem}
+.cage-key li{margin:0 0 .9rem}
+.cage .k37{color:var(--ink)}
+.cage .sq{border:3px solid var(--ink);border-radius:3px}
+.cage .sq.small{background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 9px);border-color:var(--s2)}
+.cage b{font:800 1.4rem/1 var(--sans);display:block;color:var(--s2)}
+.bars{margin:1.2rem 0 1.4rem;font:600 .88rem/1.3 var(--sans)}
+.bars .row{display:grid;grid-template-columns:7.2rem 1fr;gap:.7rem;align-items:center;margin:.35rem 0}
+.bars .track{position:relative;height:1.7rem}
+.bars .fill{position:absolute;inset:0 auto 0 0;background:var(--sc);border-radius:4px;transform-origin:left;
+  animation:grow 1s cubic-bezier(.5,.1,.2,1) both}
+.bars .val{position:absolute;top:50%;transform:translateY(-50%);font:800 .85rem var(--sans);white-space:nowrap;padding-left:.45rem}
+.bars .gap{font:italic .8rem/1.3 var(--serif);color:var(--muted);padding:.2rem 0 .2rem 7.9rem}
+.bars .outline{background:none;box-shadow:inset 0 0 0 2px var(--sc)}
+.bars-h{font:800 1rem/1.3 var(--sans);margin:1.4rem 0 .2rem}
+.bars-note{font:500 .82rem/1.4 var(--sans);color:var(--muted);margin:.4rem 0 0}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:520px){.bars .row{grid-template-columns:5.6rem 1fr}.bars .gap{padding-left:6.3rem}}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.sides>div{background:var(--card);border-radius:14px;padding:1.1rem 1.15rem}
+.sides h3{margin:0 0 .6rem}
+.sides ul{margin:0;padding:0;list-style:none;font-size:1rem;line-height:1.5}
+.sides li{padding:.55rem 0;border-top:1px solid var(--rule)}
+.sides li:first-child{border-top:0;padding-top:0}
+@media (max-width:640px){.sides{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the explainer</a>
+<header class="hero">
+  <div class="hero-in">
+    <p class="kicker"><span>Storylines explainer</span> <span class="kicker-tag">Trump administration</span></p>
+    <h1>ICE immigration enforcement crackdown</h1>
+    <p class="dek">In September, Guardian reporting followed the Trump administration’s immigration crackdown through each stage: arrests on the street, detention, the courts, and removal to countries that are not people’s own.</p>
+    <p class="meta">Drawn from 7 Guardian articles published 14–24 September 2026 · About a five-minute read</p>
+    <nav class="thread" aria-label="The five key stories in this Storyline, oldest first"><ol><li style="--i:0"><a href="https://www.theguardian.com/us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report" target="_blank" rel="noopener"><span class="t-date">14 Sep</span><span class="t-head">Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says</span></a></li><li style="--i:1"><a href="https://www.theguardian.com/us-news/ng-interactive/2026/sep/15/ice-detention-miscarriages-pregnancy" target="_blank" rel="noopener"><span class="t-date">15 Sep</span><span class="t-head">Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women</span></a></li><li style="--i:2"><a href="https://www.theguardian.com/us-news/2026/sep/18/us-men-deported-hotel-equatorial-guinea" target="_blank" rel="noopener"><span class="t-date">18 Sep</span><span class="t-head">Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say</span></a></li><li style="--i:3"><a href="https://www.theguardian.com/us-news/2026/sep/20/man-shot-ice-agent-austin-texas" target="_blank" rel="noopener"><span class="t-date">21 Sep</span><span class="t-head">ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas</span></a></li><li style="--i:4"><a href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener"><span class="t-date">24 Sep</span><span class="t-head">US citizen injured after ICE agents reportedly mistook him for fugitive</span></a></li></ol></nav>
+  </div>
+</header>
+<main id="main">
+<section aria-labelledby="s-short"><h2 id="s-short">In short</h2><ol class="inshort">
+<li>The Trump administration’s immigration crackdown has escalated with enforcement “surges” into Democratic-run cities and states, and resulted in a record 50,000 arrests in July alone. Much of it is carried out by Immigration and Customs Enforcement (ICE), which is overseen by the Department of Homeland Security.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener" aria-label="Source 5: US citizen injured after ICE agents reportedly mistook him for fugitive (Guardian, 24 September 2026)" data-h="US citizen injured after ICE agents reportedly mistook him for fugitive">5</a></li>
+<li>On a single Sunday, a US citizen was hurt near Chicago when agents reportedly mistook him for someone else, an ICE agent shot a man in Texas, and a man died in Michigan after reportedly trying to flee immigration officers.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener" aria-label="Source 5: US citizen injured after ICE agents reportedly mistook him for fugitive (Guardian, 24 September 2026)" data-h="US citizen injured after ICE agents reportedly mistook him for fugitive">5</a></li>
+<li>Reports on the rest of the system found detainees held in metal cages,<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report" target="_blank" rel="noopener" aria-label="Source 1: Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says (Guardian, 14 September 2026)" data-h="Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says">1</a> court orders to remove children doubling,<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/19/stephen-miller-trump-migrant-children" target="_blank" rel="noopener" aria-label="Source 7: Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children (Guardian, 19 September 2026)" data-h="Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children">7</a> and two deportees in Equatorial Guinea beaten, according to witnesses and lawyers.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/us-men-deported-hotel-equatorial-guinea" target="_blank" rel="noopener" aria-label="Source 3: Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say (Guardian, 18 September 2026)" data-h="Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say">3</a></li></ol></section>
+<figure class="panel wide" aria-labelledby="fl-h"><p class="panel-h" id="fl-h">The system, stage by stage</p><p class="panel-sub">The reporting in this Storyline covers each step of the crackdown. Select an event to read about it below.</p><ol class="flow"><li class="stage s1"><span class="sn">Stage 1</span><h3>On the street</h3><span class="big">50,000</span><p class="cap">arrests in July alone, a record</p><ul><li><a href="#arrest"><span class="dt">20 Sept</span><span>US citizen hurt in arrest attempt, Evanston</span></a></li><li><a href="#arrest"><span class="dt">20 Sept</span><span>ICE agent shoots man at traffic stop, Austin</span></a></li><li><a href="#arrest"><span class="dt">20 Sept</span><span>Man dies after reportedly fleeing officers, Michigan</span></a></li></ul></li><li class="stage s2"><span class="sn">Stage 2</span><h3>In detention</h3><span class="big">79</span><p class="cap">times guards put Alligator Alcatraz detainees in small metal cages, July 2025 to January 2026</p><ul><li><a href="#detention"><span class="dt">14 Sept</span><span>Guardian reports watchdog findings on cages at Alligator Alcatraz</span></a></li><li><a href="#detention"><span class="dt">15 Sept</span><span>Guardian reveals ICE lost count of miscarriages</span></a></li></ul></li><li class="stage s3"><span class="sn">Stage 3</span><h3>In court</h3><span class="big">Almost 200,000</span><p class="cap">children ordered removed by immigration judges since Trump returned to office</p><ul><li><a href="#courts"><span class="dt">19 Sept</span><span>Guardian reports Stephen Miller’s push to remove migrant children</span></a></li></ul></li><li class="stage s4"><span class="sn">Stage 4</span><h3>Sent away</h3><span class="big">25,000+</span><p class="cap">people deported to countries that are not their own since 2025</p><ul><li><a href="#removal"><span class="dt">11 Sept</span><span>Two deportees beaten in Equatorial Guinea, lawyers say</span></a></li><li><a href="#removal"><span class="dt">18 Sept</span><span>Appeals court rules third-country removals unlawful</span></a></li></ul></li></ol><p class="ribbon-h">Events and Guardian reports in date order, September 2026</p><ol class="ribbon"><li class="s4"><b>11</b>Two deportees beaten in Equatorial Guinea, lawyers say</li><li class="s2"><b>14</b>Guardian reports watchdog findings on cages at Alligator Alcatraz</li><li class="s2"><b>15</b>Guardian reveals ICE lost count of miscarriages</li><li class="s4"><b>18</b>Appeals court rules third-country removals unlawful</li><li class="s3"><b>19</b>Guardian reports Stephen Miller’s push to remove migrant children</li><li class="s1"><b>20</b>US citizen hurt in arrest attempt, Evanston</li><li class="s1"><b>20</b>ICE agent shoots man at traffic stop, Austin</li><li class="s1"><b>20</b>Man dies after reportedly fleeing officers, Michigan</li><li class="s4"><b>21</b>Guardian explainer: the third-country deportation policy</li></ol></figure>
+<section class="stage-sec s1" id="arrest" aria-labelledby="h-arrest"><h2 id="h-arrest">1. On the street</h2><p>On Sunday 20 September in Evanston, a suburb of Chicago, a witness saw two immigration agents pinning a Black man to the ground, one with a knee on his back, as the man shouted: “I’m a citizen, leave me alone.” He was a US citizen. Police said he told them he had head, face and neck injuries; the mayor said he was treated in hospital for minor injuries.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener" aria-label="Source 5: US citizen injured after ICE agents reportedly mistook him for fugitive (Guardian, 24 September 2026)" data-h="US citizen injured after ICE agents reportedly mistook him for fugitive">5</a></p><p>The Department of Homeland Security, which oversees ICE, said officers had “encountered an individual who resembled the target” of an operation, and that he “was not cooperative and refused to identify himself”.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener" aria-label="Source 5: US citizen injured after ICE agents reportedly mistook him for fugitive (Guardian, 24 September 2026)" data-h="US citizen injured after ICE agents reportedly mistook him for fugitive">5</a></p><p>The same day, in Austin, Texas, an ICE agent shot and seriously wounded a 28-year-old Venezuelan man at a traffic stop while he worked as a DoorDash delivery driver.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener" aria-label="Source 5: US citizen injured after ICE agents reportedly mistook him for fugitive (Guardian, 24 September 2026)" data-h="US citizen injured after ICE agents reportedly mistook him for fugitive">5</a> Protesters gathered at the scene to demand transparency.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/20/man-shot-ice-agent-austin-texas" target="_blank" rel="noopener" aria-label="Source 4: ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas (Guardian, 21 September 2026)" data-h="ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas">4</a> In Michigan, authorities are investigating the death of a 36-year-old Guatemalan man who crashed his car into a tree at high speed after reportedly trying to flee immigration officers.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener" aria-label="Source 5: US citizen injured after ICE agents reportedly mistook him for fugitive (Guardian, 24 September 2026)" data-h="US citizen injured after ICE agents reportedly mistook him for fugitive">5</a></p></section>
+<section class="stage-sec s2" id="detention" aria-labelledby="h-detention"><h2 id="h-detention">2. In detention</h2><p>“Alligator Alcatraz”, an immigration jail in the Florida Everglades run by Governor Ron DeSantis’s administration for the federal government, closed in June after a year. A report by the Department of Homeland Security’s own inspector general has now found that guards repeatedly locked detainees in outdoor metal cages, a practice it said “does not align with standards for humane treatment”.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report" target="_blank" rel="noopener" aria-label="Source 1: Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says (Guardian, 14 September 2026)" data-h="Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says">1</a></p><figure class="cage" role="img" aria-label="Two squares drawn to scale. The cage, about 18 square feet, is less than half the 37 square feet ICE requires for a single-person space."><div class="sq" style="width:9.4rem;height:9.4rem;display:flex;align-items:flex-end"><div class="sq small" style="width:6.55rem;height:6.55rem;margin:-3px 0 -3px -3px"></div></div><ul class="cage-key" aria-hidden="true"><li><b>18 sq ft</b>The cage (shaded)</li><li><b class="k37">37 sq ft</b>ICE’s own minimum for a single-person space (outline)</li></ul></figure><p>Records showed 79 occasions from July 2025 to January 2026 when detainees were put in the cages, for up to two hours at a time. Staff called them “calming areas” and said detainees asked to spend time in them; inspectors found at least one case where a cage was used as punishment. DeSantis’s office had dismissed the claims as “fabrications” when Amnesty International first reported them. Responding to the report, its communications manager, Alex Lanfranconi, said the area “adheres to all federal standards for criminal confinement”, adding: “We’d make it even smaller if we could.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report" target="_blank" rel="noopener" aria-label="Source 1: Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says (Guardian, 14 September 2026)" data-h="Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says">1</a></p><p>A separate Guardian investigation found that ICE was detaining a record number of pregnant women. ICE says it has no updated information on miscarriages after 3 October 2025. Lawmakers and lawyers have warned that pregnant detainees are not getting basic prenatal care.<a class="cite" href="https://www.theguardian.com/us-news/ng-interactive/2026/sep/15/ice-detention-miscarriages-pregnancy" target="_blank" rel="noopener" aria-label="Source 2: Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women (Guardian, 15 September 2026)" data-h="Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women">2</a></p></section>
+<section class="stage-sec s3" id="courts" aria-labelledby="h-courts"><h2 id="h-courts">3. In court: the children</h2><p>Stephen Miller, the White House deputy chief of staff, who is seen as the mastermind and enforcer behind Trump’s anti-immigration agenda, is leading a drive across at least five government departments to speed up the removal of undocumented children, the Guardian has learned. Almost 200,000 children have been ordered removed by immigration judges since Trump returned, and such orders have doubled since January 2025. Of the children ordered removed, 70% were under 13.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/19/stephen-miller-trump-migrant-children" target="_blank" rel="noopener" aria-label="Source 7: Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children (Guardian, 19 September 2026)" data-h="Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children">7</a></p><figure class="bars s3" aria-labelledby="bh3"><p class="bars-h" id="bh3">Children ordered removed from the US each month</p><div class="row"><span>January 2025</span><span class="track"><span class="fill" style="width:36.9%"></span><span class="val" style="left:36.9%">7,366</span></span></div><p class="gap">No monthly figures given for February 2025 to May 2026</p><div class="row"><span>June 2026</span><span class="track"><span class="fill" style="width:81.2%"></span><span class="val" style="left:81.2%">16,200</span></span></div><div class="row"><span>July 2026</span><span class="track"><span class="fill" style="width:84.0%"></span><span class="val" style="left:84.0%">16,750</span></span></div><div class="row"><span>August 2026</span><span class="track"><span class="fill" style="width:73.9%"></span><span class="val" style="left:73.9%">14,744</span></span></div><p class="bars-note">Source: analysis by the advocacy group Mobile Pathways of Justice Department immigration court data, shared with the Guardian.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/19/stephen-miller-trump-migrant-children" target="_blank" rel="noopener" aria-label="Source 7: Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children (Guardian, 19 September 2026)" data-h="Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children">7</a></p></figure><p>Sources warned of a White House push to hurry children in large numbers, without lawyers, before asylum officers and immigration judges who are “either inclined or are under pressure to take a hard line”. The White House did not deny that Miller is leading the effort but said it was not new, and framed it as an anti-trafficking effort: agencies are “working to locate and rescue these children”, a spokeswoman said.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/19/stephen-miller-trump-migrant-children" target="_blank" rel="noopener" aria-label="Source 7: Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children (Guardian, 19 September 2026)" data-h="Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children">7</a></p></section>
+<section class="stage-sec s4" id="removal" aria-labelledby="h-removal"><h2 id="h-removal">4. Sent away</h2><p>US law bars sending people back to countries where they are likely to be persecuted. Human rights lawyers say the administration gets round this by deporting them to third countries instead, which often send them on to the places they fled. The US has struck 35 such deals and pledged at least $410m. About 20,000 people have been bussed to Mexico and at least 5,000 flown elsewhere.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/what-is-trump-third-country-deportation-policy" target="_blank" rel="noopener" aria-label="Source 6: What is Trump’s third-country deportation policy and whom does it target? (Guardian, 21 September 2026)" data-h="What is Trump’s third-country deportation policy and whom does it target?">6</a></p><figure class="bars s4" aria-labelledby="bh4"><p class="bars-h" id="bh4">People each deal was meant to cover, and how many the US has sent</p><p class="vh">Cameroon: $30m pledged to UN operations there for 1,000 people; 44 sent so far</p><div class="row" aria-hidden="true"><span>Cameroon: deal</span><span class="track"><span class="fill outline" style="width:42%"></span><span class="val" style="left:42%">1,000</span></span></div><div class="row" aria-hidden="true"><span>sent</span><span class="track"><span class="fill" style="width:1.8%"></span><span class="val" style="left:1.8%">44</span></span></div><p class="vh">Democratic Republic of the Congo: $50m pledged for 2,000 people; 15 received, and flights are on hold because of an Ebola outbreak</p><div class="row" aria-hidden="true"><span>DR Congo: deal</span><span class="track"><span class="fill outline" style="width:84%"></span><span class="val" style="left:84%">2,000</span></span></div><div class="row" aria-hidden="true"><span>sent</span><span class="track"><span class="fill" style="width:0.6%"></span><span class="val" style="left:0.6%">15</span></span></div><p class="bars-note">Figures from internal state department records reviewed by the Washington Post as part of the Deportation Project.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/what-is-trump-third-country-deportation-policy" target="_blank" rel="noopener" aria-label="Source 6: What is Trump’s third-country deportation policy and whom does it target? (Guardian, 21 September 2026)" data-h="What is Trump’s third-country deportation policy and whom does it target?">6</a></p></figure><p>Equatorial Guinea has taken at least 66 people, and received $7.5m. About 30 are held in a run-down hotel near Malabo. On 11 September, according to witnesses and human rights lawyers, two of them, Ahmed Soliman, 31, from Egypt, and Samson Birhane, 47, from Eritrea, were bound, had bags put over their heads, and were beaten and pushed down a flight of stairs. They were taken to a prison. US judges had ruled that both would face persecution or torture if sent home. ICE said: “When an individual is no longer in ICE custody, ICE is no longer responsible for them.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/us-men-deported-hotel-equatorial-guinea" target="_blank" rel="noopener" aria-label="Source 3: Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say (Guardian, 18 September 2026)" data-h="Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say">3</a></p><p>On Friday 18 September a federal appeals court ruled unanimously that the third-country policy was unlawful, because people were not given enough notice or the chance to challenge their removal. The government has 90 days to appeal and is expected to. The Department of Homeland Security’s general counsel said: “The third country deportation policy continues.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/what-is-trump-third-country-deportation-policy" target="_blank" rel="noopener" aria-label="Source 6: What is Trump’s third-country deportation policy and whom does it target? (Guardian, 21 September 2026)" data-h="What is Trump’s third-country deportation policy and whom does it target?">6</a></p></section>
+<section aria-labelledby="s-sides"><h2 id="s-sides">Where they stand</h2><p>The Storyline has no opinion pieces. These are the positions of the people quoted in its reporting.</p><div class="sides"><div><h3>What the administration says</h3><ul><li>The White House says agencies are “working to locate and rescue” migrant children and reunite them with their families in their home countries.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/19/stephen-miller-trump-migrant-children" target="_blank" rel="noopener" aria-label="Source 7: Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children (Guardian, 19 September 2026)" data-h="Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children">7</a></li><li>The administration says its deportation drive focuses on removing criminals.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/what-is-trump-third-country-deportation-policy" target="_blank" rel="noopener" aria-label="Source 6: What is Trump’s third-country deportation policy and whom does it target? (Guardian, 21 September 2026)" data-h="What is Trump’s third-country deportation policy and whom does it target?">6</a></li><li>ICE says of those sent to Equatorial Guinea: “All of these illegal aliens were deported to a safe third country.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/18/us-men-deported-hotel-equatorial-guinea" target="_blank" rel="noopener" aria-label="Source 3: Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say (Guardian, 18 September 2026)" data-h="Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say">3</a></li></ul></div><div><h3>What others say</h3><ul><li>Senator Ron Wyden, a Democrat: “The Trump administration has sacrificed every element of ORR’s child welfare mission on the altar of higher deportation numbers.” (ORR, the Office of Refugee Resettlement, is part of the health department and cares for children who arrive alone.)<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/19/stephen-miller-trump-migrant-children" target="_blank" rel="noopener" aria-label="Source 7: Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children (Guardian, 19 September 2026)" data-h="Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children">7</a></li><li>People deported to third countries whom the Guardian interviewed said they had no criminal histories.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/21/what-is-trump-third-country-deportation-policy" target="_blank" rel="noopener" aria-label="Source 6: What is Trump’s third-country deportation policy and whom does it target? (Guardian, 21 September 2026)" data-h="What is Trump’s third-country deportation policy and whom does it target?">6</a></li><li>Amnesty International USA said the report on Alligator Alcatraz showed “the horrific treatment of people detained at Alligator Alcatraz was real, not a hoax”.<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report" target="_blank" rel="noopener" aria-label="Source 1: Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says (Guardian, 14 September 2026)" data-h="Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says">1</a></li><li>Daniel Biss, the Democratic mayor of Evanston: “This violence must end.”<a class="cite" href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener" aria-label="Source 5: US citizen injured after ICE agents reportedly mistook him for fugitive (Guardian, 24 September 2026)" data-h="US citizen injured after ICE agents reportedly mistook him for fugitive">5</a></li></ul></div></div></section>
+<section class="readmore" id="read-more" aria-labelledby="rm-h">
+  <h2 id="rm-h">Read more</h2>
+  <p class="rm-intro">Every fact on this page comes from these Guardian articles. The numbers match the source links in the text.</p>
+  <section class="rm-group"><h3>Key stories</h3><ol><li><span class="rm-n" aria-hidden="true">1</span><a href="https://www.theguardian.com/us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report" target="_blank" rel="noopener">Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says</a><span class="rm-meta">Richard Luscombe in Miami · 14 September 2026</span></li><li><span class="rm-n" aria-hidden="true">2</span><a href="https://www.theguardian.com/us-news/ng-interactive/2026/sep/15/ice-detention-miscarriages-pregnancy" target="_blank" rel="noopener">Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women</a><span class="rm-meta">15 September 2026</span></li><li><span class="rm-n" aria-hidden="true">3</span><a href="https://www.theguardian.com/us-news/2026/sep/18/us-men-deported-hotel-equatorial-guinea" target="_blank" rel="noopener">Men deported from US bound and beaten in Equatorial Guinea detention hotel, lawyers say</a><span class="rm-meta">Maanvi Singh · 18 September 2026</span></li><li><span class="rm-n" aria-hidden="true">4</span><a href="https://www.theguardian.com/us-news/2026/sep/20/man-shot-ice-agent-austin-texas" target="_blank" rel="noopener">ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas</a><span class="rm-meta">21 September 2026</span></li><li><span class="rm-n" aria-hidden="true">5</span><a href="https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest" target="_blank" rel="noopener">US citizen injured after ICE agents reportedly mistook him for fugitive</a><span class="rm-meta">Richard Luscombe and agencies · 24 September 2026</span></li></ol></section><section class="rm-group"><h3>Explainer</h3><ol><li><span class="rm-n" aria-hidden="true">6</span><a href="https://www.theguardian.com/us-news/2026/sep/21/what-is-trump-third-country-deportation-policy" target="_blank" rel="noopener">What is Trump’s third-country deportation policy and whom does it target?</a><span class="rm-meta">Louisa Loveluck and Alice Speri · 21 September 2026</span></li></ol></section><section class="rm-group"><h3>Deep read</h3><ol><li><span class="rm-n" aria-hidden="true">7</span><a href="https://www.theguardian.com/us-news/2026/sep/19/stephen-miller-trump-migrant-children" target="_blank" rel="noopener">Trump ally Stephen Miller leads sweeping push to accelerate removal of migrant children</a><span class="rm-meta">Alexandra Villarreal in New York · 19 September 2026</span></li></ol></section><section class="rm-group"><h3>Watch and listen</h3><ol><li><span class="rm-n" aria-hidden="true">8</span><a href="https://www.theguardian.com/us-news/video/2026/sep/21/austin-texas-ice-shooting-protests" target="_blank" rel="noopener">Protesters gather in Austin after ICE agent shoots and wounds man – video</a><span class="rm-meta">Video · 21 September 2026</span></li></ol></section>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot-in">
+    <h2>How this was made</h2>
+    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the Trump administration topic page. An AI model (Claude) then read the full text of 5 of the 7 text articles (the other 2 could not be retrieved, so only their headline and standfirst were used) and wrote this summary, using nothing but those articles. Every sentence is tied to a passage in the journalism: the full list is in the <a href="manifest.md">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
+  </div>
+</footer>
+<script>
+/* Shared script for Storylines explainers. Page-specific code follows. */
+
+
+</script>
+</body>
+</html>
