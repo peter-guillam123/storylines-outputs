@@ -13,3 +13,5 @@ This writes `index.html` (self-contained, works offline) and `manifest.md` into 
 - `build.py`: loads the Storyline and fetched sources, runs the checks, renders the page and the manifest.
 - `explainer.css`: the shared look. Each explainer sets its own colours in `THEME` and `THEME_DARK`.
 - `explainer.js`: shared script (currently empty; page scripts live in each `content.py`).
+
+The fetched articles in each explainer's `sources/` folder, and the Storylines data in `storylines-data/`, are kept out of the public repo, so a rebuild needs a local copy of both.
