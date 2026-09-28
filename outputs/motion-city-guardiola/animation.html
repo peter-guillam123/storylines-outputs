@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pep Guardiola&#x27;s departure from Manchester City: animation source</title>
+<style>
+:root{--sans:"Avenir Next","Avenir","Helvetica Neue",Arial,sans-serif;--serif:"Charter","Iowan Old Style",Georgia,serif}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;transform-origin:0 0;
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+#stage *{box-sizing:border-box}
+.wm{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .1em;margin-right:.22em}
+.wm:last-child{margin-right:0}
+.wi{display:inline-block;will-change:transform}
+.endcard{position:absolute;inset:0;padding:110px 120px;background:var(--ec-bg);color:var(--ec-ink);z-index:50}
+.ec-k{font:800 30px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ec-accent);margin-bottom:46px}
+.ec-list{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.ec-list li{display:grid;grid-template-columns:150px 1fr auto;gap:28px;align-items:baseline;
+  border-top:2px solid var(--ec-rule);padding-top:20px}
+.ec-d{font:800 24px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ec-accent)}
+.ec-h{font:600 36px/1.22 var(--serif)}
+.ec-kind{font:700 20px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.ec-many{gap:10px!important}.ec-many li{padding-top:10px!important}.ec-many .ec-h{font-size:28px!important}
+.ec-f{position:absolute;left:120px;bottom:90px;font:600 26px/1 var(--sans);letter-spacing:.04em;opacity:.7}
+
+
+#stage{background:linear-gradient(180deg,#140e1b 0%,#1f1424 55%,#3a1f2e 100%);color:#f6ede4}
+.sun{position:absolute;left:1380px;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle at 50% 45%,#ffd9a0 0%,#f4b860 40%,#e0784e 75%,rgba(224,120,78,0) 76%);
+  box-shadow:0 0 160px 60px rgba(242,143,107,.28)}
+.haze{position:absolute;left:0;right:0;bottom:0;height:420px;background:linear-gradient(180deg,rgba(58,31,46,0),rgba(40,20,32,.95) 70%)}
+.grain{position:absolute;inset:0;opacity:.14;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.title{position:absolute;left:120px;top:230px;width:1500px}
+.title .kick{font:800 30px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#f4b860;margin-bottom:34px}
+.title .tl{font:800 150px/.97 var(--sans);letter-spacing:-.04em}
+.hd{position:absolute;left:120px;top:70px;font:700 26px/1 var(--sans);opacity:.8}
+.date{position:absolute;left:120px;top:190px;font:800 40px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#f4b860}
+.big{position:absolute;left:120px;top:280px;width:920px;font:800 88px/1.03 var(--sans);letter-spacing:-.03em}
+.sub{position:absolute;left:120px;width:900px;font:600 42px/1.2 var(--sans);opacity:.92}
+.troph{position:absolute;left:1060px;top:270px;width:800px}
+.troph .row{display:grid;grid-template-columns:380px 1fr;align-items:center;gap:18px;margin-bottom:22px}
+.troph .lab{font:700 32px/1.15 var(--sans)}
+.troph .dots{display:flex;gap:14px}
+.troph .dots i{width:40px;height:40px;border-radius:50%;background:#f4b860;box-shadow:0 0 18px rgba(244,184,96,.5)}
+.standwrap{position:absolute;left:1000px;top:330px;width:820px;height:420px}
+.tier{position:absolute;left:0;right:0;height:26px;border-radius:4px;background:rgba(246,237,228,.12)}
+.standname{position:absolute;left:0;right:0;top:-10px;text-align:center;font:900 56px/1 var(--sans);letter-spacing:.04em;
+  text-transform:uppercase;color:#f4b860}
+.q{position:absolute;left:120px;top:330px;width:1500px;font:italic 500 170px/1 var(--serif)}
+.qs{position:absolute;left:120px;top:560px;width:1400px;font:italic 500 56px/1.15 var(--serif)}
+.qa{position:absolute;left:124px;font:700 30px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:#f4b860}
+.last{position:absolute;left:120px;top:800px;font:700 34px/1.2 var(--sans);opacity:.85}
+:root{--ec-bg:#f6efe8;--ec-ink:#1d1520;--ec-accent:#a8521f;--ec-rule:#e2d6cc}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const DURATION = 15;
+const T = {
+ "kicker": "Guardian reporting, 18–23 May 2026",
+ "d1": "1 July 2016",
+ "b1": "Guardiola starts at City, joining from Bayern Munich",
+ "d2": "The decade",
+ "b2": "17 major trophies in 10 years",
+ "t1": "6 Premier League titles",
+ "t2": "5 League Cups",
+ "t3": "3 FA Cups",
+ "t4": "1 Champions League",
+ "t5": "1 Club World Cup",
+ "t6": "1 Uefa Super Cup",
+ "b2b": "His first title, in 2017-18, came with a record 100 points",
+ "d3": "Mon 18 May",
+ "b3": "News breaks that he is expected to leave",
+ "b3b": "The club does not confirm it",
+ "d4": "Tue 19 May",
+ "b4": "Reports say he has told his players he is leaving",
+ "b4c": "In public, he refuses to confirm it",
+ "b4b": "That night, a draw at Bournemouth means Arsenal are champions",
+ "d5": "Fri 22 May",
+ "b5": "City confirm he is leaving",
+ "stand": "The Pep Guardiola Stand",
+ "b5b": "Enzo Maresca is expected to replace him",
+ "q7": "“Nothing is eternal.”",
+ "a7": "Pep Guardiola, in the club video confirming his departure, 22 May",
+ "d6": "Reported 23 May",
+ "b6": "He won’t rule out managing England",
+ "q6": "“I don’t have any absolute plan about my future”",
+ "d7": "Sun 24 May",
+ "last": "His last game: at home to Aston Villa",
+ "ec": "Drawn from Guardian journalism",
+ "title": "Pep Guardiola's departure from Manchester City"
+};
+const CREDITS = [
+ {
+  "date": "18 May",
+  "headline": "Pep Guardiola expected to leave Manchester City at end of the season",
+  "kind": ""
+ },
+ {
+  "date": "19 May",
+  "headline": "Guardiola tells Manchester City players he is leaving as club line up Maresca",
+  "kind": ""
+ },
+ {
+  "date": "19 May",
+  "headline": "Pep Guardiola refuses to confirm expected departure from Manchester City",
+  "kind": ""
+ },
+ {
+  "date": "22 May",
+  "headline": "‘I will be out for a while’: Pep Guardiola reveals he will take break from coaching",
+  "kind": ""
+ },
+ {
+  "date": "23 May",
+  "headline": "Pep Guardiola will not rule out possibility of managing England",
+  "kind": ""
+ },
+ {
+  "date": "22 May",
+  "headline": "Pep Guardiola’s perpetual revolutions have changed face of English football",
+  "kind": ""
+ },
+ {
+  "date": "19 May",
+  "headline": "Guardiola’s relentless drive for perfection created dynasty at Manchester City",
+  "kind": ""
+ },
+ {
+  "date": "20 May",
+  "headline": "Guardiola leaves Manchester City as one of the game’s greats – and someone who knows its dark heart",
+  "kind": "Opinion"
+ }
+];
+</script>
+<script>
+/* Storylines motion: a tiny deterministic animation toolkit.
+   Every frame is a pure function of time t (seconds), so the renderer can
+   seek to any frame and get the same picture. Pages define setup() to build
+   the DOM once and frame(t) to pose it. */
+const W = 1920, H = 1080;
+const STAGE = document.getElementById('stage');
+const clamp = (x, a = 0, b = 1) => (x < a ? a : x > b ? b : x);
+const lerp = (a, b, t) => a + (b - a) * t;
+const P = (t, a, b) => clamp((t - a) / (b - a));
+const E = {
+  lin: t => t,
+  outCubic: t => 1 - Math.pow(1 - t, 3),
+  inCubic: t => t * t * t,
+  inOutCubic: t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+  outQuint: t => 1 - Math.pow(1 - t, 5),
+  outExpo: t => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+  inExpo: t => (t <= 0 ? 0 : Math.pow(2, 10 * t - 10)),
+  inOutExpo: t => (t <= 0 ? 0 : t >= 1 ? 1 : t < 0.5 ? Math.pow(2, 20 * t - 10) / 2 : (2 - Math.pow(2, -20 * t + 10)) / 2),
+  outBack: t => { const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); },
+};
+/* in-then-out envelope: 0 before a, eases to 1 by a+din, holds, eases to 0 over [b, b+dout] */
+const env = (t, a, b, din = 0.45, dout = 0.35, ein = E.outExpo, eout = E.inCubic) =>
+  ein(P(t, a, a + din)) * (1 - eout(P(t, b, b + dout)));
+
+function mk(tag, cls, parent, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  (parent || STAGE).appendChild(e);
+  return e;
+}
+function svg(tag, attrs, parent) {
+  const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function tf(e, { x = 0, y = 0, s = 1, sx, sy, r = 0, o } = {}) {
+  e.style.transform = `translate(${x}px,${y}px) rotate(${r}deg) scale(${sx ?? s},${sy ?? s})`;
+  if (o != null) e.style.opacity = o;
+}
+/* Split text into masked words for kinetic reveals. */
+function words(parent, text, cls) {
+  const line = mk('div', cls, parent);
+  const ws = text.split(' ').map(w => {
+    const m = mk('span', 'wm', line);
+    return mk('span', 'wi', m, w);
+  });
+  return { line, ws };
+}
+/* Words rise into their masks, then drop out. */
+function wordsIO(w, t, tin, tout, { stagger = 0.035, dur = 0.55, ease = E.outExpo, outDur = 0.3 } = {}) {
+  w.ws.forEach((e, i) => {
+    const pin = ease(P(t, tin + i * stagger, tin + i * stagger + dur));
+    const pout = tout == null ? 0 : E.inCubic(P(t, tout + i * stagger * 0.4, tout + i * stagger * 0.4 + outDur));
+    e.style.transform = `translateY(${(1 - pin) * 112 - pout * 112}%)`;
+  });
+  w.line.style.visibility = t < tin - 0.01 || (tout != null && t > tout + outDur + w.ws.length * stagger) ? 'hidden' : 'visible';
+}
+/* A number that counts between two values. */
+function counter(e, t, a, b, from, to, fmt, ease = E.outExpo) {
+  e.textContent = fmt(lerp(from, to, ease(P(t, a, b))));
+}
+const fmtInt = v => Math.round(v).toLocaleString('en-GB');
+
+/* The date rail: evenly spaced labelled stops along the bottom; a playhead
+   eases between stops at given times. keys = [[time, stopIndex], ...] */
+function rail(stops, { y = 980, x0 = 120, x1 = 1800, color = '#fff', accent = '#f60' } = {}) {
+  const g = mk('div', 'rail');
+  g.style.cssText = `position:absolute;left:0;top:0;width:${W}px;height:${H}px;pointer-events:none`;
+  const line = mk('div', 'rail-line', g);
+  line.style.cssText = `position:absolute;left:${x0}px;top:${y}px;height:2px;width:${x1 - x0}px;background:${color};opacity:.25;transform-origin:left`;
+  const prog = mk('div', 'rail-prog', g);
+  prog.style.cssText = `position:absolute;left:${x0}px;top:${y - 1}px;height:4px;width:${x1 - x0}px;background:${accent};transform-origin:left`;
+  const xs = stops.map((_, i) => (stops.length === 1 ? x0 : x0 + ((x1 - x0) * i) / (stops.length - 1)));
+  const dots = stops.map((s, i) => {
+    const d = mk('div', 'rail-dot', g);
+    d.style.cssText = `position:absolute;left:${xs[i] - 9}px;top:${y - 8}px;width:18px;height:18px;border-radius:50%;border:3px solid ${color};background:transparent;box-sizing:border-box`;
+    const l = mk('div', 'rail-lab', g, s);
+    l.style.cssText = `position:absolute;left:${xs[i]}px;top:${y + 22}px;transform:translateX(-50%);font:700 22px/1 var(--sans);letter-spacing:.12em;color:${color};white-space:nowrap`;
+    return { d, l };
+  });
+  const head = mk('div', 'rail-head', g);
+  head.style.cssText = `position:absolute;left:0;top:${y - 15}px;width:32px;height:32px;border-radius:50%;background:${accent};box-shadow:0 0 0 10px ${accent}33,0 0 40px ${accent}`;
+  return {
+    g,
+    pose(t, keys, vis) {
+      g.style.opacity = vis;
+      let pos = keys[0][1];
+      for (let i = 1; i < keys.length; i++) {
+        const [tk, sk] = keys[i], [tp, sp] = keys[i - 1];
+        if (t >= tk) pos = sk; else if (t > tk - 0.5) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.5, tk))); break; } else break;
+      }
+      const fi = Math.floor(pos), fr = pos - fi;
+      const x = fi >= xs.length - 1 ? xs[xs.length - 1] : lerp(xs[fi], xs[fi + 1], fr);
+      head.style.transform = `translateX(${x - 16}px)`;
+      prog.style.transform = `scaleX(${(x - x0) / (x1 - x0)})`;
+      line.style.transform = `scaleX(${E.outExpo(clamp(vis * 1.2))})`;
+      dots.forEach((d, i) => {
+        const on = pos >= i - 0.02;
+        d.d.style.background = on ? accent : 'transparent';
+        d.d.style.borderColor = on ? accent : color;
+        d.l.style.opacity = Math.abs(pos - i) < 0.35 ? 1 : on ? 0.55 : 0.3;
+        d.l.style.color = Math.abs(pos - i) < 0.35 ? accent : color;
+      });
+    },
+  };
+}
+
+/* The end card: credits every Guardian article the video draws on. */
+function endCard(t, t0, opts) {
+  if (!endCard.el) {
+    const c = mk('div', 'endcard');
+    const k = mk('div', 'ec-k', c, 'Drawn from Guardian journalism');
+    const list = mk('ol', 'ec-list' + (CREDITS.length > 8 ? ' ec-many' : ''), c);
+    const items = CREDITS.map(cr => {
+      const li = mk('li', '', list);
+      mk('span', 'ec-d', li, cr.date);
+      mk('span', 'ec-h', li, cr.headline);
+      if (cr.kind) mk('span', 'ec-kind', li, cr.kind);
+      return li;
+    });
+    const f = mk('div', 'ec-f', c, 'Every fact on screen comes from these articles · theguardian.com');
+    endCard.el = { c, k, items, f };
+  }
+  const e = endCard.el;
+  const p = E.outExpo(P(t, t0, t0 + 0.6));
+  e.c.style.visibility = t < t0 ? 'hidden' : 'visible';
+  e.c.style.clipPath = `inset(${(1 - p) * 100}% 0 0 0)`;
+  tf(e.k, { y: (1 - E.outExpo(P(t, t0 + 0.15, t0 + 0.7))) * 40, o: P(t, t0 + 0.15, t0 + 0.5) });
+  e.items.forEach((li, i) => {
+    const q = E.outExpo(P(t, t0 + 0.25 + i * 0.06, t0 + 0.85 + i * 0.06));
+    tf(li, { y: (1 - q) * 30, o: q });
+  });
+  tf(e.f, { o: P(t, t0 + 0.7, t0 + 1.0) });
+}
+
+let READY = false;
+function renderAt(t) { frame(Math.min(t, DURATION - 1e-4)); }
+function fit() {
+  const s = Math.min(innerWidth / W, innerHeight / H);
+  STAGE.style.transform = `translate(${(innerWidth - W * s) / 2}px,${(innerHeight - H * s) / 2}px) scale(${s})`;
+}
+document.fonts.ready.then(() => {
+  setup();
+  renderAt(0);
+  READY = true;
+  if (!location.search.includes('render')) {
+    fit();
+    addEventListener('resize', fit);
+    const t0 = performance.now();
+    const loop = now => { renderAt(((now - t0) / 1000) % (DURATION + 1.5)); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+});
+
+
+const POSTER_T = 4.9;
+let S = {};
+function setup() {
+  S.sun = mk('div', 'sun'); mk('div', 'haze'); mk('div', 'grain');
+  S.title = mk('div', 'title');
+  S.kick = words(S.title, T.kicker, 'kick');
+  S.tl = [words(S.title, 'Pep Guardiola\'s', 'tl'), words(S.title, 'departure from', 'tl'), words(S.title, 'Manchester City', 'tl')];
+  S.hd = mk('div', 'hd', null, T.title);
+  S.rail = rail(['2016', '18 May', '19', '22', '23', '24'], { color: '#f6ede4', accent: '#f4b860' });
+  S.dates = ['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7'].map(k => words(STAGE, T[k], 'date'));
+  S.b = {};
+  ['b1', 'b2', 'b3', 'b4', 'b5', 'b6'].forEach(k => S.b[k] = words(STAGE, T[k], 'big'));
+  S.b2b = words(STAGE, T.b2b, 'sub'); S.b2b.line.style.top = '510px';
+  S.b3b = words(STAGE, T.b3b, 'sub'); S.b3b.line.style.top = '510px';
+  S.b4b = words(STAGE, T.b4b, 'sub'); S.b4b.line.style.top = '620px';
+  S.b.b4.line.style.width = '1250px';
+  S.b4c = words(STAGE, T.b4c, 'sub'); S.b4c.line.style.top = '510px'; S.b4c.line.style.color = '#f4b860';
+  S.b5b = words(STAGE, T.b5b, 'sub'); S.b5b.line.style.top = '510px';
+  S.q6 = words(STAGE, T.q6, 'qs');
+  const tr = mk('div', 'troph'); S.troph = tr;
+  S.tr = [['t1', 6], ['t2', 5], ['t3', 3], ['t4', 1], ['t5', 1], ['t6', 1]].map(([k, n]) => {
+    const r = mk('div', 'row', tr); mk('div', 'lab', r, T[k]); const d = mk('div', 'dots', r);
+    return Array.from({ length: n }, () => mk('i', '', d)); });
+  const sw = mk('div', 'standwrap'); S.stand = sw;
+  S.tiers = Array.from({ length: 9 }, (_, i) => { const e = mk('div', 'tier', sw); e.style.top = (110 + i * 34) + 'px';
+    e.style.left = (i * 14) + 'px'; e.style.right = (i * 14) + 'px'; return e; });
+  S.standname = mk('div', 'standname', sw, T.stand);
+  S.q7 = words(STAGE, T.q7, 'q');
+  S.a7 = words(STAGE, T.a7, 'qa'); S.a7.line.style.top = '560px';
+  S.last = words(STAGE, T.last, 'big');
+}
+
+function frame(t) {
+  // the sun sets slowly across the whole piece
+  const sy = lerp(120, 860, E.inOutCubic(P(t, 0, 14)));
+  const busy = Math.max(env(t, 3.2, 5.5, 0.3, 0.3), env(t, 8.8, 10.05, 0.3, 0.3));
+  tf(S.sun, { y: sy, s: lerp(1, 1.12, P(t, 0, 14)), o: (0.9 - 0.4 * P(t, 10, 14)) * (1 - 0.75 * busy) });
+  wordsIO(S.kick, t, 0.1, 1.15, { stagger: 0.02, ease: E.outCubic });
+  S.tl.forEach((w, i) => wordsIO(w, t, 0.2 + i * 0.14, 1.2 + i * 0.03, { stagger: 0.06, dur: 0.7, ease: E.outCubic }));
+  S.title.style.visibility = t < 1.65 ? 'visible' : 'hidden';
+  S.hd.style.opacity = E.outCubic(P(t, 1.5, 1.9)) * (1 - P(t, 13.3, 13.6));
+  S.rail.pose(t, [[0, 0], [1.6, 0], [3.2, 0.5], [5.6, 1], [7.1, 2], [8.8, 3], [11.3, 4], [12.3, 5]],
+    E.outCubic(P(t, 1.5, 1.9)) * (1 - E.inCubic(P(t, 13.0, 13.35))));
+  const o = { stagger: 0.035, ease: E.outCubic, dur: 0.55 };
+  const bt = [[1.65, 3.1], [3.2, 5.5], [5.6, 7.0], [7.1, 8.7], [8.8, 11.15], [11.3, 12.2], [12.3, 13.3]];
+  S.dates.forEach((w, i) => wordsIO(w, t, bt[i][0], bt[i][1], o));
+  wordsIO(S.b.b1, t, 1.7, 3.1, o);
+  wordsIO(S.b.b2, t, 3.25, 5.5, o);
+  wordsIO(S.b2b, t, 3.8, 5.5, { ...o, stagger: 0.02 });
+  wordsIO(S.b.b3, t, 5.65, 7.0, o);
+  wordsIO(S.b3b, t, 6.1, 7.0, { ...o, stagger: 0.02 });
+  wordsIO(S.b.b4, t, 7.15, 8.7, o);
+  wordsIO(S.b4c, t, 7.5, 8.7, { ...o, stagger: 0.02 });
+  wordsIO(S.b4b, t, 7.85, 8.7, { ...o, stagger: 0.02 });
+  wordsIO(S.b.b5, t, 8.85, 10.05, o);
+  wordsIO(S.b5b, t, 9.4, 10.05, { ...o, stagger: 0.02 });
+  wordsIO(S.q7, t, 10.15, 11.15, { ...o, stagger: 0.1, dur: 0.6 });
+  wordsIO(S.a7, t, 10.4, 11.15, { ...o, stagger: 0.02 });
+  wordsIO(S.b.b6, t, 11.35, 12.2, { ...o, stagger: 0.025 });
+  wordsIO(S.q6, t, 11.6, 12.2, { ...o, stagger: 0.02 });
+  wordsIO(S.last, t, 12.35, 13.3, { ...o, stagger: 0.03 });
+
+  // trophies, group by group
+  const vT = env(t, 3.3, 5.5, 0.3, 0.3, E.outCubic);
+  S.troph.style.opacity = vT;
+  let k = 0;
+  S.tr.forEach((row, ri) => row.forEach((d, j) => {
+    const a = 3.4 + ri * 0.3 + j * 0.05;
+    d.style.transform = `scale(${E.outBack(P(t, a, a + 0.35))})`;
+  }));
+  // the stand that will carry his name
+  const vS = env(t, 8.9, 10.05, 0.4, 0.3, E.outCubic);
+  S.stand.style.opacity = vS;
+  S.tiers.forEach((e, i) => { const q = E.outCubic(P(t, 8.95 + i * 0.05, 9.4 + i * 0.05)); e.style.transform = `scaleX(${q})`; });
+  tf(S.standname, { y: (1 - E.outCubic(P(t, 9.3, 9.8))) * 30, o: E.outCubic(P(t, 9.3, 9.7)) });
+  endCard(t, 13.4);
+}
+
+</script>
+</body></html>
