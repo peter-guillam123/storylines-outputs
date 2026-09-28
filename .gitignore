@@ -16,3 +16,4 @@ outputs/*/video_silent.mp4
 outputs/*/score_raw.wav
 outputs/*/score.wav
 outputs/*/score.png
+outputs/*/narration/

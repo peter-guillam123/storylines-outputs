@@ -89,7 +89,7 @@ function rail(stops, { y = 980, x0 = 120, x1 = 1800, color = '#fff', accent = '#
       let pos = keys[0][1];
       for (let i = 1; i < keys.length; i++) {
         const [tk, sk] = keys[i], [tp, sp] = keys[i - 1];
-        if (t >= tk) pos = sk; else if (t > tk - 0.5) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.5, tk))); break; } else break;
+        if (t >= tk) pos = sk; else if (t > tk - 0.3) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.3, tk))); break; } else break;
       }
       const fi = Math.floor(pos), fr = pos - fi;
       const x = fi >= xs.length - 1 ? xs[xs.length - 1] : lerp(xs[fi], xs[fi + 1], fr);
@@ -136,7 +136,18 @@ function endCard(t, t0, opts) {
 }
 
 let READY = false;
-function renderAt(t) { frame(Math.min(t, DURATION - 1e-4)); }
+/* The piece is authored on a short design timeline; WARP (from timing.json) maps
+   finished-video time to design time, holding each finished frame for longer. */
+function warp(t) {
+  if (typeof WARP === 'undefined' || !WARP.length) return t;
+  if (t <= WARP[0][0]) return WARP[0][1];
+  for (let i = 1; i < WARP.length; i++) {
+    const [x1, y1] = WARP[i], [x0, y0] = WARP[i - 1];
+    if (t <= x1) return y0 + (y1 - y0) * (t - x0) / (x1 - x0);
+  }
+  return WARP[WARP.length - 1][1];
+}
+function renderAt(t) { frame(warp(Math.min(t, DURATION - 1e-4))); }
 function fit() {
   const s = Math.min(innerWidth / W, innerHeight / H);
   STAGE.style.transform = `translate(${(innerWidth - W * s) / 2}px,${(innerHeight - H * s) / 2}px) scale(${s})`;

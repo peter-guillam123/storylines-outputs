@@ -164,12 +164,14 @@ def bass_pulse(freq_at, t0, t1, step=0.25, length=0.2, cutoff=420):
 
 # ---------------------------------------------------------------- mixer
 class Mix:
-    def __init__(self, dur):
+    def __init__(self, dur, T=lambda t: t):
         self.n = int(dur * SR)
-        self.bus = {k: np.zeros((2, self.n)) for k in ("music", "fx", "verb")}
+        self.T = T
+        self.bus = {k: np.zeros((2, self.n)) for k in ("music", "fx", "verb", "voice")}
 
-    def add(self, x, t0, bus="fx", pan=0.0, gain=1.0, verb=0.0):
-        i = int(t0 * SR)
+    def add(self, x, t0, bus="fx", pan=0.0, gain=1.0, verb=0.0, real=False):
+        """t0 is on the design timeline unless real=True (then it is finished-video time)."""
+        i = int((t0 if real else self.T(t0)) * SR)
         if i >= self.n:
             return
         x = np.asarray(x, dtype=float)
@@ -186,9 +188,17 @@ class Mix:
         irs = [filt(noise(rt), "lowpass", 5500) * np.exp(-ir_t * 6.9 / rt) for _ in range(2)]
         wet = np.vstack([signal.fftconvolve(self.bus["verb"][c], irs[c])[:self.n] for c in range(2)])
         wet /= (np.max(np.abs(wet)) + 1e-9)
-        dry = self.bus["music"] * music_gain + self.bus["fx"] * fx_gain
+        # duck the music (and a little of the effects) under the narration
+        v = np.abs(self.bus["voice"]).max(axis=0)
+        k = int(0.25 * SR)
+        env = np.convolve((v > 1e-3).astype(float), np.ones(k) / k, mode="same")
+        env = np.clip(env * 1.6, 0, 1)
+        duck_m, duck_f = 1 - 0.62 * env, 1 - 0.35 * env
+        dry = self.bus["music"] * music_gain * duck_m + self.bus["fx"] * fx_gain * duck_f
         peak = np.max(np.abs(dry)) + 1e-9
-        out = dry / peak + wet * 0.35
+        out = dry / peak + wet * 0.35 * duck_m
+        vp = np.max(np.abs(self.bus["voice"])) + 1e-9
+        out = out * 0.62 + self.bus["voice"] / vp * 0.95
         nf = int(fade_out * SR)
         out[:, -nf:] *= np.linspace(1, 0, nf) ** 2
         out = np.tanh(out * 1.1) / np.tanh(1.1)
@@ -209,9 +219,28 @@ def main():
     sys.path.insert(0, str(KIT.parent / "explainer-kit"))
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
-    m = Mix(mod.DURATION)
+    tj = folder / "timing.json"
+    timing = json.loads(tj.read_text()) if tj.exists() else None
+    length = timing["length"] if timing else mod.DURATION
+    if timing and timing["warp"]:
+        xs = np.array([p[0] for p in timing["warp"]]); ys = np.array([p[1] for p in timing["warp"]])
+        T = lambda t_old: float(np.interp(t_old, ys, xs))
+        Tinv = lambda t_real: float(np.interp(t_real, xs, ys))
+    else:
+        T = Tinv = lambda t: t
+    m = Mix(length, T)
     A = Kit()
     A.mix = m
+    A.T, A.Tinv, A.LEN = staticmethod(T), staticmethod(Tinv), length
+    A.D = staticmethod(lambda t0, t1: T(t1) - T(t0))
+    # narration: the clips timing.py made, placed at their times
+    for n in (timing or {}).get("narration", []):
+        rate, clip = wavfile.read(folder / "narration" / f"{n['key']}.wav")
+        clip = clip.astype(float) / (np.iinfo(clip.dtype).max if clip.dtype.kind == "i" else 1.0)
+        if clip.ndim > 1:
+            clip = clip.mean(axis=1)
+        clip = signal.resample_poly(clip, SR, rate)
+        m.add(clip, n["start"], "voice", real=True)
     cues = mod.score(A) or []
     out = m.render(**getattr(mod, "MIX", {}))
     raw = folder / "score_raw.wav"
@@ -227,11 +256,22 @@ def main():
     norm = folder / "score.wav"
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(raw), "-af", af, "-ar", str(SR), str(norm)], check=True)
 
+    subs = []
+    if timing and timing.get("narration"):
+        def ts(x):
+            return f"{int(x // 3600):02d}:{int(x % 3600 // 60):02d}:{x % 60:06.3f}"
+        vtt = ["WEBVTT", ""]
+        for i, n in enumerate(timing["narration"], 1):
+            vtt += [str(i), f"{ts(n['start'])} --> {ts(n['start'] + n['dur'] + 0.2)} line:78%", n["text"], ""]
+        (folder / "narration.vtt").write_text("\n".join(vtt))
+        subs = ["-i", str(folder / "narration.vtt")]
     silent = folder / "video_silent.mp4"
     if not silent.exists():
         (folder / "video.mp4").rename(silent)
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i", str(norm), "-map", "0:v", "-map", "1:a",
-                    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart",
+    smap = ["-map", "2:s", "-c:s", "mov_text", "-metadata:s:s:0", "language=eng", "-metadata:s:s:0", "title=Narration"] if subs else []
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i", str(norm)] + subs +
+                   ["-map", "0:v", "-map", "1:a"] + smap +
+                   ["-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-t", str(length), "-movflags", "+faststart",
                     str(folder / "video.mp4")], check=True)
     r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(folder / "video.mp4"), "-af", "loudnorm=print_format=json",
                         "-f", "null", "-"], capture_output=True, text=True)
@@ -249,8 +289,10 @@ def main():
         ax[1].set_ylim(20, 8000); ax[1].set_yscale("log")
         for c in cues:
             for a in ax:
-                a.axvline(c, color="c", lw=0.6, alpha=0.7)
-        ax[1].set_xlabel("seconds (cyan lines: animation cue times)")
+                a.axvline(T(c), color="c", lw=0.6, alpha=0.7)
+        for n in (timing or {}).get("narration", []):
+            ax[0].axvspan(n["start"], n["start"] + n["dur"], color="orange", alpha=0.15)
+        ax[1].set_xlabel("seconds (cyan lines: animation cue times; orange bands: narration)")
         fig.tight_layout()
         fig.savefig(folder / "score.png", dpi=90)
 

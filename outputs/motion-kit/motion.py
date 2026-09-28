@@ -67,14 +67,16 @@ class MotionPage(Page):
     def manifest_intro(self):
         m = self.mod
         return [
-            f"Output: `video.mp4` in this folder, rendered from `animation.html` (web page: `index.html`; web version of "
+            f"Output: `video.mp4` in this folder ({self.length} seconds), rendered from `animation.html` (web page: `index.html`; web version of "
             f"this manifest: `manifest.html`). Storyline {m.STORYLINE_INDEX + 1} of `storylines-data/{m.DATA_FILE}`.",
             "Built by `outputs/motion-kit/motion.py`, which checks every quote and figure below against the fetched "
             "article text before the animation is written. The animation reads its words only from this list, so what "
             "is on screen is exactly what is listed here.",
             "",
             "Entries are grouped by the beat of the video in which they appear, in order. Labels (dates, stage names) "
-            "are marked as such.",
+            "are marked as such. Narrated lines are listed under the beat in which they are spoken (sections marked "
+            "\"narration\"), follow the same rules as on-screen text, and are also collected with their timings in "
+            "`narration.md`.",
             "",
             "Three things are generated from the Storylines data and not listed entry by entry: the Storyline title "
             "(used exactly as given), the end card crediting each article by headline and date, and the Read more "
@@ -87,8 +89,17 @@ class MotionPage(Page):
 
     def build(self):
         m = self.mod
-        T, script = {}, []
-        for beat in m.SCRIPT:
+        tj = self.folder / "timing.json"
+        self.timing = json.loads(tj.read_text()) if tj.exists() else None
+        self.length = self.timing["length"] if self.timing else m.DURATION
+        narr = {n["key"]: n for n in (self.timing or {}).get("narration", [])}
+        segs = getattr(m, "SCRIPT_SEG", None)
+        T, script, said = {}, [], []
+        for bi, beat in enumerate(m.SCRIPT):
+            beat = dict(beat)
+            if self.timing and segs:
+                t0 = self.timing["segments"][segs[bi]]["real"][0]
+                beat["time"] = f"{int(t0 // 60)}:{int(t0 % 60):02d}"
             self.section = f"{beat['time']} · {beat['label']}"
             paras = []
             for key, c in beat["items"]:
@@ -99,6 +110,14 @@ class MotionPage(Page):
                         continue    # the date or heading is already the beat's heading
                     html_ = f'<span class="lab">{html_}</span>'
                 paras.append(html_)
+            if segs:
+                hi = segs[bi + 1] if bi + 1 < len(segs) else 10 ** 6
+                lines = [(k, c) for seg, k, c in getattr(m, "NARRATION", []) if segs[bi] <= seg < hi]
+                if lines:
+                    self.section = f"{beat['time']} · {beat['label']} · narration"
+                for k, c in lines:
+                    paras.append(f'<span class="lab">Narration</span> {self.claims(c)}')
+                    said.append((k, c, narr.get(k)))
             script.append((beat, paras))
         T["title"] = self.title
         credits = []
@@ -110,6 +129,22 @@ class MotionPage(Page):
         self.write_animation(T, credits)
         self.write_page(script)
         self.write_manifest()
+        if said:
+            self.write_narration(said)
+
+    def write_narration(self, said):
+        m = self.mod
+        voice = (self.timing or {}).get("voice", getattr(m, "VOICE", ""))
+        out = [f"# Narration script: {self.title}", "",
+               f"Spoken by a synthetic voice ({voice}), generated offline with Kokoro. Every line follows the same rules as "
+               "the text on screen: it says only what the fetched Guardian articles say, and each is listed with its "
+               "source in `manifest.md`. Times are from the start of the video.", ""]
+        for k, c, n in said:
+            when = f"{n['start']:.1f}s–{n['start'] + n['dur']:.1f}s" if n else "untimed"
+            a = self.keys[c.src]
+            out += [f"**{when}** {re.sub(r'<[^>]+>', '', c.text)}",
+                    f"- Source: [{a['headline'].strip()}]({a['url']})", ""]
+        (self.folder / "narration.md").write_text("\n".join(out))
 
     def write_animation(self, T, credits):
         m = self.mod
@@ -122,7 +157,8 @@ class MotionPage(Page):
 {m.ANIM_CSS}</style></head>
 <body><div id="stage"></div>
 <script>
-const DURATION = {m.DURATION};
+const DURATION = {self.length};
+const WARP = {json.dumps((self.timing or {}).get("warp", []))};
 const T = {json.dumps(T, ensure_ascii=False, indent=1)};
 const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
 </script>
@@ -142,6 +178,12 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
         n_text = sum(1 for a in self.articles.values() if not a["media"])
         ex = self.folder.parent / f"explainer-{m.SLUG}"
         explainer_link = f'<a href="../{ex.name}/index.html">Read the explainer</a>' if (ex / "index.html").exists() else ""
+        has_narr = bool(self.timing and self.timing.get("narration"))
+        voice_name = {"bf_emma": "Emma", "bm_george": "George"}.get((self.timing or {}).get("voice", ""), "")
+        track = ('\n    <track kind="captions" src="narration.vtt" srclang="en-GB" label="Narration" default>' if has_narr else "")
+        script_link = ' <a href="narration.md">Narration script</a>' if has_narr else ""
+        narr_credit = (f" The narration is a synthetic voice (Kokoro’s “{voice_name}”), generated offline; it follows the same "
+                       "rules as the text on screen." if has_narr else "")
         rows = "".join(
             f'<li><span class="ts">{b["time"]}</span><div><h3>{esc(b["label"])}</h3>{"".join(f"<p>{p}</p>" for p in ps)}</div></li>'
             for b, ps in script)
@@ -166,20 +208,20 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
     <p class="kicker"><span>Storylines motion</span> <span class="kicker-tag">{esc(m.KICKER)}</span></p>
     <h1>{esc(self.title)}</h1>
     <p class="dek">{dek}</p>
-    <p class="meta">A {m.DURATION}-second video with music and sound effects, no speech · Drawn from {n_text} Guardian articles</p>
+    <p class="meta">A {self.length}-second video {"with narration, music and sound effects" if self.timing and self.timing.get("narration") else "with music and sound effects, no speech"} · Drawn from {n_text} Guardian articles</p>
   </div>
 </header>
 <main id="main">
 <div class="video-wrap">
   <video controls muted loop playsinline preload="metadata" poster="poster.jpg" aria-describedby="s-script">
-    <source src="video.mp4" type="video/mp4">
+    <source src="video.mp4" type="video/mp4">{track}
     Your browser can’t play this video. <a href="video.mp4">Download it</a> or read what’s on screen below.
   </video>
-  <p class="video-meta"><button type="button" class="snd" id="snd">Play with sound</button><span>1080p · 16:9 · {m.DURATION} seconds</span><a href="video.mp4" download>Download the MP4</a>{explainer_link}</p>
+  <p class="video-meta"><button type="button" class="snd" id="snd">Play with sound</button><span>1080p · 16:9 · {self.length} seconds</span>{script_link}<a href="video.mp4" download>Download the MP4</a>{explainer_link}</p>
 </div>
 <section aria-labelledby="s-script">
-  <h2 id="s-script">What’s on screen</h2>
-  <p class="rm-intro">Every word in the video, in order, with the Guardian article it comes from. On-screen labels are in small capitals.</p>
+  <h2 id="s-script">What’s on screen{" and what’s said" if self.timing and self.timing.get("narration") else ""}</h2>
+  <p class="rm-intro">Every word in the video, in order, with the Guardian article it comes from. On-screen labels are in small capitals{"; narrated lines are marked Narration" if self.timing and self.timing.get("narration") else ""}.</p>
   <p class="sound-note"><strong>Sound.</strong> {esc(m.SOUND)}</p>
   <ol class="script">{rows}</ol>
 </section>
@@ -192,7 +234,7 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
 <footer class="foot">
   <div class="foot-in">
     <h2>How this was made</h2>
-    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the {m.KICKER} topic page. An AI model (Claude) read the articles and designed this animation in code, using no words, dates or figures but theirs. The animation is written as a web page (<a href="animation.html">see it play live</a>) and rendered frame by frame to video; the music and sound effects are synthesised in code, with no samples or speech. Every piece of on-screen text is tied to a passage in the journalism: the full list is in the <a href="manifest.html">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
+    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the {m.KICKER} topic page. An AI model (Claude) read the articles and designed this animation in code, using no words, dates or figures but theirs. The animation is written as a web page (<a href="animation.html">see it play live</a>) and rendered frame by frame to video; the music and sound effects are synthesised in code, with no samples.{narr_credit} Every piece of on-screen text is tied to a passage in the journalism: the full list is in the <a href="manifest.html">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
   </div>
 </footer>
 <script>
