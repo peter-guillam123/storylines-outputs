@@ -35,6 +35,8 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
 .outputs li{background:var(--card);border-radius:12px;padding:.9rem 1rem;margin:.6rem 0}
 .outputs a{font:700 1.02rem/1.35 var(--sans)}
 .outputs span{display:block;font-size:.95rem;color:var(--muted);margin-top:.2rem}
+.topic{font:800 1.3rem/1.2 var(--sans);margin:2rem 0 .2rem;padding-top:1rem;border-top:3px solid var(--ink)}
+.topic span{display:block;font:600 .85rem/1.4 var(--sans);color:var(--muted);margin-top:.2rem}
 .og{font:800 .8rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1.6rem 0 .2rem}
 .og-sub{font-size:1rem;margin:0 0 .4rem}
 .videos{list-style:none;padding:0;margin:.6rem 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(12rem,1fr));gap:1rem}
@@ -62,14 +64,17 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
   <p>None of the outputs has yet been checked by a Guardian editor.</p>
 
   <h2>Outputs so far</h2>
-  <h3 class="og">Explainers</h3>
+  <p>Grouped by topic page. Each topic’s Storylines were generated on the date shown.</p>
+
+  <h3 class="topic" id="trump">Trump administration <span>Storylines of 26 September 2026</span></h3>
+  <h4 class="og">Explainers</h4>
   <p class="og-sub">A five-minute read for someone new to the story, with an interactive diagram.</p>
   <ul class="outputs">
     <li><a href="../explainer-press-ban/index.html">White House bans CNN, MS Now and Politico</a><span>Explainer, with a day-by-day grid of the nine days from the ban to Air Force One</span></li>
     <li><a href="../explainer-iran-hormuz/index.html">US-Iran war and Hormuz negotiations</a><span>Explainer, with Iran’s seven-day timetable as a step-through diagram</span></li>
     <li><a href="../explainer-ice-crackdown/index.html">ICE immigration enforcement crackdown</a><span>Explainer, with the immigration system drawn stage by stage</span></li>
   </ul>
-  <h3 class="og">Videos</h3>
+  <h4 class="og">Videos</h4>
   <p class="og-sub">Fifteen seconds of motion graphics, from the first development to the latest, with a score and sound effects.</p>
   <ul class="videos">
     <li><a href="../motion-press-ban/index.html"><img src="../motion-press-ban/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">White House bans CNN, MS Now and Politico</span></a><span class="vd">Press passes switched off and on, and the TV pool going dark</span></li>
@@ -77,8 +82,24 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
     <li><a href="../motion-ice-crackdown/index.html"><img src="../motion-ice-crackdown/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">ICE immigration enforcement crackdown</span></a><span class="vd">The Guardian’s reporting in date order, stage by stage</span></li>
   </ul>
 
+  <h3 class="topic" id="man-city">Manchester City <span>Storylines of 28 September 2026</span></h3>
+  <h4 class="og">Videos</h4>
+  <p class="og-sub">Fifteen seconds of motion graphics, with a score and sound effects.</p>
+  <ul class="videos">
+    <li><a href="../motion-city-verdict/index.html"><img src="../motion-city-verdict/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">Manchester City found guilty of financial fair play breaches</span></a><span class="vd">From Football Leaks to the verdict, the trophies of those seasons, and what was said next</span></li>
+    <li><a href="../motion-city-guardiola/index.html"><img src="../motion-city-guardiola/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">Pep Guardiola's departure from Manchester City</span></a><span class="vd">A decade of trophies, the week the news broke, and “Nothing is eternal”</span></li>
+    <li><a href="../motion-city-title-race/index.html"><img src="../motion-city-title-race/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">The 2025-26 Premier League title race</span></a><span class="vd">The last month result by result, with the gap between Arsenal and City</span></li>
+  </ul>
+
   <h2>Diary</h2>
   <ol class="diary">
+    <li>
+      <time datetime="2026-09-28">28 September 2026</time>
+      <h3>A second topic: Manchester City <span class="milestone">Milestone</span></h3>
+      <p>Three more videos, from the Storylines for the Manchester City topic page: the guilty verdict on financial fair play breaches, Pep Guardiola’s departure, and the 2025-26 title race. Same brief and the same kit as the Trump set, which was the point: the method should carry across subjects without being rebuilt.</p>
+      <p>Football brings its own traps. The articles disagree on how many charges City faced (134, 115 and “more than 100”), so the video uses the figure they all support. The title race is told through each result and the gap between Arsenal and City exactly as the reports gave it, including who had played more games. And the tone changes with each story: a low, serious score for the verdict, a warm and slow one for Guardiola, match-night drums and a synthesised crowd for the title race.</p>
+      <p>The fact-check again earned its place. It caught City’s denial on screen for under a second, “Nothing is eternal” shown after the next day’s remarks, and Arteta’s complaint about one match placed next to the scoreboard of another. It also pointed out that a few supporting passages came from standfirsts rather than article text; the manifests now say so wherever that happens, across every output.</p>
+    </li>
     <li>
       <time datetime="2026-09-26">26 September 2026</time>
       <h3>Sound for the videos</h3>
