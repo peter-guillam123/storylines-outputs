@@ -112,7 +112,7 @@ function endCard(t, t0, opts) {
   if (!endCard.el) {
     const c = mk('div', 'endcard');
     const k = mk('div', 'ec-k', c, 'Drawn from Guardian journalism');
-    const list = mk('ol', 'ec-list', c);
+    const list = mk('ol', 'ec-list' + (CREDITS.length > 8 ? ' ec-many' : ''), c);
     const items = CREDITS.map(cr => {
       const li = mk('li', '', list);
       mk('span', 'ec-d', li, cr.date);

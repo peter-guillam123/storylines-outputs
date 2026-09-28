@@ -88,7 +88,7 @@ class Page:
             if rec:
                 text += " " + (rec["headline"] or "") + " " + (rec["standfirst"] or "") + " " + rec["bodyText"]
             a.update(n=n, path=path, media=media, fetched=bool(rec),
-                     byline=(rec or {}).get("byline") or a.get("byline"), normtext=norm(text))
+                     byline=(rec or {}).get("byline") or a.get("byline"), normtext=norm(text), normbody=norm(rec["bodyText"]) if rec else "")
             self.articles[path] = a
         self.keys = {}
         for key, path in self.mod.SRC.items():
@@ -273,7 +273,8 @@ class Page:
                 a = self.keys[c.src]
                 out.append(f"- Source: [{a['headline'].strip()}]({a['url']}) ({long_date(a['publicationTime'])})")
                 for sp in c.support:
-                    out.append(f"- Supports: {sp}")
+                    where = "" if norm(sp) in a["normbody"] else " *(from the headline or standfirst, not the body text)*"
+                    out.append(f"- Supports: {sp}{where}")
             if c.note:
                 out.append(f"- Note: {c.note}")
             out.append("")
@@ -300,6 +301,8 @@ class Page:
                 continue
             elif line.startswith("## "):
                 body.append(f"<h2>{inline(line[3:])}</h2>")
+            elif line.startswith("- Supports: ") and line.endswith("*(from the headline or standfirst, not the body text)*"):
+                body.append(f'<li class="sup"><span>Supports</span><q>{inline(line[12:line.rindex(" *(")])}</q><em class="hs">From the headline or standfirst, not the body text</em></li>')
             elif line.startswith("- Supports: "):
                 body.append(f'<li class="sup"><span>Supports</span><q>{inline(line[12:])}</q></li>')
             elif line.startswith("- Source: "):
@@ -336,6 +339,7 @@ li{{margin:.3rem 0}}
 li>span{{font:700 .68rem "Avenir Next","Segoe UI",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:.5rem}}
 .sup q{{display:block;background:var(--card);border-left:3px solid var(--accent);padding:.4rem .7rem;margin-top:.2rem;quotes:none}}
 .nt{{color:var(--muted)}}
+.hs{{display:block;font-size:.85rem;color:var(--muted);margin-top:.2rem}}
 code{{font-size:.9em}}
 </style></head><body><main>
 <p class="k"><a href="index.html">Back to the {getattr(self, "kind", "explainer")}</a></p>

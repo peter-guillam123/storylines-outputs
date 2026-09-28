@@ -336,7 +336,7 @@ Two parts of the page are generated straight from the Storylines data and are no
 
 **84.** A Guardian headline the day before described it as opening the strait “in six days”:
 - Source: [Iran awaiting response from Trump on proposal to open strait of Hormuz in six days](https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz) (24 September 2026)
-- Supports: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days
+- Supports: Iran awaiting response from Trump on proposal to open strait of Hormuz in six days *(from the headline or standfirst, not the body text)*
 
 **85.** the strait reopens on day six and nuclear talks follow on day seven.
 - Source: [Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms](https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections) (25 September 2026)

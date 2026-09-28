@@ -25,7 +25,7 @@ Two parts of the page are generated straight from the Storylines data and are no
 **4.** On a single Sunday, a US citizen was hurt near Chicago when agents reportedly mistook him for someone else, an ICE agent shot a man in Texas, and a man died in Michigan after reportedly trying to flee immigration officers.
 - Source: [US citizen injured after ICE agents reportedly mistook him for fugitive](https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest) (24 September 2026)
 - Supports: The incident was one of three separate violent Sunday events involving federal immigration officers.
-- Supports: US citizen injured after ICE agents reportedly mistook him for fugitive
+- Supports: US citizen injured after ICE agents reportedly mistook him for fugitive *(from the headline or standfirst, not the body text)*
 - Supports: In Austin, Texas, an ICE agent shot and seriously wounded a 28-year-old Venezuelan man
 - Supports: In Michigan, authorities are investigating the death of a 36-year-old Guatemalan national who crashed his car into a tree at high speed after reportedly attempting to flee immigration officers
 
@@ -58,7 +58,7 @@ Two parts of the page are generated straight from the Storylines data and are no
 
 **11.** ICE agent shoots man at traffic stop, Austin
 - Source: [ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas](https://www.theguardian.com/us-news/2026/sep/20/man-shot-ice-agent-austin-texas) (21 September 2026)
-- Supports: ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas
+- Supports: ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas *(from the headline or standfirst, not the body text)*
 
 **12.** Man dies after reportedly fleeing officers, Michigan
 - Source: [US citizen injured after ICE agents reportedly mistook him for fugitive](https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest) (24 September 2026)
@@ -80,11 +80,11 @@ Two parts of the page are generated straight from the Storylines data and are no
 
 **17.** Guardian reports watchdog findings on cages at Alligator Alcatraz
 - Source: [Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says](https://www.theguardian.com/us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report) (14 September 2026)
-- Supports: Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says
+- Supports: Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says *(from the headline or standfirst, not the body text)*
 
 **18.** Guardian reveals ICE lost count of miscarriages
 - Source: [Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women](https://www.theguardian.com/us-news/ng-interactive/2026/sep/15/ice-detention-miscarriages-pregnancy) (15 September 2026)
-- Supports: Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women
+- Supports: Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women *(from the headline or standfirst, not the body text)*
 
 **19.** Stage 2
 - Note: Heading or label: makes no claim beyond facts sourced elsewhere on the page
@@ -139,7 +139,7 @@ Two parts of the page are generated straight from the Storylines data and are no
 
 **33.** Guardian explainer: the third-country deportation policy
 - Source: [What is Trump’s third-country deportation policy and whom does it target?](https://www.theguardian.com/us-news/2026/sep/21/what-is-trump-third-country-deportation-policy) (21 September 2026)
-- Supports: What is Trump’s third-country deportation policy and whom does it target?
+- Supports: What is Trump’s third-country deportation policy and whom does it target? *(from the headline or standfirst, not the body text)*
 
 **34.** The system, stage by stage
 - Note: Heading or label: makes no claim beyond facts sourced elsewhere on the page
@@ -175,7 +175,7 @@ Two parts of the page are generated straight from the Storylines data and are no
 
 **41.** Protesters gathered at the scene to demand transparency.
 - Source: [ICE agent shoots and wounds Venezuelan man at traffic stop in Austin, Texas](https://www.theguardian.com/us-news/2026/sep/20/man-shot-ice-agent-austin-texas) (21 September 2026)
-- Supports: Anti-ICE protesters gather and demand transparency at site where 28-year-old was shot in torso
+- Supports: Anti-ICE protesters gather and demand transparency at site where 28-year-old was shot in torso *(from the headline or standfirst, not the body text)*
 
 **42.** In Michigan, authorities are investigating the death of a 36-year-old Guatemalan man who crashed his car into a tree at high speed after reportedly trying to flee immigration officers.
 - Source: [US citizen injured after ICE agents reportedly mistook him for fugitive](https://www.theguardian.com/us-news/2026/sep/24/citizen-injured-ice-mistaken-fugitive-arrest) (24 September 2026)
@@ -237,8 +237,8 @@ Two parts of the page are generated straight from the Storylines data and are no
 
 **54.** A separate Guardian investigation found that ICE was detaining a record number of pregnant women. ICE says it has no updated information on miscarriages after 3 October 2025. Lawmakers and lawyers have warned that pregnant detainees are not getting basic prenatal care.
 - Source: [Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women](https://www.theguardian.com/us-news/ng-interactive/2026/sep/15/ice-detention-miscarriages-pregnancy) (15 September 2026)
-- Supports: Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women
-- Supports: ICE says it has no updated information on the number of miscarriages after 3 October 2025. Lawmakers, advocates and immigration attorneys have raised alarms that pregnant detainees are not receiving basic prenatal care and screenings
+- Supports: Revealed: ICE lost count of miscarriages, while detaining a record number of pregnant women *(from the headline or standfirst, not the body text)*
+- Supports: ICE says it has no updated information on the number of miscarriages after 3 October 2025. Lawmakers, advocates and immigration attorneys have raised alarms that pregnant detainees are not receiving basic prenatal care and screenings *(from the headline or standfirst, not the body text)*
 
 **55.** 2. In detention
 - Note: Heading or label: makes no claim beyond facts sourced elsewhere on the page

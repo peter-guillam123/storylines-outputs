@@ -35,6 +35,7 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden}
 .ec-d{font:800 24px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ec-accent)}
 .ec-h{font:600 36px/1.22 var(--serif)}
 .ec-kind{font:700 20px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.ec-many{gap:10px!important}.ec-many li{padding-top:10px!important}.ec-many .ec-h{font-size:28px!important}
 .ec-f{position:absolute;left:120px;bottom:90px;font:600 26px/1 var(--sans);letter-spacing:.04em;opacity:.7}
 """
 
@@ -139,6 +140,8 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
         self.section = "Page header"
         dek = self.claims(*m.DEK, cite=False)
         n_text = sum(1 for a in self.articles.values() if not a["media"])
+        ex = self.folder.parent / f"explainer-{m.SLUG}"
+        explainer_link = f'<a href="../{ex.name}/index.html">Read the explainer</a>' if (ex / "index.html").exists() else ""
         rows = "".join(
             f'<li><span class="ts">{b["time"]}</span><div><h3>{esc(b["label"])}</h3>{"".join(f"<p>{p}</p>" for p in ps)}</div></li>'
             for b, ps in script)
@@ -172,7 +175,7 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
     <source src="video.mp4" type="video/mp4">
     Your browser can’t play this video. <a href="video.mp4">Download it</a> or read what’s on screen below.
   </video>
-  <p class="video-meta"><button type="button" class="snd" id="snd">Play with sound</button><span>1080p · 16:9 · {m.DURATION} seconds</span><a href="video.mp4" download>Download the MP4</a><a href="../explainer-{m.SLUG}/index.html">Read the explainer</a></p>
+  <p class="video-meta"><button type="button" class="snd" id="snd">Play with sound</button><span>1080p · 16:9 · {m.DURATION} seconds</span><a href="video.mp4" download>Download the MP4</a>{explainer_link}</p>
 </div>
 <section aria-labelledby="s-script">
   <h2 id="s-script">What’s on screen</h2>
@@ -189,7 +192,7 @@ const CREDITS = {json.dumps(credits, ensure_ascii=False, indent=1)};
 <footer class="foot">
   <div class="foot-in">
     <h2>How this was made</h2>
-    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the Trump administration topic page. An AI model (Claude) read the articles and designed this animation in code, using no words, dates or figures but theirs. The animation is written as a web page (<a href="animation.html">see it play live</a>) and rendered frame by frame to video; the music and sound effects are synthesised in code, with no samples or speech. Every piece of on-screen text is tied to a passage in the journalism: the full list is in the <a href="manifest.html">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
+    <p>The Guardian’s Storylines module chose this thread, and the articles in it, as one of the three strongest on the {m.KICKER} topic page. An AI model (Claude) read the articles and designed this animation in code, using no words, dates or figures but theirs. The animation is written as a web page (<a href="animation.html">see it play live</a>) and rendered frame by frame to video; the music and sound effects are synthesised in code, with no samples or speech. Every piece of on-screen text is tied to a passage in the journalism: the full list is in the <a href="manifest.html">provenance manifest</a>. This is an experiment and has not yet been checked by a Guardian editor. <a href="../about/index.html">About this project</a>.</p>
   </div>
 </footer>
 <script>

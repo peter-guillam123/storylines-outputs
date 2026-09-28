@@ -19,6 +19,7 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden}
 .ec-d{font:800 24px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ec-accent)}
 .ec-h{font:600 36px/1.22 var(--serif)}
 .ec-kind{font:700 20px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+.ec-many{gap:10px!important}.ec-many li{padding-top:10px!important}.ec-many .ec-h{font-size:28px!important}
 .ec-f{position:absolute;left:120px;bottom:90px;font:600 26px/1 var(--sans);letter-spacing:.04em;opacity:.7}
 
 
@@ -237,7 +238,7 @@ function endCard(t, t0, opts) {
   if (!endCard.el) {
     const c = mk('div', 'endcard');
     const k = mk('div', 'ec-k', c, 'Drawn from Guardian journalism');
-    const list = mk('ol', 'ec-list', c);
+    const list = mk('ol', 'ec-list' + (CREDITS.length > 8 ? ' ec-many' : ''), c);
     const items = CREDITS.map(cr => {
       const li = mk('li', '', list);
       mk('span', 'ec-d', li, cr.date);

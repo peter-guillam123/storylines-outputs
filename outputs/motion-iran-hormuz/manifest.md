@@ -96,7 +96,7 @@ Three things are generated from the Storylines data and not listed entry by entr
 
 **21.** He also calls talks with Iran “very productive”
 - Source: [Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York](https://www.theguardian.com/world/2026/sep/23/iran-denies-dropping-preconditions-very-productive-three-hour-un-talks-new-york) (23 September 2026)
-- Supports: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York
+- Supports: Iran denies dropping preconditions amid ‘very productive’ three-hour UN talks in New York *(from the headline or standfirst, not the body text)*
 - Supports: Trump said the three-hour talks held in a room at the UN headquarters had gone very well and been very productive.
 - Note: The talks were reported on 23 September; the article does not give their date.
 
