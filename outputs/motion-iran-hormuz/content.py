@@ -13,9 +13,10 @@ SLUG = "iran-hormuz"
 PAGE_TITLE = "US-Iran war and Hormuz negotiations: a Storylines video"
 KICKER = "Trump administration"
 DURATION = 15
-SOUND = ("A low drone with a sea-like wash. The February strikes are marked by muted low pulses, not explosions. "
+SOUND = ("Narration by a synthetic British voice (Kokoro’s “Emma”), generated offline, over "
+         "a low drone with a sea-like wash. The February strikes are marked by muted low pulses, not explosions. "
          "A slowing count runs under the cost figure, a soft chime marks each stage of Iran’s offer, and the "
-         "video ends on an unresolved chord and a slow clock for the wait for Trump’s answer. No speech.")
+         "video ends on an unresolved chord and a slow clock for the wait for Trump’s answer.")
 
 SRC = {
     "house": "world/2026/sep/15/iran-war-cost-cbo-report",
@@ -36,7 +37,7 @@ THEME_DARK = """
 --accent:#f2a950;--accent-strong:#f6bd74;--accent-ink:#0c1618;--chip:#e6eeec;--chip-ink:#0c1618;--focus:#7fb4ff;
 """
 
-DEK = [C("Fifteen seconds on the war, its cost, and the offer Iran has put to Donald Trump to reopen the strait of "
+DEK = [C("Thirty seconds on the war, its cost, and the offer Iran has put to Donald Trump to reopen the strait of "
          "Hormuz.", note="Summary of the video. Each element is sourced in the script below.")]
 
 
@@ -138,7 +139,7 @@ CHECKS = [
     "**\"Iran grips the strait\".** Paraphrases the UN speech article's \"stranglehold over energy shipping\".",
     "**Left out.** The Minab school strike (conflicting figures between two articles), the talks in New York, and "
     "reactions from other countries. The opinion piece (Arwa Mahdawi) is credited on the end card but not quoted.",
-    "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.",
+    "**Images.** None. Type, colour and drawn shapes only. **Sound:** narration by a synthetic voice (Kokoro, run offline), with music and effects synthesised in code; no samples, no licensed music.",
 ]
 
 ANIM_CSS = """
@@ -319,16 +320,16 @@ def score(A):
     """A low drone with a sea-like wash, in A minor. Strikes are muted pulses, not explosions."""
     import numpy as np
     m, N = A.mix, A.note
-    m.add(np.vstack([A.sea(15), A.sea(15)]), 0.0, "music", gain=0.45)
-    m.add(A.pad([N("A1"), N("E2")], 15, cutoff=320, a=1.2, r=1.0), 0.0, "music", gain=0.7, verb=0.2)
+    m.add(np.vstack([A.sea(A.LEN), A.sea(A.LEN)]), 0.0, "music", gain=0.45)
+    m.add(A.pad([N("A1"), N("E2")], A.LEN, cutoff=320, a=1.2, r=1.0), 0.0, "music", gain=0.7, verb=0.2)
     cues = []
     m.add(A.thud(62, 30, 1.6, 3, 0.2), 0.18, gain=0.8, verb=0.4)
-    m.add(A.pad([N("A2"), N("E3"), N("C4")], 1.6, cutoff=900, a=0.05, r=1.0), 0.18, "music", gain=0.5, verb=0.4); cues.append(0.18)
+    m.add(A.pad([N("A2"), N("E3"), N("C4")], A.D(0.18, 1.8), cutoff=900, a=0.05, r=1.0), 0.18, "music", gain=0.5, verb=0.4); cues.append(0.18)
     # February: muted pulses as the rings spread
     for i, t0 in enumerate([1.7, 1.95, 2.2]):
         m.add(A.filt(A.thud(55, 30, 1.2, 4, 0.05), "lowpass", 220), t0, gain=0.65, pan=0.3 + i * 0.15, verb=0.4); cues.append(t0)
     # the grip: a slow low pulse and a darker cluster
-    m.add(A.pad([N("A1"), N("Bb1")], 1.9, cutoff=260, a=0.6, r=0.8), 3.1, "music", gain=0.35)
+    m.add(A.pad([N("A1"), N("Bb1")], A.D(3.1, 5.0), cutoff=260, a=0.6, r=0.8), 3.1, "music", gain=0.35)
     for t0 in np.arange(3.2, 4.8, 0.7):
         m.add(A.thud(70, 40, 0.35, 10, 0.0), t0, gain=0.4); cues.append(float(t0))
     # the cost: a tick each time the counter passes a billion
@@ -340,15 +341,15 @@ def score(A):
     m.add(A.piano(N("E3"), 1.5), 6.5, "music", gain=0.9, verb=0.4)
     m.add(A.piano(N("D3"), 1.5), 6.6, "music", gain=0.8, verb=0.4); cues += [6.5, 6.6]
     # Trump at the UN
-    m.add(A.pad([N("A2"), N("C3"), N("E3")], 1.4, cutoff=700, a=0.04, r=0.9), 7.85, "music", gain=0.6, verb=0.4)
+    m.add(A.pad([N("A2"), N("C3"), N("E3")], A.D(7.85, 9.25), cutoff=700, a=0.04, r=0.9), 7.85, "music", gain=0.6, verb=0.4)
     m.add(A.thud(80, 42, 0.9, 5, 0.1), 7.85, gain=0.5); cues.append(7.85)
     # Iran's offer: a chime for each stage, and the route drawn in
-    m.add(A.pad([N("F2"), N("C3"), N("A3")], 3.0, cutoff=1000, a=0.4, r=1.0), 9.2, "music", gain=0.45, verb=0.4)
+    m.add(A.pad([N("F2"), N("C3"), N("A3")], A.D(9.2, 12.2), cutoff=1000, a=0.4, r=1.0), 9.2, "music", gain=0.45, verb=0.4)
     for t0, n in [(9.5, "E5"), (10.05, "G5"), (10.6, "A5")]:
         m.add(A.chime(N(n)), t0, gain=0.5, pan=-0.3, verb=0.5); cues.append(t0)
     m.add(A.sweep_noise(0.8, 1200, 7000), 10.1, gain=0.14, pan=0.5, verb=0.3)
     # waiting: an unresolved chord and a slow clock
-    m.add(A.pad([N("D3"), N("E3"), N("A3")], 3.2, cutoff=900, a=0.5, r=1.2), 12.0, "music", gain=0.5, verb=0.4)
+    m.add(A.pad([N("D3"), N("E3"), N("A3")], A.D(12.0, 15.0) + 0.3, cutoff=900, a=0.5, r=1.2), 12.0, "music", gain=0.5, verb=0.4)
     for t0 in [12.0, 12.6, 13.2]:
         m.add(A.tick(2600, 0.03, 0.28), t0, pan=0.2, verb=0.2); cues.append(t0)
     m.add(A.piano(N("A4"), 2.4, 0.6), 12.0, "music", gain=0.8, verb=0.5)
@@ -357,3 +358,19 @@ def score(A):
     m.add(A.piano(N("A2"), 2.0, 0.8), 13.45, "music", gain=0.9, verb=0.5)
     m.add(A.piano(N("E3"), 2.0, 0.6), 13.47, "music", gain=0.7, verb=0.5); cues.append(13.4)
     return cues
+
+# ---- 30-second cut with narration (see motion-kit/timing.py)
+LENGTH = 30
+VOICE = "bf_emma"
+SEGMENTS = [(0, 1.5, 1.2), (1.5, 3.0, 1.2, 1.8), (3.0, 4.8, 1.3, 2.5), (4.8, 6.4, 1.0, 2.2), (6.4, 7.8, 1.1, 2.6),
+            (7.8, 9.2, 1.1, 3.0), (9.2, 12.0, 1.9, 5.0), (12.0, 13.4, 0.9, 2.6), (13.4, 15, 1.2)]
+SCRIPT_SEG = [0, 1, 2, 3, 5, 6, 7, 8]
+NARRATION = [
+    (2, "n1", C("Iran has kept a stranglehold on energy shipping through the strait of Hormuz.", "un",
+                "Iran has maintained a stranglehold over energy shipping through the strait of Hormuz since early in the war")),
+    (5, "n3", C("Trump called for Iran’s complete economic isolation.", "un",
+                "“I call on all nations to help to enforce the complete economic isolation of Iran,”")),
+    (6, "n5", C("Iran says it has offered to reopen the strait, if the US meets its conditions.", "offer",
+                ["Iran said it has told Donald Trump it is willing to open the strait of Hormuz in six days",
+                 "so long as the US lifts sanctions on Iran’s oil exports in return, ends the war on all fronts – including in Lebanon – and releases some of Iran’s frozen assets"])),
+]

@@ -14,9 +14,10 @@ SLUG = "city-guardiola"
 PAGE_TITLE = "Pep Guardiola's departure from Manchester City: a Storylines video"
 KICKER = "Manchester City"
 DURATION = 15
-SOUND = ("A warm, slow score in a major key: soft piano over held strings-like chords. A gentle bell for each "
+SOUND = ("Narration by a synthetic British voice (Kokoro’s “George”), generated offline, over "
+         "a warm, slow score in a major key: soft piano over held strings-like chords. A gentle bell for each "
          "group of trophies, a quiet shift to a minor chord as the news breaks, and a long, open chord under "
-         "“Nothing is eternal”. No speech.")
+         "“Nothing is eternal”.")
 
 SRC = {
     "exp": "football/2026/may/18/pep-guardiola-departure-manchester-city-end-of-premier-league-season",
@@ -37,7 +38,7 @@ THEME_DARK = """
 --accent:#f4b860;--accent-strong:#f6c983;--accent-ink:#140f16;--chip:#efe6de;--chip-ink:#140f16;--focus:#8fb0ff;
 """
 
-DEK = [C("Fifteen seconds on the end of Pep Guardiola’s decade at Manchester City: the trophies, the week the news "
+DEK = [C("Thirty seconds on the end of Pep Guardiola’s decade at Manchester City: the trophies, the week the news "
          "broke, and his own words on leaving.",
          note="Summary of the video. Each element is sourced in the script below.")]
 
@@ -131,7 +132,7 @@ CHECKS = [
     "**Left out.** The Chelsea compensation dispute over Maresca, Barney Ronay's opinion piece, and the explainers "
     "by Jonathan Wilson and Jamie Jackson. All are credited on the end card.",
     "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, "
-    "no licensed music, no speech.",
+    "no licensed music; narration by a synthetic voice (Kokoro, run offline), held to the same sourcing rules.",
 ]
 
 ANIM_CSS = """
@@ -256,7 +257,7 @@ def score(A):
               (10.15, ["D3", "A3", "E4"]), (11.3, ["G2", "D3", "B3"]), (12.3, ["D3", "A3", "F#4"])]
     for i, (t0, ns) in enumerate(chords):
         t1 = chords[i + 1][0] if i + 1 < len(chords) else 15.0
-        m.add(A.pad([N(n) for n in ns], t1 - t0 + 1.2, cutoff=1000, a=0.7, r=1.2), t0, "music", gain=0.55, verb=0.45)
+        m.add(A.pad([N(n) for n in ns], A.D(t0, t1) + 1.2, cutoff=1000, a=0.7, r=1.2), t0, "music", gain=0.55, verb=0.45)
     # a slow piano line, one note per beat
     for t0, n in [(0.2, "F#4"), (1.65, "D4"), (3.2, "A4"), (5.6, "F#4"), (7.1, "E4"), (8.8, "C#5"), (10.15, "A4"), (11.3, "B4"), (12.35, "F#4")]:
         m.add(A.piano(N(n), 2.5, 0.75), t0, "music", gain=1.0, verb=0.55); cues.append(t0)
@@ -272,3 +273,17 @@ def score(A):
     m.add(A.piano(N("D2"), 2.8, 0.7), 12.35, "music", gain=0.8, verb=0.6)
     m.add(A.sweep_noise(0.5, 5000, 800), 13.35, gain=0.06, verb=0.3); cues.append(13.4)
     return cues
+
+# ---- 30-second cut with narration (see motion-kit/timing.py)
+LENGTH = 30
+VOICE = "bm_george"
+SEGMENTS = [(0, 1.6, 1.3), (1.6, 3.2, 1.2, 2.2), (3.2, 5.6, 2.1, 3.0), (5.6, 7.1, 1.0, 2.2), (7.1, 8.8, 1.1, 2.8),
+            (8.8, 10.1, 1.0, 2.8), (10.1, 11.25, 0.8, 2.2), (11.25, 12.3, 0.8, 2.4), (12.3, 13.4, 0.7, 2.0), (13.4, 15, 1.2)]
+SCRIPT_SEG = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+NARRATION = [
+    (2, "n2", C("In a decade at City, Guardiola won seventeen major trophies.", "confirm",
+                "following a decade of glittering success in which he won 17 major trophies")),
+    (3, "n3", C("Then, in May, news of his departure broke.", "tells", "after news of his departure broke on Monday night")),
+    (5, "n4", C("Four days later, City confirmed he was leaving.", "confirm", "his departure from Manchester City was confirmed on Friday",
+                note="Four days: the news broke on Monday 18 May; the departure was confirmed on Friday 22 May.")),
+]

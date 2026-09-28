@@ -14,9 +14,10 @@ SLUG = "city-verdict"
 PAGE_TITLE = "Manchester City found guilty of financial fair play breaches: a Storylines video"
 KICKER = "Manchester City"
 DURATION = 15
-SOUND = ("A low, serious score in a minor key. Soft typewriter-like ticks mark the years of the investigation, a "
+SOUND = ("Narration by a synthetic British voice (Kokoro’s “George”), generated offline, over "
+         "a low, serious score in a minor key. Soft typewriter-like ticks mark the years of the investigation, a "
          "single heavy note lands with the verdict, muted plucks count the trophies, and the reactions sit over "
-         "sparse piano. No speech.")
+         "sparse piano.")
 
 SRC = {
     "main": "football/2026/sep/25/manchester-city-found-guilty-of-breaking-premier-leagues-financial-fair-play-rules",
@@ -37,7 +38,7 @@ THEME_DARK = """
 --accent:#e3b04b;--accent-strong:#ecc36f;--accent-ink:#10131a;--chip:#ece8df;--chip-ink:#10131a;--focus:#8fb0ff;
 """
 
-DEK = [C("Fifteen seconds on how a process a decade in the making reached a guilty verdict, and what the club, "
+DEK = [C("Thirty seconds on how a process a decade in the making reached a guilty verdict, and what the club, "
          "its former manager and a beaten FA Cup finalist said next.",
          note="Summary of the video. Each element is sourced in the script below.")]
 
@@ -141,7 +142,7 @@ CHECKS = [
     "**Left out.** Rui Pinto's reaction, the opinion pieces (Barney Ronay, Simon Hattenstone), the Uefa history and "
     "Noel Gallagher's and others' reactions. All are credited on the end card.",
     "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, "
-    "no licensed music, no speech.",
+    "no licensed music; narration by a synthetic voice (Kokoro, run offline), held to the same sourcing rules.",
 ]
 
 ANIM_CSS = """
@@ -290,7 +291,7 @@ def score(A):
               (10.0, ["Eb2", "Bb2", "G3"]), (11.2, ["F2", "Ab2", "C3"]), (13.4, ["C3", "G3", "D4"])]
     for i, (t0, ns) in enumerate(chords):
         t1 = chords[i + 1][0] if i + 1 < len(chords) else 15.0
-        m.add(A.pad([N(n) for n in ns], t1 - t0 + 1.0, cutoff=700, a=0.5, r=1.0), t0, "music", gain=0.6, verb=0.35)
+        m.add(A.pad([N(n) for n in ns], A.D(t0, t1) + 1.0, cutoff=700, a=0.5, r=1.0), t0, "music", gain=0.6, verb=0.35)
     m.add(A.thud(64, 32, 1.4, 4, 0.2), 0.18, gain=0.8, verb=0.4); cues.append(0.18)
     # the years of the investigation: a dry tick and low note for each entry
     for i, t0 in enumerate([1.55, 2.15, 2.75, 3.35]):
@@ -311,3 +312,18 @@ def score(A):
     m.add(A.sweep_noise(0.5, 6000, 800), 13.35, gain=0.1, verb=0.3)
     m.add(A.piano(N("C3"), 2.0, 0.8), 13.45, "music", gain=0.9, verb=0.5); cues.append(13.4)
     return cues
+
+# ---- 30-second cut with narration (see motion-kit/timing.py)
+LENGTH = 30
+VOICE = "bm_george"
+SEGMENTS = [(0, 1.5, 1.2), (1.5, 3.95, 2.3, 4.0), (3.95, 5.95, 1.1, 3.0), (5.95, 7.5, 1.0, 2.6), (7.5, 8.9, 0.9, 2.8),
+            (8.9, 10.0, 0.8, 1.6), (10.0, 11.2, 0.9, 3.0), (11.2, 13.4, 1.1, 5.0), (13.4, 15, 1.2)]
+SCRIPT_SEG = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+NARRATION = [
+    (1, "n1", C("The Premier League’s inquiry is believed to have been inspired by leaked documents.", "main",
+                ["In December 2018 the Premier League began its own investigation into City.",
+                 "it is believed to have been inspired by the Football Leaks revelations"])),
+    (2, "n2", C("Now City have been found guilty.", "main",
+                "Manchester City have been found guilty of the vast majority of more than a hundred charges")),
+    (4, "n4", C("City deny wrongdoing.", "pulis", "City are expected to appeal and they deny any wrongdoing.")),
+]

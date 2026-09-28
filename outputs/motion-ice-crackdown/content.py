@@ -15,9 +15,10 @@ SLUG = "ice-crackdown"
 PAGE_TITLE = "ICE immigration enforcement crackdown: a Storylines video"
 KICKER = "Trump administration"
 DURATION = 15
-SOUND = ("Sparse and restrained: a held low chord and soft piano, with a chord at each new date. A muted close as "
+SOUND = ("Narration by a synthetic British voice (Kokoro’s “Emma”), generated offline, over "
+         "a sparse, restrained score: a held low chord and soft piano, with a chord at each new date. A muted close as "
          "the cage appears, three low pulses for the three incidents on 20 September, and a slow swell as the "
-         "arrest figures fill the screen. No stingers and no speech.")
+         "arrest figures fill the screen. No stingers.")
 
 SRC = {
     "cage": "us-news/2026/sep/14/alligator-alcatraz-immigration-jail-cages-report",
@@ -37,7 +38,7 @@ THEME_DARK = """
 --accent:#f08a64;--accent-strong:#f5a384;--accent-ink:#121417;--chip:#ebe8e3;--chip-ink:#121417;--focus:#86adff;
 """
 
-DEK = [C("Fifteen seconds on the Trump administration’s immigration crackdown, through the Guardian’s reporting on "
+DEK = [C("Thirty seconds on the Trump administration’s immigration crackdown, through the Guardian’s reporting on "
          "detention, deportation, the courts and the street.",
          note="Summary of the video. Each element is sourced in the script below.")]
 
@@ -131,7 +132,7 @@ CHECKS = [
     "are in the explainer.",
     "**Dot grid.** 100 dots, each standing for 500 arrests, fill to 50,000. The unit is the video's own, and is labelled.",
     "**The cage graphic.** The squares' areas are in the ratio 18:37.",
-    "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.",
+    "**Images.** None. Type, colour and drawn shapes only. **Sound:** narration by a synthetic voice (Kokoro, run offline), with music and effects synthesised in code; no samples, no licensed music.",
 ]
 
 ANIM_CSS = """
@@ -302,7 +303,7 @@ MIX = {"music_gain": 0.7, "fx_gain": 0.8, "rt": 2.6}
 def score(A):
     """Sparse and restrained, in E minor: low piano and a held pad. No stingers."""
     m, N = A.mix, A.note
-    m.add(A.pad([N("E2"), N("B2")], 15, cutoff=480, a=1.0, r=1.0), 0.0, "music", gain=0.55, verb=0.3)
+    m.add(A.pad([N("E2"), N("B2")], A.LEN, cutoff=480, a=1.0, r=1.0), 0.0, "music", gain=0.55, verb=0.3)
     cues = []
     def chord(t0, ns, vel=0.7):
         for j, n in enumerate(ns):
@@ -326,9 +327,27 @@ def score(A):
     for t0 in [9.25, 9.6, 9.95]:
         m.add(A.thud(60, 35, 0.5, 6, 0.0), t0, gain=0.35, verb=0.3); cues.append(t0)
     # scale: the dots fill as the sound thickens
-    m.add(A.pad([N("E3"), N("B3"), N("E4")], 2.6, cutoff=400, a=1.0, r=0.8, bright_end=2600), 11.1, "music", gain=0.45, verb=0.4)
+    m.add(A.pad([N("E3"), N("B3"), N("E4")], A.D(11.1, 13.7), cutoff=400, a=1.0, r=0.8, bright_end=2600), 11.1, "music", gain=0.45, verb=0.4)
     m.add(A.sweep_noise(1.4, 300, 3000), 11.2, gain=0.1, verb=0.3); cues.append(11.2)
     # end card
     m.add(A.sweep_noise(0.5, 5000, 800), 13.35, gain=0.08, verb=0.3)
     chord(13.45, ["E2", "B2", "G3"], 0.6)
     return cues
+
+# ---- 30-second cut with narration (see motion-kit/timing.py)
+LENGTH = 30
+VOICE = "bf_emma"
+SEGMENTS = [(0, 1.5, 1.2), (1.5, 4.0, 1.5, 3.4), (4.0, 6.4, 1.7, 3.6), (6.4, 8.6, 1.5, 3.4), (8.6, 11.0, 1.9, 3.8), (11.0, 13.4, 1.5, 2.6), (13.4, 15, 1.2)]
+SCRIPT_SEG = [0, 1, 2, 3, 4, 5, 6]
+NARRATION = [
+    (1, "n1", C("A watchdog found detainees were locked in cages the size of phone booths.", "cage",
+                ["Alligator Alcatraz held detainees in cages the size of phone booths, DHS watchdog says",
+                 "detainees at Florida’s “Alligator Alcatraz” federal immigration jail were frequently locked in outside metal cages no bigger than a phone booth"])),
+    (2, "n2", C("An appeals court ruled the third-country deportation policy unlawful.", "third",
+                "A US federal appeals court ruled on Friday that the Trump administration’s third-country removals policy was unlawful.")),
+    (3, "n4", C("An advocacy group found almost two hundred thousand children ordered removed since Trump’s return.", "miller",
+                ["Almost 200,000 children have been ordered removed from the US by immigration judges since Trump returned to the White House",
+                 "conducted by the California-based advocacy Mobile Pathways"])),
+    (4, "n5", C("And on one Sunday, three violent incidents involving immigration officers.", "evan",
+                "The incident was one of three separate violent Sunday events involving federal immigration officers.")),
+]

@@ -64,7 +64,8 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden}
 </style></head>
 <body><div id="stage"></div>
 <script>
-const DURATION = 15;
+const DURATION = 30;
+const WARP = [[0.0, 0], [1.18, 1.18], [2.0, 1.2], [2.3, 1.5], [3.56, 2.76], [5.8577, 2.78], [6.1777, 3.1], [7.0777, 4.0], [7.2635, 4.06], [7.5035, 4.3], [8.7535, 5.55], [9.7747, 5.66], [10.1147, 6.0], [11.0547, 6.94], [11.8834, 6.96], [12.1234, 7.2], [12.7034, 7.78], [14.1829, 7.8], [14.3329, 7.95], [15.1529, 8.77], [18.9186, 8.79], [19.1286, 9.0], [19.9286, 9.8], [20.616, 9.88], [20.836, 10.1], [21.936, 11.2], [24.1083, 11.22], [24.3883, 11.5], [25.6883, 12.8], [26.75, 13.0], [27.1, 13.35], [28.3, 14.55], [29.67, 14.67], [30.0, 15]];
 const T = {
  "kicker": "18–26 September 2026",
  "d1": "Fri 18 Sept",
@@ -233,7 +234,7 @@ function rail(stops, { y = 980, x0 = 120, x1 = 1800, color = '#fff', accent = '#
       let pos = keys[0][1];
       for (let i = 1; i < keys.length; i++) {
         const [tk, sk] = keys[i], [tp, sp] = keys[i - 1];
-        if (t >= tk) pos = sk; else if (t > tk - 0.5) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.5, tk))); break; } else break;
+        if (t >= tk) pos = sk; else if (t > tk - 0.3) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.3, tk))); break; } else break;
       }
       const fi = Math.floor(pos), fr = pos - fi;
       const x = fi >= xs.length - 1 ? xs[xs.length - 1] : lerp(xs[fi], xs[fi + 1], fr);
@@ -280,7 +281,18 @@ function endCard(t, t0, opts) {
 }
 
 let READY = false;
-function renderAt(t) { frame(Math.min(t, DURATION - 1e-4)); }
+/* The piece is authored on a short design timeline; WARP (from timing.json) maps
+   finished-video time to design time, holding each finished frame for longer. */
+function warp(t) {
+  if (typeof WARP === 'undefined' || !WARP.length) return t;
+  if (t <= WARP[0][0]) return WARP[0][1];
+  for (let i = 1; i < WARP.length; i++) {
+    const [x1, y1] = WARP[i], [x0, y0] = WARP[i - 1];
+    if (t <= x1) return y0 + (y1 - y0) * (t - x0) / (x1 - x0);
+  }
+  return WARP[WARP.length - 1][1];
+}
+function renderAt(t) { frame(warp(Math.min(t, DURATION - 1e-4))); }
 function fit() {
   const s = Math.min(innerWidth / W, innerHeight / H);
   STAGE.style.transform = `translate(${(innerWidth - W * s) / 2}px,${(innerHeight - H * s) / 2}px) scale(${s})`;

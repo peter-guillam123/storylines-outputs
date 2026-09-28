@@ -61,7 +61,8 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden}
 </style></head>
 <body><div id="stage"></div>
 <script>
-const DURATION = 15;
+const DURATION = 30;
+const WARP = [[0.0, 0], [1.18, 1.18], [2.0, 1.2], [2.3, 1.5], [4.38, 3.58], [7.8953, 3.6], [8.2453, 3.95], [9.3453, 5.05], [11.2539, 5.6], [11.6039, 5.95], [12.6039, 6.95], [13.9799, 7.19], [14.2899, 7.5], [15.1899, 8.4], [16.9025, 8.62], [17.1825, 8.9], [17.9825, 9.7], [18.6154, 9.78], [18.8354, 10.0], [19.7354, 10.9], [21.6946, 10.96], [21.9346, 11.2], [23.0346, 12.3], [26.75, 13.05], [27.1, 13.4], [28.3, 14.6], [29.68, 14.68], [30.0, 15]];
 const T = {
  "kicker": "Guardian reporting, 25–28 September 2026",
  "hh": "How it got here",
@@ -251,7 +252,7 @@ function rail(stops, { y = 980, x0 = 120, x1 = 1800, color = '#fff', accent = '#
       let pos = keys[0][1];
       for (let i = 1; i < keys.length; i++) {
         const [tk, sk] = keys[i], [tp, sp] = keys[i - 1];
-        if (t >= tk) pos = sk; else if (t > tk - 0.5) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.5, tk))); break; } else break;
+        if (t >= tk) pos = sk; else if (t > tk - 0.3) { pos = lerp(sp, sk, E.inOutCubic(P(t, tk - 0.3, tk))); break; } else break;
       }
       const fi = Math.floor(pos), fr = pos - fi;
       const x = fi >= xs.length - 1 ? xs[xs.length - 1] : lerp(xs[fi], xs[fi + 1], fr);
@@ -298,7 +299,18 @@ function endCard(t, t0, opts) {
 }
 
 let READY = false;
-function renderAt(t) { frame(Math.min(t, DURATION - 1e-4)); }
+/* The piece is authored on a short design timeline; WARP (from timing.json) maps
+   finished-video time to design time, holding each finished frame for longer. */
+function warp(t) {
+  if (typeof WARP === 'undefined' || !WARP.length) return t;
+  if (t <= WARP[0][0]) return WARP[0][1];
+  for (let i = 1; i < WARP.length; i++) {
+    const [x1, y1] = WARP[i], [x0, y0] = WARP[i - 1];
+    if (t <= x1) return y0 + (y1 - y0) * (t - x0) / (x1 - x0);
+  }
+  return WARP[WARP.length - 1][1];
+}
+function renderAt(t) { frame(warp(Math.min(t, DURATION - 1e-4))); }
 function fit() {
   const s = Math.min(innerWidth / W, innerHeight / H);
   STAGE.style.transform = `translate(${(innerWidth - W * s) / 2}px,${(innerHeight - H * s) / 2}px) scale(${s})`;

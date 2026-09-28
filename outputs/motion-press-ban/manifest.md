@@ -1,9 +1,9 @@
 # Provenance manifest: White House bans CNN, MS Now and Politico
 
-Output: `video.mp4` in this folder, rendered from `animation.html` (web page: `index.html`; web version of this manifest: `manifest.html`). Storyline 1 of `storylines-data/trump-administration.json`.
+Output: `video.mp4` in this folder (30 seconds), rendered from `animation.html` (web page: `index.html`; web version of this manifest: `manifest.html`). Storyline 1 of `storylines-data/trump-administration.json`.
 Built by `outputs/motion-kit/motion.py`, which checks every quote and figure below against the fetched article text before the animation is written. The animation reads its words only from this list, so what is on screen is exactly what is listed here.
 
-Entries are grouped by the beat of the video in which they appear, in order. Labels (dates, stage names) are marked as such.
+Entries are grouped by the beat of the video in which they appear, in order. Labels (dates, stage names) are marked as such. Narrated lines are listed under the beat in which they are spoken (sections marked "narration"), follow the same rules as on-screen text, and are also collected with their timings in `narration.md`.
 
 Three things are generated from the Storylines data and not listed entry by entry: the Storyline title (used exactly as given), the end card crediting each article by headline and date, and the Read more list on the web page. The soundtrack is music and sound effects synthesised in code by `outputs/motion-kit/audio.py` (no samples, no licensed music, no speech), so it adds no words or facts. The end card closes with the line "Every fact on screen comes from these articles · theguardian.com". The date rail's stop labels are the dates of the beats listed below.
 
@@ -12,7 +12,7 @@ Three things are generated from the Storylines data and not listed entry by entr
 **1.** 18–26 September 2026
 - Note: Span of the events shown: the ban was announced on Friday 18 September (ban article, published that day) and CNN was blocked from Air Force One for Saturday 26 September.
 
-## 0:01 · Friday 18 September
+## 0:02 · Friday 18 September
 
 **2.** Fri 18 Sept
 - Note: Date: the ban article, published on 18 September 2026, says the post was made “on Friday”.
@@ -36,110 +36,129 @@ Three things are generated from the Storylines data and not listed entry by entr
 - Source: [Trump bans CNN, MS Now and Politico from White House](https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house) (18 September 2026)
 - Supports: In a post on his Truth Social platform on Friday
 
-## 0:03 · Saturday 19 September
+## 0:02 · Friday 18 September · narration
 
-**8.** Sat 19 Sept
+**8.** Donald Trump banned three news outlets from the White House.
+- Source: [Trump bans CNN, MS Now and Politico from White House](https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house) (18 September 2026)
+- Supports: Trump bans CNN, MS Now and Politico from White House *(from the headline or standfirst, not the body text)*
+
+## 0:06 · Saturday 19 September
+
+**9.** Sat 19 Sept
 - Note: Date: the lawsuit article, published on Monday 21 September 2026, says “on Saturday”.
 
-**9.** Their badges are switched off
+**10.** Their badges are switched off
 - Source: [CNN, MS Now and Politico sue Trump after being blocked from White House](https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit) (21 September 2026)
 - Supports: were told that their badges had been disabled and were taken
 
-**10.** Disabled
+**11.** Disabled
 - Source: [CNN, MS Now and Politico sue Trump after being blocked from White House](https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit) (21 September 2026)
 - Supports: had their badges disabled on Saturday
 
-## 0:04 · Monday 21 September
+## 0:07 · Monday 21 September
 
-**11.** Mon 21 Sept
+**12.** Mon 21 Sept
 - Note: Date: the lawsuit article, published on Monday 21 September 2026, says the suit was filed “on Monday morning”.
 
-**12.** They sue.
+**13.** They sue.
 - Source: [CNN, MS Now and Politico sue Trump after being blocked from White House](https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit) (21 September 2026)
 - Supports: have sued to regain their ability to enter the building
 
-**13.** The TV networks stop filming the president, in solidarity
+**14.** The TV networks stop filming the president, in solidarity
 - Source: [White House television pool resumes after banned news outlets regain access](https://www.theguardian.com/media/2026/sep/25/trump-media-ban-white-house-pool) (25 September 2026)
 - Supports: ceased recording and transmitting White House footage on Monday, in solidarity with CNN, MS Now and Politico
 
-**14.** Fox · ABC · CBS · CNN · NBC
+**15.** Fox · ABC · CBS · CNN · NBC
 - Source: [CNN, MS Now and Politico sue Trump after being blocked from White House](https://www.theguardian.com/us-news/2026/sep/21/white-house-news-organization-ban-lawsuit) (21 September 2026)
 - Supports: the five television networks that make up the primary video pool covering the White House – Fox News, ABC News, CBS News, CNN and NBC News
 
-**15.** The TV pool
+**16.** The TV pool
 - Source: [White House television pool resumes after banned news outlets regain access](https://www.theguardian.com/media/2026/sep/25/trump-media-ban-white-house-pool) (25 September 2026)
 - Supports: The primary White House television pool
 
-## 0:06 · In court
+## 0:10 · In court
 
-**16.** In court
+**17.** In court
 - Note: Label. The justice department’s filing is dated only “earlier this week” in the 24 September article; the hearing was “on Wednesday” (23 September). The date rail sits at 23 September for this beat.
 
-**17.** Government lawyers argue the ban protects national security
+**18.** Government lawyers argue the ban protects national security
 - Source: [CNN and MS Now journalists denied access to White House state dinner despite court ruling](https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban) (25 September 2026)
 - Supports: Department of Justice lawyers argued that the ban was necessary for national security reasons
 
-## 0:07 · Thursday 24 September
+## 0:12 · Thursday 24 September
 
-**18.** Thu 24 Sept
+**19.** Thu 24 Sept
 - Note: Date: the article, published late on Thursday 24 September 2026 (US time), describes the order as issued early that morning and the dinner as “on Thursday evening”.
 
-**19.** A judge orders their access restored for 14 days
+**20.** A judge orders their access restored for 14 days
 - Source: [CNN and MS Now journalists denied access to White House state dinner despite court ruling](https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban) (25 September 2026)
 - Supports: issued an early morning order forcing the administration to return access for a 14-day period
 
-**20.** 14
+**21.** 14
 - Source: [CNN and MS Now journalists denied access to White House state dinner despite court ruling](https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban) (25 September 2026)
 - Supports: for a 14-day period
 
-**21.** days
+**22.** days
 - Note: Label for the figure 14.
 
-**22.** That night, CNN and MS Now reporters are kept out of a state dinner
+**23.** That night, CNN and MS Now reporters are kept out of a state dinner
 - Source: [CNN and MS Now journalists denied access to White House state dinner despite court ruling](https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban) (25 September 2026)
 - Supports: Journalists for CNN and MS Now were denied access to the White House state dinner in honor of Xi Jinping, China’s president, on Thursday evening
 
-## 0:09 · Friday 25 September
+## 0:12 · Thursday 24 September · narration
 
-**23.** Fri 25 Sept
+**24.** Despite a court order, CNN and MS Now reporters were kept out.
+- Source: [CNN and MS Now journalists denied access to White House state dinner despite court ruling](https://www.theguardian.com/us-news/2026/sep/24/judge-orders-trump-restore-white-house-access-cnn-ms-now-politico-media-ban) (25 September 2026)
+- Supports: Journalists for CNN and MS Now were denied access to the White House state dinner in honor of Xi Jinping, China’s president, on Thursday evening, hours after a federal judge ruled the Trump administration must allow them in
+- Supports: notably excluding the network’s editorial team consisting of a reporter and producer
+
+## 0:19 · Friday 25 September
+
+**25.** Fri 25 Sept
 - Note: Date: the pool article, published on Friday 25 September 2026, quotes CNN’s anchor “on Friday morning”.
 
-**24.** The TV pool starts filming again
+**26.** The TV pool starts filming again
 - Source: [White House television pool resumes after banned news outlets regain access](https://www.theguardian.com/media/2026/sep/25/trump-media-ban-white-house-pool) (25 September 2026)
 - Supports: The primary White House television pool has resumed filming administration events
 
-## 0:10 · Saturday 26 September
+## 0:20 · Saturday 26 September
 
-**25.** Sat 26 Sept
+**27.** Sat 26 Sept
 - Note: Date: the article (published Friday evening, US time) refers to the flight as “on Saturday”.
 
-**26.** CNN is left off Air Force One
+**28.** CNN is left off Air Force One
 - Source: [White House blocks CNN from Air Force One in latest escalation with news media](https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one) (26 September 2026)
 - Supports: The White House has blocked CNN from traveling aboard Air Force One on Saturday
 
-**27.** Air Force One · Tennessee
+**29.** Air Force One · Tennessee
 - Source: [White House blocks CNN from Air Force One in latest escalation with news media](https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one) (26 September 2026)
 - Supports: CNN had been scheduled to fly with Donald Trump to Tennessee for a college football game
 
-## 0:11 · Why it matters
+## 0:20 · Saturday 26 September · narration
 
-**28.** “This is about more than the rights of journalists”
+**30.** Then the White House blocked CNN from Air Force One.
+- Source: [White House blocks CNN from Air Force One in latest escalation with news media](https://www.theguardian.com/us-news/2026/sep/25/white-house-cnn-air-force-one) (26 September 2026)
+- Supports: The White House has blocked CNN from traveling aboard Air Force One on Saturday
+
+## 0:24 · Why it matters
+
+**31.** “This is about more than the rights of journalists”
 - Source: [Trump bans CNN, MS Now and Politico from White House](https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house) (18 September 2026)
 - Supports: “This is about more than the rights of journalists,” Henrich wrote in a statement.
 
-**29.** Jacqui Heinrich, president of the White House Correspondents’ Association, 18 Sept
+**32.** Jacqui Heinrich, president of the White House Correspondents’ Association, 18 Sept
 - Source: [Trump bans CNN, MS Now and Politico from White House](https://www.theguardian.com/us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house) (18 September 2026)
 - Supports: Jacqui Heinrich, president of the White House Correspondents’ Association (WHCA)
 - Note: Date: her statement is reported in the ban article of 18 September 2026.
 
-## 0:13 · End card
+## 0:27 · End card
 
-**30.** Drawn from Guardian journalism
+**33.** Drawn from Guardian journalism
 - Note: End card heading. The card lists every article in the Storyline by date and headline.
 
 ## Page header
 
-**31.** Fifteen seconds on how a ban on three news organisations became a lawsuit, a halt to the TV networks’ pool coverage, a court order and a fresh exclusion, in nine days.
+**34.** Thirty seconds on how a ban on three news organisations became a lawsuit, a halt to the TV networks’ pool coverage, a court order and a fresh exclusion, in nine days.
 - Note: Summary of the video. Each development is sourced in the script below.
 
 ## Checks
@@ -151,4 +170,4 @@ Three things are generated from the Storylines data and not listed entry by entr
 - **The TV pool.** CNN's dot goes dark first, because the White House removed CNN from pool duty; the other four networks then stop filming in solidarity, as the pool article describes.
 - **Why it matters.** The closing quote is from Jacqui Heinrich's statement on the day of the ban. Her full sentence continues: "It is about the right of the American people to receive a full and independent account of the activities, policies and decisions of whoever occupies the nation's highest office." It is cut at the first sentence for length; the cut does not change its meaning.
 - **Left out.** The opinion piece (Margaret Sullivan) is credited on the end card but not quoted: a 15-second video could not label it clearly as opinion.
-- **Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.
+- **Images.** None. Type, colour and drawn shapes only. **Sound:** narration by a synthetic voice (Kokoro, run offline), with music and effects synthesised in code; no samples, no licensed music.

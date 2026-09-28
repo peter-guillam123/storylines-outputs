@@ -14,9 +14,10 @@ SLUG = "city-title-race"
 PAGE_TITLE = "The 2025-26 Premier League title race: a Storylines video"
 KICKER = "Manchester City"
 DURATION = 15
-SOUND = ("A driving, match-night rhythm with a synthesised crowd that swells as each result lands, loudest for the "
+SOUND = ("Narration by a synthetic British voice (Kokoro’s “George”), generated offline, over "
+         "a driving, match-night rhythm with a synthesised crowd that swells as each result lands, loudest for the "
          "final draw at Bournemouth. The beat drops away for Guardiola’s words at the end, over a settled major "
-         "chord. No speech.")
+         "chord.")
 
 SRC = {
     "arteta": "football/2026/apr/25/angry-mikel-arteta-slams-red-card-decisions-after-arsenal-beat-newcastle",
@@ -37,7 +38,7 @@ THEME_DARK = """
 --accent:#f4d35e;--accent-strong:#f6dd83;--accent-ink:#0c1511;--chip:#e6eee8;--chip-ink:#0c1511;--focus:#8fb0ff;
 """
 
-DEK = [C("Fifteen seconds on the last month of the title race: the results, the gap between Arsenal and Manchester "
+DEK = [C("Thirty seconds on the last month of the title race: the results, the gap between Arsenal and Manchester "
          "City, and the draw that settled it.",
          note="Summary of the video. Each element is sourced in the script below.")]
 
@@ -134,7 +135,7 @@ CHECKS = [
     "**Left out.** Barney Ronay's opinion piece and the 4 May explainer on Guardiola's frustration. Both are credited "
     "on the end card.",
     "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, "
-    "no licensed music, no speech.",
+    "no licensed music; narration by a synthetic voice (Kokoro, run offline), held to the same sourcing rules.",
 ]
 
 ANIM_CSS = """
@@ -255,18 +256,20 @@ def score(A):
     roots = [(0.0, "A1"), (1.5, "F1"), (3.1, "C2"), (4.9, "G1"), (6.9, "A1"), (8.4, "F1"), (9.9, "D2"), (12.0, "A1")]
     def root(t):
         return N(max((r for r in roots if r[0] <= t + 1e-6), key=lambda r: r[0])[1])
-    for t, x in A.bass_pulse(root, 1.5, 11.9, step=beat / 2, length=0.18, cutoff=500):
-        m.add(x, t, "music", gain=0.85)
-    t = 1.5
-    while t < 11.9:
-        m.add(A.thud(120, 48, 0.3, 14, 0.5), t, "music", gain=0.8)          # kick on the beat
-        m.add(A.tick(8000, 0.02, 0.22), t + beat / 2, "music", pan=0.3)      # off-beat hat
+    # the rhythm runs in finished-video time so the tempo stays steady through the holds
+    r0, r1 = A.T(1.5), A.T(11.9)
+    for t, x in A.bass_pulse(lambda r: root(A.Tinv(r)), r0, r1, step=beat / 2, length=0.18, cutoff=500):
+        m.add(x, t, "music", gain=0.85, real=True)
+    t = r0
+    while t < r1:
+        m.add(A.thud(120, 48, 0.3, 14, 0.5), t, "music", gain=0.8, real=True)          # kick on the beat
+        m.add(A.tick(8000, 0.02, 0.22), t + beat / 2, "music", pan=0.3, real=True)      # off-beat hat
         t += beat
     for i, (t0, ns) in enumerate([(0.0, ["A2", "E3", "C4"]), (1.5, ["F2", "C3", "A3"]), (3.1, ["C3", "G3", "E4"]),
                                   (4.9, ["G2", "D3", "B3"]), (6.9, ["A2", "E3", "C4"]), (8.4, ["F2", "C3", "A3"]),
                                   (9.9, ["D3", "A3", "F#4"]), (12.0, ["A2", "E3", "C#4"])]):
         t1 = [1.5, 3.1, 4.9, 6.9, 8.4, 9.9, 12.0, 15.0][i]
-        m.add(A.pad([N(n) for n in ns], t1 - t0 + 0.8, cutoff=1300, a=0.2, r=0.8), t0, "music", gain=0.45, verb=0.3)
+        m.add(A.pad([N(n) for n in ns], A.D(t0, t1) + 0.8, cutoff=1300, a=0.2, r=0.8), t0, "music", gain=0.45, verb=0.3)
 
     def crowd(dur, level):
         n = A.noise(dur)
@@ -287,3 +290,24 @@ def score(A):
         m.add(A.piano(N(n), 2.0, 0.7), t0, "music", gain=1.0, verb=0.5); cues.append(t0)
     m.add(A.sweep_noise(0.5, 6000, 800), 13.35, gain=0.1, verb=0.3)
     return cues
+
+# ---- 30-second cut with narration (see motion-kit/timing.py)
+LENGTH = 30
+VOICE = "bm_george"
+SEGMENTS = [(0, 1.5, 1.2), (1.5, 3.1, 1.2, 2.0), (3.1, 4.9, 1.2, 3.0), (4.9, 6.9, 1.2, 3.2), (6.9, 8.4, 1.1, 2.2),
+            (8.4, 9.9, 1.1, 3.5), (9.9, 12.0, 1.1, 3.0), (12.0, 13.4, 0.9, 2.0), (13.4, 15, 1.2)]
+SCRIPT_SEG = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+NARRATION = [
+    (1, "n1", C("City beat Arsenal in April.", "arteta", ["last Sunday’s pivotal game", "City went on to win 2-1"],
+                note="April: the game was on Sunday 19 April, “last Sunday” in this 25 April article.")),
+    (2, "n2", C("Then Arsenal went three points clear, having played a game more.", "arteta",
+                "to move three points back in front of City at the top of the table, albeit having played an extra match")),
+    (4, "n4", C("City drew at Everton, then beat Brentford", "brentford",
+                ["Monday’s 3-3 draw at Everton", "Manchester City keep pressure on Arsenal as Jérémy Doku sparks defeat of Brentford"])),
+    (5, "n4b", C("and Crystal Palace, to get within two points.", "palace",
+                 ["as Manchester City beat Crystal Palace 3-0 to close to within two points of Arsenal",
+                  "takes Manchester City back to within two points of Arsenal after 36 games each"])),
+    (6, "n5", C("Then a draw at Bournemouth meant Arsenal were champions.", "bmth",
+                ["held Manchester City to a 1-1 draw that means Arsenal are the 2025-26 Premier League champions",
+                 "Congratulations, Arsenal, champions of England after 22 years."])),
+]

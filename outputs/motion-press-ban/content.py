@@ -13,10 +13,11 @@ SLUG = "press-ban"
 PAGE_TITLE = "White House bans CNN, MS Now and Politico: a Storylines video"
 KICKER = "Trump administration"
 DURATION = 15
-SOUND = ("A taut, rhythmic score in a minor key, with a steady pulse through the nine days. Stamps thud as the "
+SOUND = ("Narration by a synthetic British voice (Kokoro’s “Emma”), generated offline, over "
+         "a taut, rhythmic score in a minor key, with a steady pulse through the nine days. Stamps thud as the "
          "badges are switched off, falling notes as the TV pool goes dark and rising ones as it returns, and a "
          "rush of air for Air Force One. The rhythm stops for the closing quote, which is underscored by a few "
-         "piano notes. No speech.")
+         "piano notes.")
 
 SRC = {
     "ban": "us-news/2026/sep/18/trump-bans-cnn-msnow-politico-white-house",
@@ -37,7 +38,7 @@ THEME_DARK = """
 --accent:#ff6a4d;--accent-strong:#ff8c73;--accent-ink:#16171c;--chip:#ece8e0;--chip-ink:#131419;--focus:#8fb0ff;
 """
 
-DEK = [C("Fifteen seconds on how a ban on three news organisations became a lawsuit, a halt to the TV networks’ pool "
+DEK = [C("Thirty seconds on how a ban on three news organisations became a lawsuit, a halt to the TV networks’ pool "
          "coverage, a court order and a fresh exclusion, in nine days.",
          note="Summary of the video. Each development is sourced in the script below.")]
 
@@ -133,7 +134,7 @@ CHECKS = [
     "sentence for length; the cut does not change its meaning.",
     "**Left out.** The opinion piece (Margaret Sullivan) is credited on the end card but not quoted: a 15-second video "
     "could not label it clearly as opinion.",
-    "**Images.** None. Type, colour and drawn shapes only. **Sound:** music and effects synthesised in code; no samples, no licensed music, no speech.",
+    "**Images.** None. Type, colour and drawn shapes only. **Sound:** narration by a synthetic voice (Kokoro, run offline), with music and effects synthesised in code; no samples, no licensed music.",
 ]
 
 ANIM_CSS = """
@@ -338,16 +339,18 @@ def score(A):
               (10.1, ["D3", "A3", "F4"]), (11.5, ["Bb2", "F3", "D4"]), (13.35, ["D3", "A3", "E4"])]
     for i, (t0, ns) in enumerate(chords):
         t1 = chords[i + 1][0] if i + 1 < len(chords) else 15.0
-        m.add(A.pad([N(n) for n in ns], t1 - t0 + 0.9, cutoff=1100, a=0.25, r=0.8), t0, "music", gain=0.55, verb=0.35)
+        m.add(A.pad([N(n) for n in ns], A.D(t0, t1) + 0.9, cutoff=1100, a=0.25, r=0.8), t0, "music", gain=0.55, verb=0.35)
     roots = {0: "D2", 4.3: "Bb1", 6.0: "G1", 7.2: "F1", 8.1: "Bb1", 9.0: "F1", 10.1: "D2"}
     def root(t):
         k = max(x for x in roots if x <= t + 1e-6)
         return N(roots[k])
-    for t, x in A.bass_pulse(root, 1.5, 11.5):
-        m.add(x, t, "music", gain=0.9 if round(t / 0.25) % 2 == 0 else 0.6)
-    t = 1.5
-    while t < 11.45:
-        m.add(A.tick(7500, 0.02, 0.35 if round(t / 0.125) % 2 == 0 else 0.18), t, "music", pan=0.3)
+    # the pulse runs in finished-video time so the tempo stays steady through the holds
+    r0, r1 = A.T(1.5), A.T(11.5)
+    for t, x in A.bass_pulse(lambda r: root(A.Tinv(r)), r0, r1):
+        m.add(x, t, "music", gain=0.9 if round((t - r0) / 0.25) % 2 == 0 else 0.6, real=True)
+    t = r0
+    while t < r1 - 0.05:
+        m.add(A.tick(7500, 0.02, 0.35 if round((t - r0) / 0.125) % 2 == 0 else 0.18), t, "music", pan=0.3, real=True)
         t += 0.125
     cues = []
     # title
@@ -394,3 +397,19 @@ def score(A):
     m.add(A.piano(N("D3"), 2.0, 0.9), 13.4, "music", gain=0.9, verb=0.5)
     m.add(A.piano(N("A3"), 2.0, 0.7), 13.42, "music", gain=0.8, verb=0.5); cues.append(13.35)
     return cues
+
+# ---- 30-second cut with narration (see motion-kit/timing.py)
+LENGTH = 30
+VOICE = "bf_emma"
+SEGMENTS = [(0, 1.5, 1.2), (1.5, 3.1, 1.3, 2.4), (3.1, 4.3, 0.9, 1.3), (4.3, 6.0, 1.25, 2.6), (6.0, 7.2, 1.0, 2.0),
+            (7.2, 7.95, 0.6, 2.2), (7.95, 9.0, 0.9, 2.2), (9.0, 10.1, 0.8, 1.7), (10.1, 11.5, 1.1, 1.8), (11.5, 13.35, 1.3, 2.7),
+            (13.35, 15, 1.2)]
+SCRIPT_SEG = [0, 1, 2, 3, 4, 5, 7, 8, 9, 10]
+NARRATION = [
+    (1, "n1", C("Donald Trump banned three news outlets from the White House.", "ban",
+                "Trump bans CNN, MS Now and Politico from White House")),
+    (6, "n5", C("Despite a court order, CNN and MS Now reporters were kept out.", "dinner",
+                ["Journalists for CNN and MS Now were denied access to the White House state dinner in honor of Xi Jinping, China’s president, on Thursday evening, hours after a federal judge ruled the Trump administration must allow them in",
+                 "notably excluding the network’s editorial team consisting of a reporter and producer"])),
+    (8, "n6", C("Then the White House blocked CNN from Air Force One.", "af1", "The White House has blocked CNN from traveling aboard Air Force One on Saturday")),
+]
