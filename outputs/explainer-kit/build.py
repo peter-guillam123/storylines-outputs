@@ -189,7 +189,8 @@ class Page:
         js = (KIT / "explainer.js").read_text()
         n_text = sum(1 for a in self.articles.values() if not a["media"])
         motion = self.folder.parent / self.folder.name.replace("explainer-", "motion-")
-        video_link = (f' · <a href="../{motion.name}/index.html">Watch the 15-second video</a>'
+        vlen = json.loads((motion / "timing.json").read_text())["length"] if (motion / "timing.json").exists() else 15
+        video_link = (f' · <a href="../{motion.name}/index.html">Watch the {vlen}-second video</a>'
                       if self.folder.name.startswith("explainer-") and (motion / "video.mp4").exists() else "")
         n_fetched = sum(1 for a in self.articles.values() if not a["media"] and a["fetched"])
         read_line = ("read the full text of each text article" if n_fetched == n_text else

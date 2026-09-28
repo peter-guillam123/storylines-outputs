@@ -60,7 +60,7 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
   <h2>How the outputs are made</h2>
   <p>Claude, an AI model, fetches the full text of each article in a Storyline through the Guardian’s Content API. It then writes the output using those articles and nothing else: no web searches, and none of its own knowledge.</p>
   <p>Every sentence is tied to the passage in the article that supports it. A build script checks each quote and figure against the article text, and refuses to build the page if one doesn’t match. Each output comes with a provenance manifest, listing every piece of text, its source and the supporting passage, followed by a note of anything uncertain or left out.</p>
-  <p>The videos work the same way. Each is written as a web page in which every frame is a function of time, reads its words only from the checked list, and is rendered frame by frame to a 1080p MP4. Their pages carry a transcript of everything on screen, each line linked to its article.</p>
+  <p>The videos work the same way. Each is written as a web page in which every frame is a function of time, reads its words only from the checked list, and is rendered frame by frame to a 1080p MP4. Their pages carry a transcript of everything on screen and everything said, each line linked to its article. The narration is a synthetic voice, generated offline, and follows the same sourcing rules as the text on screen.</p>
   <p>None of the outputs has yet been checked by a Guardian editor.</p>
 
   <h2>Outputs so far</h2>
@@ -75,7 +75,7 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
     <li><a href="../explainer-ice-crackdown/index.html">ICE immigration enforcement crackdown</a><span>Explainer, with the immigration system drawn stage by stage</span></li>
   </ul>
   <h4 class="og">Videos</h4>
-  <p class="og-sub">Fifteen seconds of motion graphics, from the first development to the latest, with a score and sound effects.</p>
+  <p class="og-sub">Thirty seconds of motion graphics, from the first development to the latest, with narration, a score and sound effects.</p>
   <ul class="videos">
     <li><a href="../motion-press-ban/index.html"><img src="../motion-press-ban/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">White House bans CNN, MS Now and Politico</span></a><span class="vd">Press passes switched off and on, and the TV pool going dark</span></li>
     <li><a href="../motion-iran-hormuz/index.html"><img src="../motion-iran-hormuz/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">US-Iran war and Hormuz negotiations</span></a><span class="vd">Shipping through the strait thins out, and Iran’s offer is built day by day</span></li>
@@ -84,7 +84,7 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
 
   <h3 class="topic" id="man-city">Manchester City <span>Storylines of 28 September 2026</span></h3>
   <h4 class="og">Videos</h4>
-  <p class="og-sub">Fifteen seconds of motion graphics, with a score and sound effects.</p>
+  <p class="og-sub">Thirty seconds of motion graphics, with narration, a score and sound effects.</p>
   <ul class="videos">
     <li><a href="../motion-city-verdict/index.html"><img src="../motion-city-verdict/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">Manchester City found guilty of financial fair play breaches</span></a><span class="vd">From Football Leaks to the verdict, the trophies of those seasons, and what was said next</span></li>
     <li><a href="../motion-city-guardiola/index.html"><img src="../motion-city-guardiola/poster.jpg" alt="" width="1920" height="1080" loading="lazy"><span class="vt">Pep Guardiola's departure from Manchester City</span></a><span class="vd">A decade of trophies, the week the news broke, and “Nothing is eternal”</span></li>
@@ -93,6 +93,13 @@ h2::before{content:"";display:block;width:2.4rem;height:.3rem;background:var(--a
 
   <h2>Diary</h2>
   <ol class="diary">
+    <li>
+      <time datetime="2026-09-28">28 September 2026</time>
+      <h3>Thirty seconds, with narration <span class="milestone">Milestone</span></h3>
+      <p>The brief for the videos had changed: it now asks for more length and for narration where it helps, with a separate narration script. The Manchester City videos were first made to the old 15-second brief by mistake. All six videos are remade at 30 seconds. The extra time goes into letting each development land, not into more text: entrances keep their speed and the finished frame holds for longer, timed so every screen can be read.</p>
+      <p>The narration is a synthetic voice, run offline: “Emma” for the Trump set, “George” for Manchester City. It is sparse, two to four short lines a video, and it tries to add what the screen does not say rather than read it aloud. The closing quotes are left unnarrated. Every spoken line goes through the same checks as the words on screen, and each video’s page has captions and a narration script with sources.</p>
+      <p>Spoken lines turned out to need their own fact-check. Things that read fine on screen went wrong aloud: “he” and “it” with nothing to point back to, “hours later” heard as hours after the wrong event, “two” that could mean two people. The checker also caught a line that turned one of Iran’s several conditions into the only one. All were rewritten before the final render.</p>
+    </li>
     <li>
       <time datetime="2026-09-28">28 September 2026</time>
       <h3>A second topic: Manchester City <span class="milestone">Milestone</span></h3>
